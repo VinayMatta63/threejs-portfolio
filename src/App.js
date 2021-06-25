@@ -1,25 +1,94 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import "./App.css";
+import { React, Suspense } from "react";
+import Bounce from "react-reveal/Bounce";
+import { Canvas } from "@react-three/fiber";
+import Scene from "./Body/Body";
+import Sky from "./Sky/Sky";
+import CameraControls from "./CameraControls";
+import Particles from "react-particles-js";
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div id="selector">
+        <div id="welcome">
+          <Bounce top>
+            <h1 style={{ fontSize: "45px", fontWeight: "500" }}>
+              Hello, I'm <span>Vinay Matta.</span>
+            </h1>
+            <h2 style={{ fontSize: "40px", fontWeight: "500" }}>
+              I'm a full-stack Web Developer.
+            </h2>
+          </Bounce>
+          <Bounce bottom>
+            <p>Click to play</p>
+            <p>
+              Move: WASD
+              <br />
+              Jump: SPACE
+              <br />
+              Look: MOUSE
+            </p>
+          </Bounce>
+        </div>
+        <Particles
+          id="particles-js"
+          params={{
+            particles: {
+              number: {
+                value: 800,
+                density: {
+                  enable: true,
+                  value_area: 1000,
+                },
+              },
+              color: {
+                value: "#91fff8",
+                // value: "#daf277",
+              },
+              opacity: {
+                value: 0.5,
+                anim: {
+                  enable: true,
+                },
+              },
+              size: {
+                value: 5,
+                random: true,
+                anim: {
+                  enable: true,
+                  speed: 5,
+                },
+              },
+              line_linked: {
+                enable: false,
+              },
+              move: {
+                speed: 0.2,
+              },
+            },
+          }}
+        />
+      </div>
+      <Canvas
+        style={{
+          height: "100vh",
+          width: "100vw",
+          backgroundColor: "black",
+        }}
+        camera={{ fov: 45, near: 0.1, far: 1000, position: [0, 5, 25] }}
+        id="canvas"
+        gl={{
+          antialias: true,
+        }}
+      >
+        <Suspense fallback={null}>
+          <Sky pointCount={10000} />
+          <CameraControls />
+          <Scene />
+        </Suspense>
+      </Canvas>
+    </>
   );
-}
+};
 
 export default App;

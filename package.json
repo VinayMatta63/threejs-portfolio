@@ -3,12 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-three/drei": "^7.0.1",
+    "@react-three/fiber": "^7.0.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-particles-js": "^3.4.1",
+    "react-reveal": "^1.2.2",
     "react-scripts": "4.0.3",
+    "three": "^0.129.0",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
