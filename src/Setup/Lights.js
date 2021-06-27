@@ -11,8 +11,8 @@ const Lights = () => {
       <rectAreaLight
         width={1000}
         height={1000}
-        color={"white"}
-        intensity={0.15}
+        color="#fafafa"
+        intensity={0.2}
         position={[100, 100, 200]}
         lookAt={[0, 0, 0]}
         penumbra={1}
@@ -53,6 +53,11 @@ const Lights = () => {
       <pointLight
         position={[-95, 2, 125]}
         args={["#FF7A1F", 0.5, 30, 1]}
+        // ref={helper}
+      />
+      <pointLight
+        position={[-105, 5, -10]}
+        args={["#ffffff", 0.5, 40, 1]}
         ref={helper}
       />
     </mesh>

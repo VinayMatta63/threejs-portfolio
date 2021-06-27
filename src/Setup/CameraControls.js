@@ -44,8 +44,8 @@ const CameraControls = () => {
         canJump = false;
         break;
       case "ShiftLeft":
-        velocity.x *= 20;
-        velocity.z *= 20;
+        velocity.x *= 15;
+        velocity.z *= 15;
         break;
       default:
         break;
@@ -74,8 +74,8 @@ const CameraControls = () => {
         moveRight = false;
         break;
       case "ShiftLeft":
-        velocity.x /= 20;
-        velocity.z /= 20;
+        velocity.x /= 15;
+        velocity.z /= 15;
         break;
       default:
         break;
@@ -112,8 +112,8 @@ const CameraControls = () => {
     const elapsedTime = clock.getElapsedTime();
     const delta = elapsedTime - prevTime;
     prevTime = elapsedTime;
-    velocity.x -= velocity.x * delta * 5;
-    velocity.z -= velocity.z * delta * 5;
+    velocity.x -= velocity.x * delta * 4;
+    velocity.z -= velocity.z * delta * 4;
 
     velocity.y -= 9.8 * 100 * delta; // 100.0 = mass
 

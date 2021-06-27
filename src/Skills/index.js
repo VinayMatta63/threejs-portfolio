@@ -22,28 +22,39 @@ const Skills = () => {
 
   const textOptions = {
     font,
-    size: 8,
-    height: 2,
+    size: 10,
+    height: 4,
   };
-  console.log(icons);
   return (
     <group>
       <mesh rotation={[0, Math.PI, 0]} position={[-80, 0, 120]}>
         <textBufferGeometry attach="geometry" args={["Skills", textOptions]} />
         <meshStandardMaterial attach="material" color="#fafafa" metalness={1} />
       </mesh>
-      <Skill icon={icons[0]} position={[-80, 3, 40]} scale={[5, 5, 5]} />
-      <Skill icon={icons[1]} position={[-100, 3, 80]} scale={[8, 5, 5]} />
-      <Skill icon={icons[2]} position={[-120, 3, 80]} scale={[10, 4, 5]} />
-      <Skill icon={icons[3]} position={[-110, 3, 60]} scale={[5, 5, 5]} />
-      <Skill icon={icons[4]} position={[-100, 3, 100]} scale={[8, 5, 5]} />
-      <Skill icon={icons[5]} position={[-70, 3, 60]} scale={[4, 4, 4]} />
-      <Skill icon={icons[6]} position={[-80, 3, 80]} scale={[5, 5, 4]} />
-      <Skill icon={icons[7]} position={[-120, 3, 100]} scale={[5, 5, 4]} />
-      <Skill icon={icons[8]} position={[-120, 3, 40]} scale={[8, 4, 5]} />
-      <Skill icon={icons[9]} position={[-70, 3, 100]} scale={[10, 5, 5]} />
-      <Skill icon={icons[10]} position={[-100, 3, 40]} scale={[8, 5, 5]} />
-      <Skill icon={icons[11]} position={[-90, 3, 60]} scale={[5, 5, 5]} />
+      {/*React*/}
+      <Skill icon={icons[0]} position={[-80, 5, 40]} scale={[7, 7, 1]} />
+      {/*Node js*/}
+      <Skill icon={icons[1]} position={[-100, 5, 80]} scale={[10, 7, 1]} />
+      {/*Mongo*/}
+      <Skill icon={icons[2]} position={[-120, 5, 80]} scale={[12, 6, 1]} />
+      {/*Python*/}
+      <Skill icon={icons[3]} position={[-110, 5, 60]} scale={[7, 7, 1]} />
+      {/*SQl*/}
+      <Skill icon={icons[4]} position={[-100, 5, 100]} scale={[10, 7, 1]} />
+      {/*CPP*/}
+      <Skill icon={icons[5]} position={[-70, 5, 60]} scale={[6, 6, 1]} />
+      {/*HTML*/}
+      <Skill icon={icons[6]} position={[-80, 5, 80]} scale={[7, 7, 1]} />
+      {/*CSS*/}
+      <Skill icon={icons[7]} position={[-120, 5, 100]} scale={[7, 7, 1]} />
+      {/*THREE*/}
+      <Skill icon={icons[8]} position={[-120, 5, 40]} scale={[10, 6, 1]} />
+      {/*Bootstrap*/}
+      <Skill icon={icons[9]} position={[-70, 5, 100]} scale={[12, 7, 1]} />
+      {/*Next*/}
+      <Skill icon={icons[10]} position={[-100, 5, 40]} scale={[10, 7, 1]} />
+      {/*Flutter*/}
+      <Skill icon={icons[11]} position={[-90, 5, 60]} scale={[7, 7, 1]} />
     </group>
   );
 };

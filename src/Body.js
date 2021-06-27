@@ -7,6 +7,7 @@ import Lamps from "./Lamps";
 import Trees from "./Trees";
 import PathMesh from "./Path/index";
 import Skills from "./Skills";
+import Boards from "./Boards";
 
 function Body() {
   const [bakedMap] = useTexture(["/textures/baked.jpg"]);
@@ -43,6 +44,7 @@ function Body() {
       <Lamps position={[-141, 0, -57]} />
       <Trees />
       <Skills />
+      <Boards />
     </>
   );
 }
