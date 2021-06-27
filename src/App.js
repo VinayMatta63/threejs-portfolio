@@ -31,6 +31,8 @@ const App = () => {
               Jump: SPACE
               <br />
               Look: MOUSE
+              <br />
+              Sprint: LeftShift
             </p>
           </Bounce>
         </div>
@@ -81,8 +83,6 @@ const App = () => {
         }}
         camera={{ fov: 45, near: 0.1, far: 1000, position: [0, 5, 25] }}
         id="canvas"
-        shadows={true}
-        shadowMap
         onCreated={({ gl }) => {
           gl.shadowMap.enabled = true;
           gl.shadowMap.type = PCFSoftShadowMap;
@@ -91,7 +91,7 @@ const App = () => {
       >
         <fog attach="fog" args={["#0d1a26", 60, 100]} />
         <Suspense fallback={null}>
-          <Sky pointCount={10000} />
+          <Sky pointCount={4000} />
           <Floor />
           <Lights />
           <CameraControls />

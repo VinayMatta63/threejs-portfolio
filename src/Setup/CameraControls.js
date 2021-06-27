@@ -8,6 +8,7 @@ const CameraControls = () => {
   let moveBackward = false;
   let moveLeft = false;
   let moveRight = false;
+  // let sprint = false;
   let canJump = false;
   const controlsRef = useRef(null);
   const objects = [];
@@ -42,6 +43,10 @@ const CameraControls = () => {
         if (canJump === true) velocity.y += 350;
         canJump = false;
         break;
+      case "ShiftLeft":
+        velocity.x *= 20;
+        velocity.z *= 20;
+        break;
       default:
         break;
     }
@@ -67,6 +72,10 @@ const CameraControls = () => {
       case "ArrowRight":
       case "KeyD":
         moveRight = false;
+        break;
+      case "ShiftLeft":
+        velocity.x /= 20;
+        velocity.z /= 20;
         break;
       default:
         break;

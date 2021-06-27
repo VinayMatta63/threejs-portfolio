@@ -6,6 +6,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import Lamps from "./Lamps";
 import Trees from "./Trees";
 import PathMesh from "./Path/index";
+import Skills from "./Skills";
 
 function Body() {
   const [bakedMap] = useTexture(["/textures/baked.jpg"]);
@@ -39,8 +40,8 @@ function Body() {
       <Lamps position={[139, 0, 80]} />
       <Lamps position={[49, 0, -57]} />
       <Lamps position={[-141, 0, -57]} />
-
       <Trees />
+      <Skills />
     </>
   );
 }

@@ -4,8 +4,8 @@ import { PointLightHelper } from "three";
 import LampsLights from "./LampsLights";
 
 const Lights = () => {
-  // const helper = useRef(null);
-  // useHelper(helper, PointLightHelper);
+  const helper = useRef(null);
+  useHelper(helper, PointLightHelper);
   return (
     <mesh>
       <rectAreaLight
@@ -49,6 +49,11 @@ const Lights = () => {
         pos1={[-145, 5, -57]}
         pos2={[-138, 5, -57]}
         args={["#FF7A1F", 0.1, 50, 0.5]}
+      />
+      <pointLight
+        position={[-95, 2, 125]}
+        args={["#FF7A1F", 0.5, 50, 1]}
+        ref={helper}
       />
     </mesh>
   );
