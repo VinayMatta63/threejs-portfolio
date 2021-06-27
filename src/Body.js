@@ -28,8 +28,9 @@ function Body() {
       child.material = portalMaterial;
     } else {
       child.material = material;
+      child.castShadow = true;
     }
-    return (child.castShadow = true);
+    return 0;
   });
 
   return (

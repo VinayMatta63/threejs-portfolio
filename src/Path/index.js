@@ -4,7 +4,7 @@ import PathCreator from "./PathCreator";
 const PathMesh = () => {
   return (
     <>
-      <PathCreator count={6} x={1} start={0} />
+      <PathCreator count={6} x={1} start={0} shadow={true} />
 
       <PathCreator count={35} z={20} start={1} />
       <PathCreator count={35} z={20} start={-36} />

@@ -7,7 +7,7 @@ import Sky from "./Setup/Sky";
 import Lights from "./Setup/Lights";
 import CameraControls from "./Setup/CameraControls";
 import Particles from "react-particles-js";
-import { PCFSoftShadowMap } from "three";
+import { BasicShadowMap, PCFShadowMap } from "three";
 import Floor from "./Setup/Floor";
 import { OrbitControls } from "@react-three/drei";
 const App = () => {
@@ -41,7 +41,7 @@ const App = () => {
           params={{
             particles: {
               number: {
-                value: 800,
+                value: 500,
                 density: {
                   enable: true,
                   value_area: 1000,
@@ -69,7 +69,7 @@ const App = () => {
                 enable: false,
               },
               move: {
-                speed: 0.2,
+                speed: 0.4,
               },
             },
           }}
@@ -85,18 +85,18 @@ const App = () => {
         id="canvas"
         onCreated={({ gl }) => {
           gl.shadowMap.enabled = true;
-          gl.shadowMap.type = PCFSoftShadowMap;
+          gl.shadowMap.type = BasicShadowMap;
           gl.antialias = true;
         }}
       >
         <fog attach="fog" args={["#0d1a26", 60, 100]} />
         <Suspense fallback={null}>
-          <Sky pointCount={4000} />
+          <Scene />
           <Floor />
           <Lights />
-          <CameraControls />
-          <Scene />
         </Suspense>
+        <Sky pointCount={4000} />
+        <CameraControls />
         {/* <OrbitControls /> */}
       </Canvas>
     </>
