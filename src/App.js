@@ -9,11 +9,11 @@ import CameraControls from "./Setup/CameraControls";
 import Particles from "react-particles-js";
 import { PCFSoftShadowMap } from "three";
 import Floor from "./Setup/Floor";
-// import { OrbitControls } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 const App = () => {
   return (
     <>
-      <div id="selector">
+      {/* <div id="selector">
         <div id="welcome">
           <Bounce top>
             <h1 style={{ fontSize: "45px", fontWeight: "500" }}>
@@ -72,7 +72,7 @@ const App = () => {
             },
           }}
         />
-      </div>
+      </div> */}
       <Canvas
         style={{
           height: "100vh",
@@ -89,15 +89,15 @@ const App = () => {
           gl.antialias = true;
         }}
       >
-        <fog attach="fog" args={["#0d1a26", 60, 100]} />
+        {/* <fog attach="fog" args={["#0d1a26", 60, 100]} /> */}
         <Suspense fallback={null}>
           <Sky pointCount={10000} />
           <Floor />
           <Lights />
-          <CameraControls />
+          {/* <CameraControls /> */}
           <Scene />
         </Suspense>
-        {/* <OrbitControls /> */}
+        <OrbitControls />
       </Canvas>
     </>
   );

@@ -5,9 +5,9 @@ const Sky = ({ pointCount }) => {
   const [positions] = useMemo(() => {
     let positions = [];
     for (let i = 0; i < pointCount; i++) {
-      positions.push((Math.random() - 0.5) * 300);
+      positions.push((Math.random() - 0.5) * 500);
       positions.push(Math.random() * 300);
-      positions.push((Math.random() - 0.5) * 300);
+      positions.push((Math.random() - 0.5) * 500);
     }
     return [new Float32Array(positions)];
   }, [pointCount]);

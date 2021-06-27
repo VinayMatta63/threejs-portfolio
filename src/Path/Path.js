@@ -7,7 +7,7 @@ const Path = (props) => {
 
   return (
     <mesh receiveShadow geometry={nodes.Cube078.geometry} castShadow {...props}>
-      <meshStandardMaterial color="#AAAAAA" />
+      <meshStandardMaterial color="#AAAAAA" roughness={1} metalness={0} />
     </mesh>
   );
 };
