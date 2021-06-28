@@ -13,6 +13,12 @@ const CameraControls = () => {
   const controlsRef = useRef(null);
   const objects = [];
   let raycaster;
+  const sf = useRef(null);
+  const iic = useRef(null);
+  const chat = useRef(null);
+  const museum = useRef(null);
+
+  let onObject = [];
 
   let prevTime = 0;
   const velocity = new Vector3();
@@ -47,6 +53,7 @@ const CameraControls = () => {
         velocity.x *= 15;
         velocity.z *= 15;
         break;
+
       default:
         break;
     }
@@ -84,12 +91,51 @@ const CameraControls = () => {
 
   document.addEventListener("keydown", onKeyDown);
   document.addEventListener("keyup", onKeyUp);
+  document.addEventListener("keypress", (e) => {
+    if (onObject[0]) {
+      switch (e.code) {
+        case "KeyV":
+          if (onObject[0].object.uuid === sf.current.uuid)
+            window.open("https://social-freaks.vercel.app/", "_blank");
+          if (onObject[0].object.uuid === iic.current.uuid)
+            window.open("https://iicdcrustm.com/home/", "_blank");
+          if (onObject[0].object.uuid === chat.current.uuid)
+            window.open("https://whats-clone-1c76b.web.app/", "_blank");
+          if (onObject[0].object.uuid === museum.current.uuid)
+            window.open("https://museum-counsel.herokuapp.com/", "_blank");
+          break;
+        case "KeyG":
+          if (onObject[0].object.uuid === sf.current.uuid)
+            window.open(
+              "https://github.com/VinayMatta63/Social-Freaks",
+              "_blank"
+            );
+          if (onObject[0].object.uuid === iic.current.uuid)
+            window.open("https://github.com/VinayMatta63/web", "_blank");
+          if (onObject[0].object.uuid === chat.current.uuid)
+            window.open("https://github.com/VinayMatta63/Chat-App", "_blank");
+          if (onObject[0].object.uuid === museum.current.uuid)
+            window.open(
+              "https://github.com/VinayMatta63/Museum-Counsel",
+              "_blank"
+            );
+          break;
+        default:
+          break;
+      }
+    }
+  });
   const welcome = document.getElementById("selector");
   const canvas = document.getElementById("canvas");
 
-  raycaster = new Raycaster(new Vector3(), new Vector3(0, -1, 0), 0.1, 100);
+  raycaster = new Raycaster(new Vector3(), new Vector3(0, -1, 0), 0, 10);
 
   useFrame(({ clock }) => {
+    !objects.includes(sf.current) && objects.push(sf.current);
+    !objects.includes(iic.current) && objects.push(iic.current);
+    !objects.includes(chat.current) && objects.push(chat.current);
+    !objects.includes(museum.current) && objects.push(museum.current);
+
     controlsRef.current.addEventListener("lock", () => {
       welcome.style.display = "none";
       canvas.style.display = "block";
@@ -100,14 +146,8 @@ const CameraControls = () => {
     });
 
     raycaster.ray.origin.copy(controlsRef.current.getObject().position);
-    raycaster.ray.direction.copy(
-      controlsRef.current.getDirection(new Vector3(0, 0, 0))
-    );
-    // raycaster.ray.origin.y -= 5;
 
-    const intersections = raycaster.intersectObjects(objects);
-    // console.log(intersections, raycaster);
-    const onObject = intersections.length > 0;
+    onObject = raycaster.intersectObjects(objects);
 
     const elapsedTime = clock.getElapsedTime();
     const delta = elapsedTime - prevTime;
@@ -125,10 +165,6 @@ const CameraControls = () => {
     if (moveLeft || moveRight) velocity.x -= direction.x * 50 * delta;
     controlsRef.current.moveRight(-velocity.x * delta);
     controlsRef.current.moveForward(-velocity.z * delta);
-    if (onObject === true) {
-      velocity.y = Math.max(0, velocity.y);
-      canJump = true;
-    }
 
     controlsRef.current.getObject().position.y += velocity.y * delta; // new behavior
 
@@ -142,6 +178,38 @@ const CameraControls = () => {
   return (
     <>
       <PointerLockControls ref={controlsRef} selector="#selector" />
+      <mesh
+        position={[-120 + 10, 0.1, -10]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        ref={sf}
+      >
+        <planeBufferGeometry args={[6, 6]} />
+        <meshStandardMaterial attach="material" color={0xc34cff} />
+      </mesh>
+      <mesh
+        position={[-60 - 10, 0.1, -40]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        ref={iic}
+      >
+        <planeBufferGeometry args={[6, 6]} />
+        <meshStandardMaterial attach="material" color={0xc34cff} />
+      </mesh>
+      <mesh
+        position={[-120 + 10, 0.1, -70]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        ref={chat}
+      >
+        <planeBufferGeometry args={[6, 6]} />
+        <meshStandardMaterial attach="material" color={0xc34cff} />
+      </mesh>
+      <mesh
+        position={[-60 - 10, 0.1, -135]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        ref={museum}
+      >
+        <planeBufferGeometry args={[6, 6]} />
+        <meshStandardMaterial attach="material" color={0xc34cff} />
+      </mesh>
     </>
   );
 };

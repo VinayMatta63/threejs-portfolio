@@ -2,24 +2,27 @@ import React from "react";
 import { DoubleSide, FontLoader } from "three";
 import Roboto from "../Skills/fonts/Roboto_Regular";
 
-const Board = ({ map, x, z }) => {
+const Board = ({ map, x, z, text, rotation = [0, 0, 0] }) => {
   const font = new FontLoader().parse(Roboto);
   const textOptions = {
     font,
     size: 5,
     height: 1,
   };
+
   return (
-    <group>
-      <mesh rotation={[0, Math.PI / 2, 0]} position={[x, 15, z + 20]}>
-        <textBufferGeometry
-          attach="geometry"
-          args={["Social Freaks", textOptions]}
-        />
-        <meshStandardMaterial attach="material" color="#fff" metalness={1} />
+    <group position={[x, 0, z]} rotation={rotation}>
+      {/* Text */}
+      <mesh
+        rotation={[0, Math.PI / 2, 0]}
+        position={[0, 15, (text.length / 2) * 3.2]}
+      >
+        <textBufferGeometry attach="geometry" args={[text, textOptions]} />
+        <meshBasicMaterial attach="material" color="#fff" metalness={0.5} />
       </mesh>
+
       {/* Center */}
-      <mesh position={[x, 5.3, z]} rotation={[0, Math.PI / 2, 0]}>
+      <mesh position={[0, 5.3, 0]} rotation={[0, Math.PI / 2, 0]}>
         <planeBufferGeometry args={[20, 10]} />
         <meshStandardMaterial
           attach="material"
@@ -27,11 +30,9 @@ const Board = ({ map, x, z }) => {
           map={map[0]}
         />
       </mesh>
+
       {/* Left */}
-      <mesh
-        position={[x + 5, 2, z + 12]}
-        rotation={[0, -Math.PI - Math.PI / 3, 0]}
-      >
+      <mesh position={[5, 2, 12]} rotation={[0, -Math.PI - Math.PI / 3, 0]}>
         <planeBufferGeometry args={[10, 6]} />
         <meshStandardMaterial
           attach="material"
@@ -41,8 +42,7 @@ const Board = ({ map, x, z }) => {
       </mesh>
 
       {/* Right */}
-
-      <mesh position={[x + 5, 2, z - 12]} rotation={[0, Math.PI / 3, 0]}>
+      <mesh position={[5, 2, -12]} rotation={[0, Math.PI / 3, 0]}>
         <planeBufferGeometry args={[10, 6]} />
         <meshStandardMaterial
           attach="material"

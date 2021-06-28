@@ -32,6 +32,9 @@ const PathMesh = () => {
 
       <PathCreator count={20} x={140} start={-48} />
       <PathCreator count={20} x={-140} start={-48} />
+
+      <PathCreator count={30} x={-90} start={-25} />
+      <PathCreator count={20} x={-90} start={-48} />
     </>
   );
 };

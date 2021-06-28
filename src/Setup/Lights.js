@@ -57,8 +57,23 @@ const Lights = () => {
       />
       <pointLight
         position={[-105, 5, -10]}
-        args={["#ffffff", 0.5, 40, 1]}
-        ref={helper}
+        args={["#fafafa", 0.5, 40, 1]}
+        // ref={helper}
+      />
+      <pointLight
+        position={[-70, 5, -40]}
+        args={["#fafafa", 0.5, 40, 1]}
+        // ref={helper}
+      />
+      <pointLight
+        position={[-105, 5, -70]}
+        args={["#fafafa", 0.5, 40, 1]}
+        // ref={helper}
+      />
+      <pointLight
+        position={[-70, 5, -135]}
+        args={["#fafafa", 0.5, 40, 1]}
+        // ref={helper}
       />
     </mesh>
   );
