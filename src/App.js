@@ -10,6 +10,7 @@ import Particles from "react-particles-js";
 import { BasicShadowMap } from "three";
 import Floor from "./Setup/Floor";
 import { OrbitControls, Loader, Stars } from "@react-three/drei";
+import About from "./About/index";
 
 const App = () => {
   return (
@@ -103,6 +104,7 @@ const App = () => {
             saturation={0}
             fade
           />
+          <About />
           <CameraControls />
         </Suspense>
         {/* <OrbitControls /> */}

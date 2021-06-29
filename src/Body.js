@@ -1,5 +1,5 @@
-import { shaderMaterial, useTexture } from "@react-three/drei";
-import { extend, useFrame, useLoader } from "@react-three/fiber";
+import { useTexture } from "@react-three/drei";
+import { useFrame, useLoader } from "@react-three/fiber";
 import React from "react";
 import {
   Color,

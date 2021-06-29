@@ -181,6 +181,15 @@ const CameraControls = () => {
       controlsRef.current.getObject().position.y = 5;
       canJump = true;
     }
+    if (
+      controlsRef.current.getObject().position.x > 200 ||
+      controlsRef.current.getObject().position.z > 200 ||
+      controlsRef.current.getObject().position.x < -200 ||
+      controlsRef.current.getObject().position.z < -200
+    ) {
+      controlsRef.current.getObject().position.x = 0;
+      controlsRef.current.getObject().position.z = 25;
+    }
   });
   const material = new SpriteMaterial({ map: icon });
   return (
