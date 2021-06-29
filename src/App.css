@@ -27,7 +27,7 @@
   width: 100vw;
   height: 100vh;
 }
-#welcome {
+.welcome {
   position: absolute;
   display: flex;
   align-items: center;

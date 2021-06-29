@@ -1,9 +1,12 @@
-import React, { useRef } from "react";
-import { PointerLockControls } from "@react-three/drei";
+import React, { useRef, useState } from "react";
+import { PointerLockControls, useTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { Raycaster, Vector3 } from "three";
+import { Raycaster, SpriteMaterial, Vector3 } from "three";
+import { Html } from "@react-three/drei";
 
 const CameraControls = () => {
+  const [icon] = useTexture(["/assets/arrow.png"]);
+  const [show, setShow] = useState(false);
   let moveForward = false;
   let moveBackward = false;
   let moveLeft = false;
@@ -17,6 +20,7 @@ const CameraControls = () => {
   const iic = useRef(null);
   const chat = useRef(null);
   const museum = useRef(null);
+  const arrow = useRef(null);
 
   let onObject = [];
 
@@ -148,13 +152,17 @@ const CameraControls = () => {
     raycaster.ray.origin.copy(controlsRef.current.getObject().position);
 
     onObject = raycaster.intersectObjects(objects);
+    setShow(onObject.length > 0);
 
     const elapsedTime = clock.getElapsedTime();
     const delta = elapsedTime - prevTime;
     prevTime = elapsedTime;
+    if (arrow.current) {
+      arrow.current.position.y += Math.sin(elapsedTime * 10) * 0.1;
+    }
     velocity.x -= velocity.x * delta * 4;
     velocity.z -= velocity.z * delta * 4;
-
+    // console.log(controlsRef.current.getObject().position);
     velocity.y -= 9.8 * 100 * delta; // 100.0 = mass
 
     direction.z = Number(moveForward) - Number(moveBackward);
@@ -174,42 +182,91 @@ const CameraControls = () => {
       canJump = true;
     }
   });
-
+  const material = new SpriteMaterial({ map: icon });
   return (
     <>
       <PointerLockControls ref={controlsRef} selector="#selector" />
       <mesh
-        position={[-120 + 10, 0.1, -10]}
+        position={[-120 + 10, 0.01, -10]}
         rotation={[-Math.PI / 2, 0, 0]}
         ref={sf}
       >
         <planeBufferGeometry args={[6, 6]} />
-        <meshStandardMaterial attach="material" color={0xc34cff} />
+        <meshStandardMaterial
+          attach="material"
+          color={0xc34cff}
+          roughness={1}
+        />
       </mesh>
       <mesh
-        position={[-60 - 10, 0.1, -40]}
+        position={[-60 - 10, 0.01, -40]}
         rotation={[-Math.PI / 2, 0, 0]}
         ref={iic}
       >
         <planeBufferGeometry args={[6, 6]} />
-        <meshStandardMaterial attach="material" color={0xc34cff} />
+        <meshStandardMaterial
+          attach="material"
+          color={0xc34cff}
+          roughness={1}
+        />
       </mesh>
       <mesh
-        position={[-120 + 10, 0.1, -70]}
+        position={[-120 + 10, 0.01, -70]}
         rotation={[-Math.PI / 2, 0, 0]}
         ref={chat}
       >
         <planeBufferGeometry args={[6, 6]} />
-        <meshStandardMaterial attach="material" color={0xc34cff} />
+        <meshStandardMaterial
+          attach="material"
+          color={0xc34cff}
+          roughness={1}
+        />
       </mesh>
       <mesh
-        position={[-60 - 10, 0.1, -135]}
+        position={[-60 - 10, 0.01, -135]}
         rotation={[-Math.PI / 2, 0, 0]}
         ref={museum}
       >
         <planeBufferGeometry args={[6, 6]} />
-        <meshStandardMaterial attach="material" color={0xc34cff} />
+        <meshStandardMaterial
+          attach="material"
+          color={0xc34cff}
+          roughness={1}
+        />
       </mesh>
+      {show ? (
+        <Html
+          sprite
+          style={{
+            color: "#fff",
+            backgroundColor: "rgba(0,0,0,0.3)",
+            fontSize: "30px",
+            padding: "100px 200px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+          }}
+          position={[
+            controlsRef.current.getObject().position.x < -100
+              ? controlsRef.current.getObject().position.x - 20
+              : controlsRef.current.getObject().position.x + 20,
+            controlsRef.current.getObject().position.y - 2,
+            controlsRef.current.getObject().position.z,
+          ]}
+          transform
+        >
+          <span>Press V to visit Project</span>
+          <span>Press G to visit Project Github</span>
+        </Html>
+      ) : (
+        <sprite
+          material={material}
+          position={[-120 + 8, 10, -10]}
+          scale={[10, 10, 10]}
+          ref={arrow}
+        />
+      )}
     </>
   );
 };

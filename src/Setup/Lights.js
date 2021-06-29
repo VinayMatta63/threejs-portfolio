@@ -58,12 +58,14 @@ const Lights = () => {
       <pointLight
         position={[-105, 5, -10]}
         args={["#fafafa", 0.5, 40, 1]}
+        castShadow
         // ref={helper}
       />
       <pointLight
         position={[-70, 5, -40]}
         args={["#fafafa", 0.5, 40, 1]}
         // ref={helper}
+        castShadow
       />
       <pointLight
         position={[-105, 5, -70]}

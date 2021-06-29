@@ -7,14 +7,15 @@ import Sky from "./Setup/Sky";
 import Lights from "./Setup/Lights";
 import CameraControls from "./Setup/CameraControls";
 import Particles from "react-particles-js";
-import { BasicShadowMap, PCFShadowMap } from "three";
+import { BasicShadowMap } from "three";
 import Floor from "./Setup/Floor";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, Loader } from "@react-three/drei";
+
 const App = () => {
   return (
     <>
       <div id="selector">
-        <div id="welcome">
+        <div className="welcome">
           <Bounce top>
             <h1 style={{ fontSize: "45px", fontWeight: "500" }}>
               Hello, I'm <span>Vinay Matta.</span>
@@ -32,7 +33,7 @@ const App = () => {
               <br />
               Look: MOUSE
               <br />
-              Sprint: LeftShift
+              Sprint: Left Shift
             </p>
           </Bounce>
         </div>
@@ -89,16 +90,17 @@ const App = () => {
           gl.antialias = true;
         }}
       >
-        <fog attach="fog" args={["#0d1a26", 60, 100]} />
         <Suspense fallback={null}>
+          <fog attach="fog" args={["#0d1a26", 60, 100]} />
           <Scene />
           <Floor />
           <Lights />
+          <Sky pointCount={4000} />
+          <CameraControls />
         </Suspense>
-        <Sky pointCount={4000} />
-        <CameraControls />
         {/* <OrbitControls /> */}
       </Canvas>
+      <Loader />
     </>
   );
 };
