@@ -9,7 +9,7 @@ import CameraControls from "./Setup/CameraControls";
 import Particles from "react-particles-js";
 import { BasicShadowMap } from "three";
 import Floor from "./Setup/Floor";
-import { OrbitControls, Loader, Sky, Stars } from "@react-three/drei";
+import { OrbitControls, Loader, Stars } from "@react-three/drei";
 
 const App = () => {
   return (
