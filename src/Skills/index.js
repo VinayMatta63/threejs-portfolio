@@ -1,25 +1,6 @@
-import { useTexture } from "@react-three/drei";
 import React from "react";
-import { FontLoader } from "three";
-import Roboto from "./fonts/Roboto_Regular";
 import Skill from "./Skill";
-const Skills = () => {
-  const font = new FontLoader().parse(Roboto);
-  const icons = useTexture([
-    "/assets/react.png",
-    "/assets/node.png",
-    "/assets/mongo.png",
-    "/assets/python.png",
-    "/assets/sql.png",
-    "/assets/cpp.png",
-    "/assets/html.png",
-    "/assets/css.png",
-    "/assets/three.png",
-    "/assets/bootstrap.png",
-    "/assets/next.png",
-    "/assets/flutter.png",
-  ]);
-
+const Skills = ({ icons, font }) => {
   const textOptions = {
     font,
     size: 10,

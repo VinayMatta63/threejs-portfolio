@@ -1,12 +1,12 @@
-import { useLoader } from "@react-three/fiber";
 import React from "react";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
-const Path = (props) => {
-  const { nodes } = useLoader(GLTFLoader, "/models/tile.glb");
-
+const Path = ({ position, castShadow, path }) => {
   return (
-    <mesh geometry={nodes.Cube078.geometry} {...props}>
+    <mesh
+      geometry={path.Cube078.geometry}
+      position={position}
+      castShadow={castShadow}
+    >
       <meshStandardMaterial color="#AAAAAA" roughness={1} metalness={0} />
     </mesh>
   );

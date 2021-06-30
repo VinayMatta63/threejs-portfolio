@@ -1,9 +1,13 @@
 import { useTexture } from "@react-three/drei";
 import { useFrame, useLoader } from "@react-three/fiber";
+import Roboto from "./Skills/fonts/Roboto_Regular";
+import About from "./About/index";
+
 import React from "react";
 import {
   Color,
   DoubleSide,
+  FontLoader,
   MeshBasicMaterial,
   ShaderMaterial,
   sRGBEncoding,
@@ -13,6 +17,8 @@ import Lamps from "./Lamps";
 import Trees from "./Trees";
 import PathMesh from "./Path/index";
 import Skills from "./Skills";
+import CameraControls from "./Setup/CameraControls";
+
 import Boards from "./Boards";
 import Fireflies from "./Effects/Fireflies";
 
@@ -121,11 +127,50 @@ float cnoise(vec3 P){
 `;
 
 function Body() {
-  const [bakedMap] = useTexture(["/textures/baked.jpg"]);
+  // { bakedMap, skills, sf, iic, chat, museum, scene }
+  const textures = useTexture([
+    "/textures/baked.jpg",
+    "/textures/arrow.png",
+    "/assets/react.png",
+    "/assets/node.png",
+    "/assets/mongo.png",
+    "/assets/python.png",
+    "/assets/sql.png",
+    "/assets/cpp.png",
+    "/assets/html.png",
+    "/assets/css.png",
+    "/assets/three.png",
+    "/assets/bootstrap.png",
+    "/assets/next.png",
+    "/assets/flutter.png",
+    "/textures/Projects/sf1.JPG",
+    "/textures/Projects/sf2.JPG",
+    "/textures/Projects/sf3.JPG",
+    "/textures/Projects/iic1.JPG",
+    "/textures/Projects/chat1.JPG",
+    "/textures/Projects/mc1.JPG",
+    "/textures/Projects/mc2.JPG",
+    "/textures/lamps.jpg",
+  ]);
+  const [portal, treesTop, treesBottom, lamp, path] = useLoader(GLTFLoader, [
+    "/models/portal.glb",
+    "/models/treeTops.glb",
+    "/models/treeBase.glb",
+    "/models/lamps.glb",
+    "/models/tile.glb",
+  ]);
+  const font = new FontLoader().parse(Roboto);
+
+  const bakedMap = textures[0];
+  const arrow = textures[1];
+  const skills = textures.slice(2, 15);
+  const sf = textures.slice(15, 18);
+  const iic = textures.slice(18, 19);
+  const chat = textures.slice(19, 20);
+  const museum = textures.slice(20, 21);
+  const lamps = textures[21];
   bakedMap.flipY = false;
   bakedMap.encoding = sRGBEncoding;
-
-  const { scene } = useLoader(GLTFLoader, "/models/portal.glb");
 
   const material = new MeshBasicMaterial({ map: bakedMap });
   const lampMaterial = new MeshBasicMaterial({ color: 0xffffe5 });
@@ -139,7 +184,7 @@ function Body() {
     fragmentShader: fragmentShader,
     side: DoubleSide,
   });
-  scene.children.map((child) => {
+  portal.scene.children.map((child) => {
     if (child.name === "PoleLightA" || child.name === "PoleLightB") {
       child.material = lampMaterial;
     } else if (child.name === "PortalLight") {
@@ -156,16 +201,18 @@ function Body() {
   });
   return (
     <>
-      <primitive object={scene} />
-      <PathMesh />
-      <Lamps position={[-51, 0, 80]} />
-      <Lamps position={[139, 0, 80]} />
-      <Lamps position={[49, 0, -57]} />
-      <Lamps position={[-141, 0, -57]} />
-      <Trees />
-      <Skills />
-      <Boards />
+      <primitive object={portal.scene} />
+      <PathMesh path={path.nodes} />
+      <Lamps position={[-51, 0, 80]} bakedLamp={lamps} scene={lamp.scene} />
+      <Lamps position={[139, 0, 80]} bakedLamp={lamps} scene={lamp.scene} />
+      <Lamps position={[49, 0, -57]} bakedLamp={lamps} scene={lamp.scene} />
+      <Lamps position={[-141, 0, -57]} bakedLamp={lamps} scene={lamp.scene} />
+      <Trees treeTop={treesTop} treeBottom={treesBottom} />
+      <Skills icons={skills} font={font} />
+      <Boards sf={sf} chat={chat} iic={iic} museum={museum} font={font} />
       <Fireflies pointCount={30} />
+      <CameraControls icon={arrow} />
+      <About font={font} />
     </>
   );
 }

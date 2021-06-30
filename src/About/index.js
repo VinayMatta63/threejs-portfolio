@@ -1,13 +1,6 @@
-import { useLoader } from "@react-three/fiber";
 import React from "react";
-import { FontLoader, MeshBasicMaterial, MeshStandardMaterial } from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-// import Me from "./Me";
-import Roboto from "../Skills/fonts/Roboto_Regular";
 
-const About = () => {
-  const font = new FontLoader().parse(Roboto);
-
+const About = ({ font }) => {
   const textOptions = {
     font,
     size: 10,

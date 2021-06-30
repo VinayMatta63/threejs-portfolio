@@ -1,16 +1,14 @@
 import "./App.css";
-import { React, Suspense } from "react";
+import React from "react";
 import Bounce from "react-reveal/Bounce";
 import { Canvas } from "@react-three/fiber";
 import Scene from "./Body";
 // import Sky from "./Setup/Sky";
 import Lights from "./Setup/Lights";
-import CameraControls from "./Setup/CameraControls";
 import Particles from "react-particles-js";
 import { BasicShadowMap } from "three";
 import Floor from "./Setup/Floor";
-import { OrbitControls, Loader, Stars } from "@react-three/drei";
-import About from "./About/index";
+import { OrbitControls, Stars } from "@react-three/drei";
 
 const App = () => {
   return (
@@ -85,31 +83,27 @@ const App = () => {
         }}
         camera={{ fov: 45, near: 0.1, far: 1000, position: [0, 5, 25] }}
         id="canvas"
-        // onCreated={({ gl }) => {
-        //   gl.shadowMap.enabled = true;
-        //   gl.shadowMap.type = BasicShadowMap;
-        //   gl.antialias = true;
-        // }}
+        onCreated={({ gl }) => {
+          gl.shadowMap.enabled = true;
+          gl.shadowMap.type = BasicShadowMap;
+          gl.antialias = true;
+        }}
       >
-        <Suspense fallback={null}>
-          <fog attach="fog" args={["#0d1a26", 60, 100]} />
-          <Scene />
-          <Floor />
-          <Lights />
-          <Stars
-            radius={160}
-            depth={50}
-            count={5000}
-            factor={4}
-            saturation={0}
-            fade
-          />
-          <About />
-          <CameraControls />
-        </Suspense>
+        <fog attach="fog" args={["#0d1a26", 60, 100]} />
+        <Scene />
+        <Floor />
+        <Lights />
+        <Stars
+          radius={160}
+          depth={50}
+          count={5000}
+          factor={4}
+          saturation={0}
+          fade
+        />
+
         {/* <OrbitControls /> */}
       </Canvas>
-      <Loader />
     </>
   );
 };

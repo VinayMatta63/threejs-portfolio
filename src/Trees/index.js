@@ -1,11 +1,7 @@
-import { useLoader } from "@react-three/fiber";
 import React from "react";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import Tree from "./Tree";
 
-const Trees = () => {
-  const treeTop = useLoader(GLTFLoader, "/models/treeTops.glb");
-  const treeBottom = useLoader(GLTFLoader, "/models/treeBase.glb");
+const Trees = ({ treeTop, treeBottom }) => {
   const treePositions = [
     [40, 0, 10],
     [20, 0, -30],

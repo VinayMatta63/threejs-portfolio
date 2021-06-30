@@ -1,7 +1,7 @@
 import React from "react";
 import Path from "./Path";
 
-const PathCreator = ({ count, x, z, start, shadow = false }) => {
+const PathCreator = ({ count, x, z, start, shadow = false, path }) => {
   const pathArray = [];
   let i = start;
   while (count--) {
@@ -15,7 +15,7 @@ const PathCreator = ({ count, x, z, start, shadow = false }) => {
     i += 1;
   }
   return pathArray.map((position, index) => (
-    <Path position={position} key={index} castShadow={shadow} />
+    <Path position={position} key={index} castShadow={shadow} path={path} />
   ));
 };
 

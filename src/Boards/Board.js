@@ -1,9 +1,7 @@
 import React from "react";
-import { DoubleSide, FontLoader } from "three";
-import Roboto from "../Skills/fonts/Roboto_Regular";
+import { DoubleSide } from "three";
 
-const Board = ({ map, x, z, text, rotation = [0, 0, 0] }) => {
-  const font = new FontLoader().parse(Roboto);
+const Board = ({ map, x, z, text, rotation = [0, 0, 0], font }) => {
   const textOptions = {
     font,
     size: 5,

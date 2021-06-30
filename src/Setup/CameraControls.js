@@ -4,8 +4,7 @@ import { useFrame } from "@react-three/fiber";
 import { Raycaster, SpriteMaterial, Vector3 } from "three";
 import { Html } from "@react-three/drei";
 
-const CameraControls = () => {
-  const [icon] = useTexture(["/textures/arrow.png"]);
+const CameraControls = ({ icon }) => {
   const [show, setShow] = useState(false);
   let moveForward = false;
   let moveBackward = false;

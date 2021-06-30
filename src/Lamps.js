@@ -1,14 +1,9 @@
-import { useTexture } from "@react-three/drei";
-import { useLoader } from "@react-three/fiber";
 import React from "react";
 import { MeshBasicMaterial, sRGBEncoding } from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
-const Lamps = ({ position }) => {
-  const [bakedLamp] = useTexture(["/textures/lamps.jpg"]);
+const Lamps = ({ position, bakedLamp, scene }) => {
   bakedLamp.flipY = false;
   bakedLamp.encoding = sRGBEncoding;
-  const { scene } = useLoader(GLTFLoader, "/models/lamps.glb");
   const bakedLampMaterial = new MeshBasicMaterial({ map: bakedLamp });
   const lampMaterial = new MeshBasicMaterial({ color: 0xffffe5 });
   scene.children.map((child) => {
