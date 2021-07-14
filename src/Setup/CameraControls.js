@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { PointerLockControls, useTexture } from "@react-three/drei";
+import { PointerLockControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { Raycaster, SpriteMaterial, Vector3 } from "three";
 import { Html } from "@react-three/drei";
@@ -191,6 +191,11 @@ const CameraControls = ({ icon }) => {
     }
   });
   const material = new SpriteMaterial({ map: icon });
+  controlsRef.current &&
+    window.addEventListener("touchstart", (e) => {
+      controlsRef.current.lock();
+    });
+
   return (
     <>
       <PointerLockControls ref={controlsRef} selector="#selector" />

@@ -7,7 +7,7 @@ const Path = ({ position, castShadow, path }) => {
       position={position}
       castShadow={castShadow}
     >
-      <meshStandardMaterial color="#AAAAAA" roughness={1} metalness={0} />
+      <meshStandardMaterial color="#aaaaaa" roughness={1} metalness={0} />
     </mesh>
   );
 };

@@ -2,6 +2,7 @@ import { useTexture } from "@react-three/drei";
 import { useFrame, useLoader } from "@react-three/fiber";
 import Roboto from "./Skills/fonts/Roboto_Regular";
 import About from "./About/index";
+import Floor from "./Setup/Floor";
 
 import React from "react";
 import {
@@ -151,28 +152,52 @@ function Body() {
     "/textures/Projects/mc1.JPG",
     "/textures/Projects/mc2.JPG",
     "/textures/lamps.jpg",
+    "/textures/ttt.jpg",
   ]);
-  const [portal, treesTop, treesBottom, lamp, path] = useLoader(GLTFLoader, [
+  const [
+    portal,
+    treesTop,
+    treesBottom,
+    lamp,
+    path,
+    ttt,
+    chatModel,
+    sfModel,
+    mfModel,
+    fsModel,
+    iicModel,
+    eventsModel,
+    loginModel,
+  ] = useLoader(GLTFLoader, [
     "/models/portal.glb",
     "/models/treeTops.glb",
     "/models/treeBase.glb",
     "/models/lamps.glb",
     "/models/tile.glb",
+    "/models/ttt.glb",
+    "/models/chat.glb",
+    "/models/sf.glb",
+    "/models/mf.glb",
+    "/models/fs.glb",
+    "/models/iic.glb",
+    "/models/iicEvents.glb",
+    "/models/iicLogin.glb",
   ]);
   const font = new FontLoader().parse(Roboto);
 
   const bakedMap = textures[0];
   const arrow = textures[1];
-  const skills = textures.slice(2, 15);
-  const sf = textures.slice(15, 18);
-  const iic = textures.slice(18, 19);
-  const chat = textures.slice(19, 20);
-  const museum = textures.slice(20, 21);
+  const skills = textures.slice(2, 14);
+  const sf = textures.slice(14, 17);
+  const iic = textures.slice(17, 18);
+  const chat = textures.slice(18, 19);
+  const museum = textures.slice(19, 21);
   const lamps = textures[21];
   bakedMap.flipY = false;
   bakedMap.encoding = sRGBEncoding;
 
   const material = new MeshBasicMaterial({ map: bakedMap });
+  // const tttMaterial = new MeshBasicMaterial({ map: tttTexture });
   const lampMaterial = new MeshBasicMaterial({ color: 0xffffe5 });
   const portalMaterial = new ShaderMaterial({
     uniforms: {
@@ -209,10 +234,24 @@ function Body() {
       <Lamps position={[-141, 0, -57]} bakedLamp={lamps} scene={lamp.scene} />
       <Trees treeTop={treesTop} treeBottom={treesBottom} />
       <Skills icons={skills} font={font} />
-      <Boards sf={sf} chat={chat} iic={iic} museum={museum} font={font} />
+      <Boards
+        sf={sf}
+        chat={chat}
+        iic={iic}
+        museum={museum}
+        font={font}
+        sfModel={sfModel}
+        mfModel={mfModel}
+        fsModel={fsModel}
+        chatModel={chatModel}
+        iicModel={iicModel}
+        eventsModel={eventsModel}
+        loginModel={loginModel}
+      />
       <Fireflies pointCount={30} />
       <CameraControls icon={arrow} />
       <About font={font} />
+      <Floor />
     </>
   );
 }

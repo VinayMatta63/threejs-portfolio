@@ -7,7 +7,6 @@ import Scene from "./Body";
 import Lights from "./Setup/Lights";
 import Particles from "react-particles-js";
 import { BasicShadowMap } from "three";
-import Floor from "./Setup/Floor";
 import { OrbitControls, Stars } from "@react-three/drei";
 
 const App = () => {
@@ -23,18 +22,25 @@ const App = () => {
               I'm a full-stack Web Developer.
             </h2>
           </Bounce>
-          <Bounce bottom>
-            <p>Click to play</p>
-            <p>
-              Move: WASD
-              <br />
-              Jump: SPACE
-              <br />
-              Look: MOUSE
-              <br />
-              Sprint: Left Shift
-            </p>
-          </Bounce>
+          {window.innerWidth > 767 ? (
+            <Bounce bottom>
+              <p>Click to play</p>
+              <p>
+                Move: WASD
+                <br />
+                Jump: SPACE
+                <br />
+                Look: MOUSE
+                <br />
+                Sprint: Left Shift
+              </p>
+            </Bounce>
+          ) : (
+            <Bounce bottom>
+              <p>Sorry!</p>
+              <p>This website does not support mobile devices yet.</p>
+            </Bounce>
+          )}
         </div>
         <Particles
           id="particles-js"
@@ -91,7 +97,6 @@ const App = () => {
       >
         <fog attach="fog" args={["#0d1a26", 60, 100]} />
         <Scene />
-        <Floor />
         <Lights />
         <Stars
           radius={160}
