@@ -125,10 +125,11 @@ const CameraControls = ({ icon }) => {
             );
           break;
         case "KeyB":
-          if (onObject[0].object.uuid === sf.current.uuid) setObj("sf");
-          if (onObject[0].object.uuid === iic.current.uuid) setObj("iic");
-          if (onObject[0].object.uuid === chat.current.uuid) setObj("chat");
-          if (onObject[0].object.uuid === museum.current.uuid) setObj("museum");
+          if (onObject[0].object?.uuid === sf.current.uuid) setObj("sf");
+          if (onObject[0].object?.uuid === iic.current.uuid) setObj("iic");
+          if (onObject[0].object?.uuid === chat.current.uuid) setObj("chat");
+          if (onObject[0].object?.uuid === museum.current.uuid)
+            setObj("museum");
           break;
         default:
           setObj(null);
@@ -401,7 +402,7 @@ const CameraControls = ({ icon }) => {
       ) : (
         <sprite
           material={material}
-          position={[-120 + 8, 10, -10]}
+          position={[-120 + 10, 10, -10]}
           scale={[10, 10, 10]}
           ref={arrow}
         />

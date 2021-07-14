@@ -16,6 +16,7 @@ const Boards = ({
   loginModel,
   mcModel,
   mcLeft,
+  mcRight,
 }) => {
   sfModel.scene.position.y = 0.1;
   sfModel.scene.position.x = 0;
@@ -87,6 +88,14 @@ const Boards = ({
   mcLeft.scene.scale.y = 0.7;
   mcLeft.scene.scale.z = 0.7;
   mcLeft.scene.rotation.y = -Math.PI - Math.PI / 3;
+
+  mcRight.scene.position.y = 0.1;
+  mcRight.scene.position.x = 5;
+  mcRight.scene.position.z = -18;
+  mcRight.scene.scale.x = 0.7;
+  mcRight.scene.scale.y = 0.7;
+  mcRight.scene.scale.z = 0.7;
+  mcRight.scene.rotation.y = Math.PI / 3;
   return (
     <>
       <Board
@@ -127,6 +136,7 @@ const Boards = ({
         font={font}
         model={mcModel}
         modelLeft={mcLeft}
+        modelRight={mcRight}
       />
     </>
   );

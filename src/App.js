@@ -7,7 +7,7 @@ import Scene from "./Body";
 import Lights from "./Setup/Lights";
 import Particles from "react-particles-js";
 import { BasicShadowMap } from "three";
-import { OrbitControls, Stars } from "@react-three/drei";
+import { Stars } from "@react-three/drei";
 
 const App = () => {
   return (
