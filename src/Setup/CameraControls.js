@@ -6,6 +6,7 @@ import { Html } from "@react-three/drei";
 
 const CameraControls = ({ icon }) => {
   const [show, setShow] = useState(false);
+  const [obj, setObj] = useState(null);
   let moveForward = false;
   let moveBackward = false;
   let moveLeft = false;
@@ -123,7 +124,14 @@ const CameraControls = ({ icon }) => {
               "_blank"
             );
           break;
+        case "KeyB":
+          if (onObject[0].object.uuid === sf.current.uuid) setObj("sf");
+          if (onObject[0].object.uuid === iic.current.uuid) setObj("iic");
+          if (onObject[0].object.uuid === chat.current.uuid) setObj("chat");
+          if (onObject[0].object.uuid === museum.current.uuid) setObj("museum");
+          break;
         default:
+          setObj(null);
           break;
       }
     }
@@ -149,7 +157,6 @@ const CameraControls = ({ icon }) => {
     });
 
     raycaster.ray.origin.copy(controlsRef.current.getObject().position);
-
     onObject = raycaster.intersectObjects(objects);
     setShow(onObject.length > 0);
 
@@ -161,12 +168,11 @@ const CameraControls = ({ icon }) => {
     }
     velocity.x -= velocity.x * delta * 4;
     velocity.z -= velocity.z * delta * 4;
-    // console.log(controlsRef.current.getObject().position);
     velocity.y -= 9.8 * 100 * delta; // 100.0 = mass
 
     direction.z = Number(moveForward) - Number(moveBackward);
     direction.x = Number(moveRight) - Number(moveLeft);
-    direction.normalize(); // this ensures consistent movements in all directions
+    direction.normalize();
 
     if (moveForward || moveBackward) velocity.z -= direction.z * 50 * delta;
     if (moveLeft || moveRight) velocity.x -= direction.x * 50 * delta;
@@ -207,7 +213,7 @@ const CameraControls = ({ icon }) => {
         <planeBufferGeometry args={[6, 6]} />
         <meshStandardMaterial
           attach="material"
-          color={0xc34cff}
+          color={0xffffff}
           roughness={1}
         />
       </mesh>
@@ -219,7 +225,7 @@ const CameraControls = ({ icon }) => {
         <planeBufferGeometry args={[6, 6]} />
         <meshStandardMaterial
           attach="material"
-          color={0xc34cff}
+          color={0xffffff}
           roughness={1}
         />
       </mesh>
@@ -231,7 +237,7 @@ const CameraControls = ({ icon }) => {
         <planeBufferGeometry args={[6, 6]} />
         <meshStandardMaterial
           attach="material"
-          color={0xc34cff}
+          color={0xffffff}
           roughness={1}
         />
       </mesh>
@@ -243,7 +249,7 @@ const CameraControls = ({ icon }) => {
         <planeBufferGeometry args={[6, 6]} />
         <meshStandardMaterial
           attach="material"
-          color={0xc34cff}
+          color={0xffffff}
           roughness={1}
         />
       </mesh>
@@ -269,8 +275,128 @@ const CameraControls = ({ icon }) => {
           ]}
           transform
         >
-          <span>Press V to visit Project</span>
-          <span>Press G to visit Project Github</span>
+          {obj ? (
+            (obj === "sf" && (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <h2>Social Freaks</h2>
+                <p>
+                  An all-in-one next-js social media, youtube trailer playing,
+                  shopping and chatting platform using next-auth, Redux,
+                  Styled-components, firebase firestore, TMDB, stripe payments,
+                  pwa and more.
+                </p>
+                <p
+                  style={{
+                    display: "flex",
+                    width: "100%",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <span>Visit (Press V)</span>
+                  <span>Github (Press G)</span>
+                </p>
+                <span>Move out of Plate to Exit</span>
+              </div>
+            )) ||
+            (obj === "iic" && (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <h2>IIC DCRUST Web App</h2>
+                <p>
+                  The Web Application of Institute Innovation Cell, an MIC
+                  envisioned society for helping budding innovative minds.
+                  Worked on this project as the team leader of front-end team.It
+                  uses React.js, Styled-components and Material-UI for styling
+                  as main front-end components.
+                </p>
+                <p
+                  style={{
+                    display: "flex",
+                    width: "100%",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <span>Visit (Press V)</span>
+                  <span>Github (Press G)</span>
+                </p>
+                <span>Move out of Plate to Exit</span>
+              </div>
+            )) ||
+            (obj === "chat" && (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <h2>Chat App</h2>
+                <p>
+                  A React js Chat App with whatsapp-web like features including
+                  emoji picker ,speech to text input and more. Backend
+                  functionality of this app is implemented using MongoDB,
+                  ExpressJS, NodeJS and made real-time using pusher.
+                </p>
+                <p
+                  style={{
+                    display: "flex",
+                    width: "100%",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <span>Visit (Press V)</span>
+                  <span>Github (Press G)</span>
+                </p>
+                <span>Move out of Plate to Exit</span>
+              </div>
+            )) ||
+            (obj === "museum" && (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <h2>Museum Counsel</h2>
+                <p>
+                  A Web Application which gives its user the information about
+                  museums in India including reviews and location. It uses Basic
+                  web technologies like HTML, CSS, Bootstrap, JS, ExpressJS,
+                  NodeJS, MongoDB and Ejs.
+                </p>
+                <p
+                  style={{
+                    display: "flex",
+                    width: "100%",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <span>Visit (Press V)</span>
+                  <span>Github (Press G)</span>
+                </p>
+                <span>Move out of Plate to Exit</span>
+              </div>
+            ))
+          ) : (
+            <>
+              <span>Press B for brief introduction</span>
+              <span>Press V to visit Project</span>
+              <span>Press G to visit Project Github</span>
+              <span>Move out of Plate to Exit</span>
+            </>
+          )}
         </Html>
       ) : (
         <sprite

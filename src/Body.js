@@ -152,7 +152,6 @@ function Body() {
     "/textures/Projects/mc1.JPG",
     "/textures/Projects/mc2.JPG",
     "/textures/lamps.jpg",
-    "/textures/ttt.jpg",
   ]);
   const [
     portal,
@@ -160,7 +159,6 @@ function Body() {
     treesBottom,
     lamp,
     path,
-    ttt,
     chatModel,
     sfModel,
     mfModel,
@@ -168,13 +166,14 @@ function Body() {
     iicModel,
     eventsModel,
     loginModel,
+    mcModel,
+    mcLeft,
   ] = useLoader(GLTFLoader, [
     "/models/portal.glb",
     "/models/treeTops.glb",
     "/models/treeBase.glb",
     "/models/lamps.glb",
     "/models/tile.glb",
-    "/models/ttt.glb",
     "/models/chat.glb",
     "/models/sf.glb",
     "/models/mf.glb",
@@ -182,6 +181,8 @@ function Body() {
     "/models/iic.glb",
     "/models/iicEvents.glb",
     "/models/iicLogin.glb",
+    "/models/mc.glb",
+    "/models/mc1.glb",
   ]);
   const font = new FontLoader().parse(Roboto);
 
@@ -197,7 +198,6 @@ function Body() {
   bakedMap.encoding = sRGBEncoding;
 
   const material = new MeshBasicMaterial({ map: bakedMap });
-  // const tttMaterial = new MeshBasicMaterial({ map: tttTexture });
   const lampMaterial = new MeshBasicMaterial({ color: 0xffffe5 });
   const portalMaterial = new ShaderMaterial({
     uniforms: {
@@ -247,6 +247,8 @@ function Body() {
         iicModel={iicModel}
         eventsModel={eventsModel}
         loginModel={loginModel}
+        mcModel={mcModel}
+        mcLeft={mcLeft}
       />
       <Fireflies pointCount={30} />
       <CameraControls icon={arrow} />

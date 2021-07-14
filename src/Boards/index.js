@@ -14,6 +14,8 @@ const Boards = ({
   iicModel,
   eventsModel,
   loginModel,
+  mcModel,
+  mcLeft,
 }) => {
   sfModel.scene.position.y = 0.1;
   sfModel.scene.position.x = 0;
@@ -70,6 +72,21 @@ const Boards = ({
   loginModel.scene.scale.z = 0.7;
   loginModel.scene.rotation.y = -Math.PI - Math.PI / 3;
 
+  mcModel.scene.position.y = 0.1;
+  mcModel.scene.position.x = 0;
+  mcModel.scene.position.z = 0;
+  mcModel.scene.scale.x = 1;
+  mcModel.scene.scale.y = 1;
+  mcModel.scene.scale.z = 1;
+  mcModel.scene.rotation.y = Math.PI / 2;
+
+  mcLeft.scene.position.y = 0.1;
+  mcLeft.scene.position.x = 5;
+  mcLeft.scene.position.z = 18;
+  mcLeft.scene.scale.x = 0.7;
+  mcLeft.scene.scale.y = 0.7;
+  mcLeft.scene.scale.z = 0.7;
+  mcLeft.scene.rotation.y = -Math.PI - Math.PI / 3;
   return (
     <>
       <Board
@@ -108,7 +125,8 @@ const Boards = ({
         text="Museum Counsel"
         rotation={[0, Math.PI, 0]}
         font={font}
-        // chatModel={chatModel}
+        model={mcModel}
+        modelLeft={mcLeft}
       />
     </>
   );
