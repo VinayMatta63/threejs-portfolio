@@ -169,6 +169,8 @@ function Body() {
     mcModel,
     mcLeft,
     mcRight,
+    tttModel,
+    tttLeft,
   ] = useLoader(GLTFLoader, [
     "/models/portal.glb",
     "/models/treeTops.glb",
@@ -185,6 +187,8 @@ function Body() {
     "/models/mc.glb",
     "/models/mc1.glb",
     "/models/mc3.glb",
+    "/models/ttt.glb",
+    "/models/ttt1.glb",
   ]);
   const font = new FontLoader().parse(Roboto);
 
@@ -252,6 +256,8 @@ function Body() {
         mcModel={mcModel}
         mcLeft={mcLeft}
         mcRight={mcRight}
+        tttModel={tttModel}
+        tttLeft={tttLeft}
       />
       <Fireflies pointCount={30} />
       <CameraControls icon={arrow} />

@@ -17,6 +17,8 @@ const Boards = ({
   mcModel,
   mcLeft,
   mcRight,
+  tttModel,
+  tttLeft,
 }) => {
   sfModel.scene.position.y = 0.1;
   sfModel.scene.position.x = 0;
@@ -96,6 +98,22 @@ const Boards = ({
   mcRight.scene.scale.y = 0.7;
   mcRight.scene.scale.z = 0.7;
   mcRight.scene.rotation.y = Math.PI / 3;
+
+  tttModel.scene.position.y = 0.1;
+  tttModel.scene.position.x = 0;
+  tttModel.scene.position.z = 0;
+  tttModel.scene.scale.x = 1.2;
+  tttModel.scene.scale.y = 1.2;
+  tttModel.scene.scale.z = 1;
+  tttModel.scene.rotation.y = Math.PI / 2;
+
+  tttLeft.scene.position.y = 0.1;
+  tttLeft.scene.position.x = 5;
+  tttLeft.scene.position.z = 20;
+  tttLeft.scene.scale.x = 0.8;
+  tttLeft.scene.scale.y = 0.8;
+  tttLeft.scene.scale.z = 0.8;
+  tttLeft.scene.rotation.y = -Math.PI - Math.PI / 5;
   return (
     <>
       <Board
@@ -130,13 +148,22 @@ const Boards = ({
       <Board
         map={museum}
         x={-60}
-        z={-135}
+        z={-140}
         text="Museum Counsel"
         rotation={[0, Math.PI, 0]}
         font={font}
         model={mcModel}
         modelLeft={mcLeft}
         modelRight={mcRight}
+      />
+      <Board
+        map={chat}
+        x={-120}
+        z={-140}
+        text="Tic Tac Toe"
+        font={font}
+        model={tttModel}
+        modelLeft={tttLeft}
       />
     </>
   );

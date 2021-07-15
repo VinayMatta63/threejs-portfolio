@@ -18,8 +18,9 @@ const Lights = () => {
         penumbra={1}
       />
       <directionalLight
-        color={"#C34CFF"}
-        intensity={0.3}
+        // color={"#C34CFF"}
+        color={"#E7B7FF"}
+        intensity={0.2}
         position={[0, 5, -9]}
         castShadow
       />
@@ -78,7 +79,12 @@ const Lights = () => {
         // ref={helper}
       />
       <pointLight
-        position={[-65, 7, -135]}
+        position={[-65, 7, -140]}
+        args={["#fafafa", 0.5, 40, 1]}
+        // ref={helper}
+      />
+      <pointLight
+        position={[-105, 7, -140]}
         args={["#fafafa", 0.5, 40, 1]}
         // ref={helper}
       />

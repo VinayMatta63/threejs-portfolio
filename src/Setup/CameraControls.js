@@ -20,6 +20,7 @@ const CameraControls = ({ icon }) => {
   const iic = useRef(null);
   const chat = useRef(null);
   const museum = useRef(null);
+  const ttt = useRef(null);
   const arrow = useRef(null);
 
   let onObject = [];
@@ -100,34 +101,39 @@ const CameraControls = ({ icon }) => {
       switch (e.code) {
         case "KeyV":
           if (onObject[0].object.uuid === sf.current.uuid)
-            window.open("https://social-freaks.vercel.app/", "_blank");
+            window.open("https://social-freaks.vercel.app/", "new");
           if (onObject[0].object.uuid === iic.current.uuid)
-            window.open("https://iicdcrustm.com/home/", "_blank");
+            window.open("https://iicdcrustm.com/home/", "new");
           if (onObject[0].object.uuid === chat.current.uuid)
-            window.open("https://whats-clone-1c76b.web.app/", "_blank");
+            window.open("https://whats-clone-1c76b.web.app/", "new");
           if (onObject[0].object.uuid === museum.current.uuid)
-            window.open("https://museum-counsel.herokuapp.com/", "_blank");
+            window.open("https://museum-counsel.herokuapp.com/", "new");
+          if (onObject[0].object.uuid === ttt.current.uuid)
+            window.open("https://tic-tac-toe-7fcb8.web.app/", "new");
           break;
         case "KeyG":
           if (onObject[0].object.uuid === sf.current.uuid)
-            window.open(
-              "https://github.com/VinayMatta63/Social-Freaks",
-              "_blank"
-            );
+            window.open("https://github.com/VinayMatta63/Social-Freaks", "new");
           if (onObject[0].object.uuid === iic.current.uuid)
-            window.open("https://github.com/VinayMatta63/web", "_blank");
+            window.open("https://github.com/VinayMatta63/web", "new");
           if (onObject[0].object.uuid === chat.current.uuid)
-            window.open("https://github.com/VinayMatta63/Chat-App", "_blank");
+            window.open("https://github.com/VinayMatta63/Chat-App", "new");
           if (onObject[0].object.uuid === museum.current.uuid)
             window.open(
               "https://github.com/VinayMatta63/Museum-Counsel",
-              "_blank"
+              "new"
+            );
+          if (onObject[0].object.uuid === ttt.current.uuid)
+            window.open(
+              "https://github.com/VinayMatta63/tic-tac-toe-multipayer",
+              "new"
             );
           break;
         case "KeyB":
           if (onObject[0].object?.uuid === sf.current.uuid) setObj("sf");
           if (onObject[0].object?.uuid === iic.current.uuid) setObj("iic");
           if (onObject[0].object?.uuid === chat.current.uuid) setObj("chat");
+          if (onObject[0].object?.uuid === ttt.current.uuid) setObj("ttt");
           if (onObject[0].object?.uuid === museum.current.uuid)
             setObj("museum");
           break;
@@ -147,6 +153,7 @@ const CameraControls = ({ icon }) => {
     !objects.includes(iic.current) && objects.push(iic.current);
     !objects.includes(chat.current) && objects.push(chat.current);
     !objects.includes(museum.current) && objects.push(museum.current);
+    !objects.includes(ttt.current) && objects.push(ttt.current);
 
     controlsRef.current.addEventListener("lock", () => {
       welcome.style.display = "none";
@@ -211,10 +218,10 @@ const CameraControls = ({ icon }) => {
         rotation={[-Math.PI / 2, 0, 0]}
         ref={sf}
       >
-        <planeBufferGeometry args={[6, 6]} />
+        <planeBufferGeometry args={[15, 10]} />
         <meshStandardMaterial
           attach="material"
-          color={0xffffff}
+          color={0xff0000}
           roughness={1}
         />
       </mesh>
@@ -223,10 +230,10 @@ const CameraControls = ({ icon }) => {
         rotation={[-Math.PI / 2, 0, 0]}
         ref={iic}
       >
-        <planeBufferGeometry args={[6, 6]} />
+        <planeBufferGeometry args={[15, 10]} />
         <meshStandardMaterial
           attach="material"
-          color={0xffffff}
+          color={0xff0000}
           roughness={1}
         />
       </mesh>
@@ -235,22 +242,34 @@ const CameraControls = ({ icon }) => {
         rotation={[-Math.PI / 2, 0, 0]}
         ref={chat}
       >
-        <planeBufferGeometry args={[6, 6]} />
+        <planeBufferGeometry args={[15, 10]} />
         <meshStandardMaterial
           attach="material"
-          color={0xffffff}
+          color={0xff0000}
           roughness={1}
         />
       </mesh>
       <mesh
-        position={[-60 - 10, 0.01, -135]}
+        position={[-60 - 10, 0.01, -140]}
         rotation={[-Math.PI / 2, 0, 0]}
         ref={museum}
       >
-        <planeBufferGeometry args={[6, 6]} />
+        <planeBufferGeometry args={[15, 10]} />
         <meshStandardMaterial
           attach="material"
-          color={0xffffff}
+          color={0xff0000}
+          roughness={1}
+        />
+      </mesh>
+      <mesh
+        position={[-120 + 10, 0.01, -140]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        ref={ttt}
+      >
+        <planeBufferGeometry args={[15, 10]} />
+        <meshStandardMaterial
+          attach="material"
+          color={0xff0000}
           roughness={1}
         />
       </mesh>
@@ -376,6 +395,33 @@ const CameraControls = ({ icon }) => {
                   museums in India including reviews and location. It uses Basic
                   web technologies like HTML, CSS, Bootstrap, JS, ExpressJS,
                   NodeJS, MongoDB and Ejs.
+                </p>
+                <p
+                  style={{
+                    display: "flex",
+                    width: "100%",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <span>Visit (Press V)</span>
+                  <span>Github (Press G)</span>
+                </p>
+                <span>Move out of Plate to Exit</span>
+              </div>
+            )) ||
+            (obj === "ttt" && (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <h2>Tic Tac Toe</h2>
+                <p>
+                  A Multiplayer Tic-Tac-Toe game with random matchups , private
+                  rooms and AI mode (using minimax algorithm) using react and
+                  firebase.
                 </p>
                 <p
                   style={{
