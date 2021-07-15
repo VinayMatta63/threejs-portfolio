@@ -144,13 +144,6 @@ function Body() {
     "/assets/bootstrap.png",
     "/assets/next.png",
     "/assets/flutter.png",
-    "/textures/Projects/sf1.JPG",
-    "/textures/Projects/sf2.JPG",
-    "/textures/Projects/sf3.JPG",
-    "/textures/Projects/iic1.JPG",
-    "/textures/Projects/chat1.JPG",
-    "/textures/Projects/mc1.JPG",
-    "/textures/Projects/mc2.JPG",
     "/textures/lamps.jpg",
   ]);
   const [
@@ -195,11 +188,7 @@ function Body() {
   const bakedMap = textures[0];
   const arrow = textures[1];
   const skills = textures.slice(2, 14);
-  const sf = textures.slice(14, 17);
-  const iic = textures.slice(17, 18);
-  const chat = textures.slice(18, 19);
-  const museum = textures.slice(19, 21);
-  const lamps = textures[21];
+  const lamps = textures[14];
   bakedMap.flipY = false;
   bakedMap.encoding = sRGBEncoding;
 
@@ -241,10 +230,6 @@ function Body() {
       <Trees treeTop={treesTop} treeBottom={treesBottom} />
       <Skills icons={skills} font={font} />
       <Boards
-        sf={sf}
-        chat={chat}
-        iic={iic}
-        museum={museum}
         font={font}
         sfModel={sfModel}
         mfModel={mfModel}

@@ -2,10 +2,6 @@ import React from "react";
 import Board from "./Board";
 
 const Boards = ({
-  sf,
-  iic,
-  chat,
-  museum,
   font,
   chatModel,
   sfModel,
@@ -117,7 +113,6 @@ const Boards = ({
   return (
     <>
       <Board
-        map={sf}
         x={-120}
         z={-10}
         text="Social Freaks"
@@ -127,7 +122,6 @@ const Boards = ({
         modelRight={fsModel}
       />
       <Board
-        map={iic}
         x={-60}
         z={-40}
         text="IIC DCRUST"
@@ -137,16 +131,8 @@ const Boards = ({
         modelRight={eventsModel}
         modelLeft={loginModel}
       />
+      <Board x={-120} z={-70} text="Chat App" font={font} model={chatModel} />
       <Board
-        map={chat}
-        x={-120}
-        z={-70}
-        text="Chat App"
-        font={font}
-        model={chatModel}
-      />
-      <Board
-        map={museum}
         x={-60}
         z={-140}
         text="Museum Counsel"
@@ -157,7 +143,6 @@ const Boards = ({
         modelRight={mcRight}
       />
       <Board
-        map={chat}
         x={-120}
         z={-140}
         text="Tic Tac Toe"
