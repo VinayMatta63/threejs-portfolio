@@ -5,6 +5,7 @@ import { PointLightHelper } from "three";
 const LampsLights = ({ pos1, pos2, args }) => {
   const helper = useRef(null);
   useHelper(helper, PointLightHelper);
+  // console.log(helper.current);
   return (
     <>
       <pointLight
@@ -15,6 +16,12 @@ const LampsLights = ({ pos1, pos2, args }) => {
         ]}
         args={args}
         castShadow
+        // ref={helper}
+        shadow-onUpdate={false}
+        shadow-mapSize-width={512}
+        shadow-mapSize-height={512}
+        shadow-camera-near={0.1}
+        shadow-camera-far={25}
       />
       {/* <pointLight position={pos2} args={args} castShadow /> */}
     </>

@@ -1,13 +1,12 @@
 import "./App.css";
-import React from "react";
+import React, { Suspense } from "react";
 import Bounce from "react-reveal/Bounce";
 import { Canvas } from "@react-three/fiber";
 import Scene from "./Body";
 // import Sky from "./Setup/Sky";
 import Lights from "./Setup/Lights";
 import Particles from "react-particles-js";
-import { BasicShadowMap } from "three";
-import { Stars } from "@react-three/drei";
+import { Stars, Loader } from "@react-three/drei";
 
 const App = () => {
   return (
@@ -89,15 +88,14 @@ const App = () => {
         }}
         camera={{ fov: 45, near: 0.1, far: 1000, position: [0, 5, 25] }}
         id="canvas"
-        onCreated={({ gl }) => {
-          gl.shadowMap.enabled = true;
-          gl.shadowMap.type = BasicShadowMap;
-          gl.antialias = true;
-        }}
+        shadowMap
+        shadows
       >
         <fog attach="fog" args={["#0d1a26", 60, 100]} />
-        <Scene />
-        <Lights />
+
+        <Suspense fallback={null}>
+          <Scene />
+        </Suspense>
         <Stars
           radius={160}
           depth={50}
@@ -106,9 +104,29 @@ const App = () => {
           saturation={0}
           fade
         />
-
-        {/* <OrbitControls /> */}
+        <Lights />
       </Canvas>
+      <Loader
+        containerStyles={{
+          background:
+            "radial-gradient(circle farthest-corner at center top,#071021,#19324a)",
+        }} // Flex layout styles
+        innerStyles={{
+          backgroundColor: "salmon",
+          width: "50vw",
+        }} // Inner container styles
+        barStyles={{
+          backgroundColor: "lightgreen",
+        }} // Loading-bar styles
+        dataInterpolation={(p) => `Loading ${p.toFixed(2)}%`}
+        initialState={(active) => active}
+        dataStyles={{
+          color: "#fafafa",
+          fontSize: "25px",
+          fontFamily: "Raleway",
+          fontWeight: "500",
+        }}
+      />
     </>
   );
 };
