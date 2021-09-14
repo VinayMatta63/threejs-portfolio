@@ -215,6 +215,7 @@ function Body() {
     }
     return 0;
   });
+
   useFrame(({ clock }) => {
     const elapsedTime = clock.getElapsedTime();
     portalMaterial.uniforms.uTime.value = elapsedTime;

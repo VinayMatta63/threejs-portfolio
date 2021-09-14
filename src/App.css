@@ -5,6 +5,24 @@
     #19324a
   );
 }
+#cover {
+  display: flex;
+  flex-direction: column;
+
+  align-items: space-between;
+  background: radial-gradient(
+    circle farthest-corner at center top,
+    #071021,
+    #19324a
+  );
+}
+.controls {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 5vh;
+  color: #fff;
+}
 #selector {
   position: absolute;
   display: flex;

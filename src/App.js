@@ -10,7 +10,7 @@ import { Stars, Loader } from "@react-three/drei";
 
 const App = () => {
   return (
-    <>
+    <div id="cover">
       <div id="selector">
         <div className="welcome">
           <Bounce top>
@@ -24,7 +24,7 @@ const App = () => {
           {window.innerWidth > 767 ? (
             <Bounce bottom>
               <p>Click to play</p>
-              <p>
+              <p style={{ textAlign: "center" }}>
                 Move: WASD
                 <br />
                 Jump: SPACE
@@ -32,6 +32,8 @@ const App = () => {
                 Look: MOUSE
                 <br />
                 Sprint: Left Shift
+                <br />
+                Fly: F
               </p>
             </Bounce>
           ) : (
@@ -80,16 +82,16 @@ const App = () => {
           }}
         />
       </div>
+
       <Canvas
         style={{
-          height: "100vh",
+          height: "95vh",
           width: "100vw",
           backgroundColor: "black",
         }}
         camera={{ fov: 45, near: 0.1, far: 1000, position: [0, 5, 25] }}
         id="canvas"
-        shadowMap
-        shadows
+        // shadows
       >
         <fog attach="fog" args={["#0d1a26", 60, 100]} />
 
@@ -106,6 +108,13 @@ const App = () => {
         />
         <Lights />
       </Canvas>
+      <div class="controls">
+        <span>WASD - Move</span>
+        <span>Shift - Sprint</span>
+        <span>Space - Jump</span>
+        <span>F - Fly and Land</span>
+        <span>Mouse - Look Around</span>
+      </div>
       <Loader
         containerStyles={{
           background:
@@ -118,7 +127,7 @@ const App = () => {
         barStyles={{
           backgroundColor: "lightgreen",
         }} // Loading-bar styles
-        dataInterpolation={(p) => `Loading ${p.toFixed(2)}%`}
+        dataInterpolation={(p) => `Loading ${Math.round(p)}%`}
         initialState={(active) => active}
         dataStyles={{
           color: "#fafafa",
@@ -127,7 +136,7 @@ const App = () => {
           fontWeight: "500",
         }}
       />
-    </>
+    </div>
   );
 };
 

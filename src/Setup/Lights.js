@@ -21,7 +21,7 @@ const Lights = () => {
       <directionalLight
         // color={"#C34CFF"}
         color={"#E7B7FF"}
-        intensity={0.2}
+        intensity={0.05}
         position={[0, 5, -9]}
         castShadow
         shadow-onUpdate={false}
@@ -74,29 +74,29 @@ const Lights = () => {
       />
       <pointLight
         position={[-110, 7, -10]}
-        args={["#fafafa", 0.5, 40, 1]}
+        args={["#fafafa", 0.5, 30, 1]}
         // castShadow
         // ref={helper}
       />
       <pointLight
         position={[-70, 5, -40]}
-        args={["#fafafa", 0.5, 40, 1]}
+        args={["#fafafa", 0.5, 30, 1]}
         // ref={helper}
         // castShadow
       />
       <pointLight
         position={[-105, 5, -70]}
-        args={["#fafafa", 0.5, 40, 1]}
+        args={["#fafafa", 0.5, 30, 1]}
         // ref={helper}
       />
       <pointLight
         position={[-65, 7, -140]}
-        args={["#fafafa", 0.5, 40, 1]}
+        args={["#fafafa", 0.5, 30, 1]}
         // ref={helper}
       />
       <pointLight
         position={[-105, 7, -140]}
-        args={["#fafafa", 0.5, 40, 1]}
+        args={["#fafafa", 0.5, 30, 1]}
         // ref={helper}
       />
     </mesh>
