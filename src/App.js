@@ -108,7 +108,7 @@ const App = () => {
         />
         <Lights />
       </Canvas>
-      <div class="controls">
+      <div className="controls">
         <span>WASD - Move</span>
         <span>Shift - Sprint</span>
         <span>Space - Jump</span>
