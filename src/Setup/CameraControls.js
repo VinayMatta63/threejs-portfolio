@@ -10,7 +10,6 @@ import {
   sfSprite,
   tttSprite,
 } from "../helpers/sprites";
-import Contact from "../Contact/Contact";
 
 const CameraControls = ({ icon }) => {
   const [show, setShow] = useState(false);
@@ -230,8 +229,7 @@ const CameraControls = ({ icon }) => {
       onObject[0].object &&
       onObject[0].object.uuid === contactRef.current.uuid
     ) {
-      contact &&
-        window.open("https://vinay-matta-server.herokuapp.com/contact", "new");
+      contact && window.open("https://vinay-matta.web.app/contact", "new");
       setContact(false);
     } else {
       setContact(true);
