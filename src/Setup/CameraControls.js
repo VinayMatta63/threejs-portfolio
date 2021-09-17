@@ -171,12 +171,6 @@ const CameraControls = ({ icon }) => {
           if (onObject[0].object?.uuid === museum.current.uuid)
             setObj("museum");
           break;
-        case "KeyC":
-          if (onObject[0].object?.uuid === contactRef.current.uuid) {
-            setContact(true);
-            window.open("http://localhost:3000/contact", "new");
-          }
-          break;
 
         default:
           setObj(null);
