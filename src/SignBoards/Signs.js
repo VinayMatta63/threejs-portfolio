@@ -7,6 +7,12 @@ const Signs = ({ model, font, largeSignModel }) => {
   const projPos = { x: -80, y: 0, z: 15 };
   const aboutPos = { x: -40, y: 0, z: 35 };
   const signScale = 1.6;
+  const textOptions = {
+    font,
+    size: 8,
+    height: 3,
+  };
+
   return (
     <>
       <group
@@ -42,7 +48,7 @@ const Signs = ({ model, font, largeSignModel }) => {
         <SignText
           scale={signScale / 6.8}
           position={[0.45, 1.8, -0.38]}
-          text="Contact Us"
+          text="Contact Me"
           font={font}
         />
       </group>
@@ -79,6 +85,32 @@ const Signs = ({ model, font, largeSignModel }) => {
         textRotation={[0, Math.PI / 2, 0]}
         font={font}
       />
+      <SignMesh
+        model={model}
+        position={[5, 0, 15]}
+        textPosition={[3.5, 4.5, 15 + 0.35]}
+        scale={signScale}
+        text="Go Through the Portal"
+        textScale={signScale / 8}
+        rotation={[0, Math.PI, 0]}
+        textRotation={[0, 0, 0]}
+        font={font}
+      />
+      <mesh
+        position={[4, 4, 15 + 0.35]}
+        scale={signScale / 8}
+        rotation={[0, 0, 0]}
+      >
+        <textBufferGeometry
+          attach="geometry"
+          args={["to contact me...", { font, size: 1, height: 0.1 }]}
+        />
+        <meshBasicMaterial attach="material" color="#fafafa" metalness={1} />
+      </mesh>
+      <mesh rotation={[0, 0, 0]} position={[-20, 20, -15]}>
+        <textBufferGeometry attach="geometry" args={["Contact", textOptions]} />
+        <meshBasicMaterial attach="material" color="#fff" metalness={1} />
+      </mesh>
     </>
   );
 };

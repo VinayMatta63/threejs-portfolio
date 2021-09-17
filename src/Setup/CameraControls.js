@@ -397,7 +397,7 @@ const CameraControls = ({ icon }) => {
         />
       </mesh>
       <mesh
-        position={[0, 0.5, 0]}
+        position={[0, 0.5, -8]}
         rotation={[-Math.PI / 2, 0, 0]}
         ref={contactRef}
       >
