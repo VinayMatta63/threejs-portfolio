@@ -10,12 +10,14 @@ import {
   sfSprite,
   tttSprite,
 } from "../helpers/sprites";
+import Contact from "../Contact/Contact";
 
 const CameraControls = ({ icon }) => {
   const [show, setShow] = useState(false);
   const [ascend, setAscend] = useState(false);
   const [obj, setObj] = useState(null);
   const [visit, setVisit] = useState(null);
+  const [contact, setContact] = useState(null);
   const z = 79;
   const z_sub = 8;
   let moveForward = false;
@@ -38,6 +40,7 @@ const CameraControls = ({ icon }) => {
   const hr = useRef(null);
   const arrow = useRef(null);
   const arrow1 = useRef(null);
+  const contactRef = useRef(null);
 
   let onObject = [];
 
@@ -114,7 +117,6 @@ const CameraControls = ({ icon }) => {
         setAscend(!ascend);
         onObject = [];
         break;
-
       default:
         break;
     }
@@ -170,6 +172,12 @@ const CameraControls = ({ icon }) => {
           if (onObject[0].object?.uuid === museum.current.uuid)
             setObj("museum");
           break;
+        case "KeyC":
+          if (onObject[0].object?.uuid === contactRef.current.uuid) {
+            setContact(true);
+            window.open("http://localhost:3000/contact", "new");
+          }
+          break;
 
         default:
           setObj(null);
@@ -193,6 +201,7 @@ const CameraControls = ({ icon }) => {
     !objects.includes(lc.current) && objects.push(lc.current);
     !objects.includes(cc.current) && objects.push(cc.current);
     !objects.includes(hr.current) && objects.push(hr.current);
+    !objects.includes(contactRef.current) && objects.push(contactRef.current);
 
     controlsRef.current.addEventListener("lock", () => {
       welcome.style.display = "none";
@@ -216,6 +225,17 @@ const CameraControls = ({ icon }) => {
     )
       setVisit(true);
     else setVisit(false);
+    if (
+      onObject.length > 0 &&
+      onObject[0].object &&
+      onObject[0].object.uuid === contactRef.current.uuid
+    ) {
+      contact &&
+        window.open("https://vinay-matta-server.herokuapp.com/contact", "new");
+      setContact(false);
+    } else {
+      setContact(true);
+    }
     setShow(onObject.length > 0);
 
     const elapsedTime = clock.getElapsedTime();
@@ -376,6 +396,18 @@ const CameraControls = ({ icon }) => {
         position={[-3, 0.01, z - z_sub * 4]}
         rotation={[-Math.PI / 2, 0, 0]}
         ref={gh}
+      >
+        <planeBufferGeometry args={[5, 5]} />
+        <meshStandardMaterial
+          attach="material"
+          color={0xff0000}
+          roughness={1}
+        />
+      </mesh>
+      <mesh
+        position={[0, 0.5, 0]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        ref={contactRef}
       >
         <planeBufferGeometry args={[5, 5]} />
         <meshStandardMaterial
