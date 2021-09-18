@@ -22,11 +22,12 @@ const Contact = () => {
       headers: { "Content-Type": "application/json" },
       data: { name: name, email: email, subject: subject, message: message },
     }).then((response) => {
-      if (response.data.status === "success") {
+      console.log(response);
+      if (response.data.flag === "success") {
         alert("Message Sent.");
         resetForm();
-      } else if (response.data.status === "fail") {
-        alert("Message failed to send.");
+      } else if (response.data.flag === "fail") {
+        alert(response.data.data);
       }
     });
   };
