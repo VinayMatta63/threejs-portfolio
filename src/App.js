@@ -12,19 +12,31 @@ const App = () => {
   return (
     <div id="cover">
       <div id="selector">
-        <div className="welcome">
+        <div id="welcome">
           <Bounce top>
-            <h1 style={{ fontSize: "45px", fontWeight: "500" }}>
+            <h1
+              style={{
+                fontSize: "45px",
+                fontWeight: "500",
+                marginBottom: "50px",
+              }}
+            >
               Hello, I'm <span>Vinay Matta.</span>
             </h1>
-            <h2 style={{ fontSize: "40px", fontWeight: "500" }}>
+            <h2
+              style={{
+                fontSize: "40px",
+                fontWeight: "500",
+                marginBottom: "50px",
+              }}
+            >
               I'm a full-stack Web Developer.
             </h2>
           </Bounce>
           {window.innerWidth > 767 ? (
             <Bounce bottom>
               <p>Click to play</p>
-              <p style={{ textAlign: "center" }}>
+              <p style={{ textAlign: "center", marginTop: "50px" }}>
                 Move: WASD
                 <br />
                 Jump: SPACE

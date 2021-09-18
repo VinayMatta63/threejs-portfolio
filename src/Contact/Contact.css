@@ -1,0 +1,70 @@
+.section {
+  background: radial-gradient(
+    circle farthest-corner at center top,
+    #071021,
+    #19324a
+  );
+  color: white;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+}
+.container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+input,
+textarea {
+  padding: 15px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  margin: 10px;
+  width: 20vw;
+}
+
+#contact-form {
+  margin-top: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.right {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#particles {
+  width: 50vw;
+  height: 100vh;
+}
+
+.title {
+  font-size: 40px;
+}
+.tag {
+  font-size: 17px;
+  margin-top: 5px;
+}
+
+button {
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  background-color: rgb(165, 101, 42);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+button:hover {
+  border: 2px solid white;
+  background-color: rgb(129, 76, 26);
+}
