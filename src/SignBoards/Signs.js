@@ -88,10 +88,32 @@ const Signs = ({ model, font, largeSignModel }) => {
       <SignMesh
         model={model}
         position={[5, 0, 15]}
-        textPosition={[3.5, 4.5, 15 + 0.35]}
+        textPosition={[3.5, 4.5, 15 + 0.38]}
         scale={signScale}
         text="Go Through the Portal"
-        textScale={signScale / 8}
+        textScale={signScale / 9.5}
+        rotation={[0, Math.PI, 0]}
+        textRotation={[0, 0, 0]}
+        font={font}
+      />
+      <SignMesh
+        model={model}
+        position={[10, 0, 15]}
+        textPosition={[5 + 3.5, 4.5, 15 + 0.38]}
+        scale={signScale}
+        text="Press F to increase height and"
+        textScale={signScale / 9.5}
+        rotation={[0, Math.PI, 0]}
+        textRotation={[0, 0, 0]}
+        font={font}
+      />
+      <SignMesh
+        model={model}
+        position={[10, 0, 15]}
+        textPosition={[5 + 3.5, 4.5 - 0.5, 15 + 0.38]}
+        scale={signScale}
+        text="take a better look at everything."
+        textScale={signScale / 10}
         rotation={[0, Math.PI, 0]}
         textRotation={[0, 0, 0]}
         font={font}

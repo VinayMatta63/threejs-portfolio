@@ -1,6 +1,7 @@
 import React from "react";
 import Education from "./Education";
 import Links from "./Links";
+import Me from "./Me";
 
 const About = ({ font }) => {
   const textOptions = {
@@ -17,7 +18,7 @@ const About = ({ font }) => {
       </mesh>
       <Education font={font} />
       <Links font={font} />
-      {/* <Me /> */}
+      <Me font={font} />
     </>
   );
 };
