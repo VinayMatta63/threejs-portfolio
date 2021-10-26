@@ -152,6 +152,7 @@ const CameraControls = ({ icon }) => {
   raycaster = new Raycaster(new Vector3(), new Vector3(0, -1, 0), 0, 10);
 
   useFrame(({ clock }) => {
+    // Adding all the plates ref to an array which will be used to check intersection of raycaster with plates.
     !objects.includes(sf.current) && objects.push(sf.current);
     !objects.includes(iic.current) && objects.push(iic.current);
     !objects.includes(chat.current) && objects.push(chat.current);
@@ -164,6 +165,7 @@ const CameraControls = ({ icon }) => {
     !objects.includes(hr.current) && objects.push(hr.current);
     !objects.includes(contactRef.current) && objects.push(contactRef.current);
 
+    //showing welcome page on locking and unlocking of controls
     controlsRef.current.addEventListener("lock", () => {
       welcome.style.display = "none";
       canvas.style.display = "block";
@@ -173,8 +175,13 @@ const CameraControls = ({ icon }) => {
       canvas.style.display = "none";
     });
 
+    // Moving raycaster around with change of camera location
     raycaster.ray.origin.copy(controlsRef.current.getObject().position);
+    // check if raycaster intersected with any of the plates
     onObject = raycaster.intersectObjects(objects);
+
+    // conditionally setting sprites based on the type of plate that the camera has interacted with.
+    // eg: show different sprite for profile links and project links. Also redirect to contact form when going through portal
     if (
       onObject.length > 0 &&
       onObject[0].object &&
@@ -198,37 +205,48 @@ const CameraControls = ({ icon }) => {
     }
     setShow(onObject.length > 0);
 
+    // Getting the delta time to change location of camera.
     const elapsedTime = clock.getElapsedTime();
     const delta = elapsedTime - prevTime;
     prevTime = elapsedTime;
+
+    // Animating pointing arrows
     if (arrow.current) {
       arrow.current.position.y += Math.sin(elapsedTime * 10) * 0.1;
     }
     if (arrow1.current) {
       arrow1.current.position.y += Math.sin(elapsedTime * 10) * 0.1;
     }
+
+    // Reducing speed of camera with frames to give more realistic motion effect.
     velocity.x -= velocity.x * delta * 3.5;
     velocity.z -= velocity.z * delta * 3.5;
     velocity.y -= 9.8 * 100 * delta; // 100.0 = mass
 
+    // Change direction based on the keys pressed by user
     direction.z = Number(moveForward) - Number(moveBackward);
     direction.x = Number(moveRight) - Number(moveLeft);
     direction.normalize();
 
+    // Movement controls for FPS specified in Three.js Docs.
     if (moveForward || moveBackward) velocity.z -= direction.z * 50 * delta;
     if (moveLeft || moveRight) velocity.x -= direction.x * 50 * delta;
     controlsRef.current.moveRight(-velocity.x * delta);
     controlsRef.current.moveForward(-velocity.z * delta);
+
+    // Increasing height on pressing F key
     if (!ascend)
       controlsRef.current.getObject().position.y += velocity.y * delta;
-    // new behavior
     else controlsRef.current.getObject().position.y = 40; // new behavior
 
+    // bringing user back to plane after jump limit reached.
     if (controlsRef.current.getObject().position.y < 10) {
       velocity.y = 0;
       controlsRef.current.getObject().position.y = 5;
       canJump = true;
     }
+
+    // Teleporting user back to middle of plane of goes out of boundary.
     if (
       controlsRef.current.getObject().position.x > 200 ||
       controlsRef.current.getObject().position.z > 200 ||
@@ -239,7 +257,9 @@ const CameraControls = ({ icon }) => {
       controlsRef.current.getObject().position.z = 25;
     }
   });
+
   const material = new SpriteMaterial({ map: icon });
+  // Unlock controls
   controlsRef.current &&
     window.addEventListener("touchstart", (e) => {
       controlsRef.current.lock();
