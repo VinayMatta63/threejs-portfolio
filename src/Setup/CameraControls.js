@@ -2,14 +2,14 @@ import React, { useRef, useState } from "react";
 import { PointerLockControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { Raycaster, SpriteMaterial, Vector3 } from "three";
-import { Html } from "@react-three/drei";
+import Plate from "../helpers/plate";
+import SpriteComponent from "../helpers/SpriteComponent";
+
 import {
-  chatSprite,
-  iicSprite,
-  museumSprite,
-  sfSprite,
-  tttSprite,
-} from "../helpers/sprites";
+  openProfileTab,
+  openProjectGithub,
+  openProjectTab,
+} from "../helpers/helpers";
 
 const CameraControls = ({ icon }) => {
   const [show, setShow] = useState(false);
@@ -81,6 +81,7 @@ const CameraControls = ({ icon }) => {
         break;
     }
   };
+
   const onKeyUp = function (event) {
     switch (event.code) {
       case "ArrowUp":
@@ -122,46 +123,13 @@ const CameraControls = ({ icon }) => {
     if (onObject[0]) {
       switch (e.code) {
         case "KeyE":
-          if (onObject[0].object.uuid === gh.current.uuid)
-            window.open("https://github.com/VinayMatta63", "new");
-          if (onObject[0].object.uuid === li.current.uuid)
-            window.open("https://linkedin.com/in/vinay-matta-465578192", "new");
-          if (onObject[0].object.uuid === lc.current.uuid)
-            window.open("https://leetcode.com/vinaymatta63/", "new");
-          if (onObject[0].object.uuid === cc.current.uuid)
-            window.open("https://www.codechef.com/users/vinay_matta_63", "new");
-          if (onObject[0].object.uuid === hr.current.uuid)
-            window.open("https://www.hackerrank.com/vinaymatta63", "new");
+          openProfileTab(gh, li, lc, cc, hr, onObject[0]);
           break;
         case "KeyV":
-          if (onObject[0].object.uuid === sf.current.uuid)
-            window.open("https://social-freaks.vercel.app/", "new");
-          if (onObject[0].object.uuid === iic.current.uuid)
-            window.open("https://iicdcrustm.com/home/", "new");
-          if (onObject[0].object.uuid === chat.current.uuid)
-            window.open("https://whats-clone-1c76b.web.app/", "new");
-          if (onObject[0].object.uuid === museum.current.uuid)
-            window.open("https://museum-counsel.herokuapp.com/", "new");
-          if (onObject[0].object.uuid === ttt.current.uuid)
-            window.open("https://tic-tac-toe-7fcb8.web.app/", "new");
+          openProjectTab(sf, iic, chat, museum, ttt, onObject[0]);
           break;
         case "KeyG":
-          if (onObject[0].object.uuid === sf.current.uuid)
-            window.open("https://github.com/VinayMatta63/Social-Freaks", "new");
-          if (onObject[0].object.uuid === iic.current.uuid)
-            window.open("https://github.com/VinayMatta63/web", "new");
-          if (onObject[0].object.uuid === chat.current.uuid)
-            window.open("https://github.com/VinayMatta63/Chat-App", "new");
-          if (onObject[0].object.uuid === museum.current.uuid)
-            window.open(
-              "https://github.com/VinayMatta63/Museum-Counsel",
-              "new"
-            );
-          if (onObject[0].object.uuid === ttt.current.uuid)
-            window.open(
-              "https://github.com/VinayMatta63/tic-tac-toe-multipayer",
-              "new"
-            );
+          openProjectGithub(sf, iic, chat, museum, ttt, onObject[0]);
           break;
         case "KeyB":
           if (onObject[0].object?.uuid === sf.current.uuid) setObj("sf");
@@ -223,7 +191,7 @@ const CameraControls = ({ icon }) => {
       onObject[0].object &&
       onObject[0].object.uuid === contactRef.current.uuid
     ) {
-      contact && window.open("https://vinay-matta.web.app/contact", "new");
+      contact && window.open("https://vinay-matta.web.app/contact", "contact");
       setContact(false);
     } else {
       setContact(true);
@@ -280,199 +248,24 @@ const CameraControls = ({ icon }) => {
   return (
     <>
       <PointerLockControls ref={controlsRef} selector="#selector" />
-      <mesh
-        position={[-120 + 10, 0.01, -10]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        ref={sf}
-      >
-        <planeBufferGeometry args={[15, 10]} />
-        <meshStandardMaterial
-          attach="material"
-          color={0xff0000}
-          roughness={1}
+      <Plate ref={sf} position={[-120 + 10, 0.01, -10]} />
+      <Plate ref={iic} position={[-60 - 10, 0.01, -40]} />
+      <Plate ref={chat} position={[-120 + 10, 0.01, -70]} />
+      <Plate ref={museum} position={[-60 - 10, 0.01, -140]} />
+      <Plate ref={ttt} position={[-120 + 10, 0.01, -140]} />
+      {[hr, cc, lc, li, gh].map((ref, index) => (
+        <Plate
+          ref={ref}
+          position={[-3, 0.01, z - z_sub * index]}
+          args={[5, 5]}
         />
-      </mesh>
-      <mesh
-        position={[-60 - 10, 0.01, -40]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        ref={iic}
-      >
-        <planeBufferGeometry args={[15, 10]} />
-        <meshStandardMaterial
-          attach="material"
-          color={0xff0000}
-          roughness={1}
-        />
-      </mesh>
-      <mesh
-        position={[-120 + 10, 0.01, -70]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        ref={chat}
-      >
-        <planeBufferGeometry args={[15, 10]} />
-        <meshStandardMaterial
-          attach="material"
-          color={0xff0000}
-          roughness={1}
-        />
-      </mesh>
-      <mesh
-        position={[-60 - 10, 0.01, -140]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        ref={museum}
-      >
-        <planeBufferGeometry args={[15, 10]} />
-        <meshStandardMaterial
-          attach="material"
-          color={0xff0000}
-          roughness={1}
-        />
-      </mesh>
-      <mesh
-        position={[-120 + 10, 0.01, -140]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        ref={ttt}
-      >
-        <planeBufferGeometry args={[15, 10]} />
-        <meshStandardMaterial
-          attach="material"
-          color={0xff0000}
-          roughness={1}
-        />
-      </mesh>
-      <mesh position={[-3, 0.01, z]} rotation={[-Math.PI / 2, 0, 0]} ref={hr}>
-        <planeBufferGeometry args={[5, 5]} />
-        <meshStandardMaterial
-          attach="material"
-          color={0xff0000}
-          roughness={1}
-        />
-      </mesh>
-      <mesh
-        position={[-3, 0.01, z - z_sub]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        ref={cc}
-      >
-        <planeBufferGeometry args={[5, 5]} />
-        <meshStandardMaterial
-          attach="material"
-          color={0xff0000}
-          roughness={1}
-        />
-      </mesh>
-      <mesh
-        position={[-3, 0.01, z - z_sub * 2]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        ref={lc}
-      >
-        <planeBufferGeometry args={[5, 5]} />
-        <meshStandardMaterial
-          attach="material"
-          color={0xff0000}
-          roughness={1}
-        />
-      </mesh>
-      <mesh
-        position={[-3, 0.01, z - z_sub * 3]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        ref={li}
-      >
-        <planeBufferGeometry args={[5, 5]} />
-        <meshStandardMaterial
-          attach="material"
-          color={0xff0000}
-          roughness={1}
-        />
-      </mesh>
-      <mesh
-        position={[-3, 0.01, z - z_sub * 4]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        ref={gh}
-      >
-        <planeBufferGeometry args={[5, 5]} />
-        <meshStandardMaterial
-          attach="material"
-          color={0xff0000}
-          roughness={1}
-        />
-      </mesh>
-      <mesh
-        position={[0, 0.5, -8]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        ref={contactRef}
-      >
-        <planeBufferGeometry args={[5, 5]} />
-        <meshStandardMaterial
-          attach="material"
-          color={0xff0000}
-          roughness={1}
-        />
-      </mesh>
+      ))}
+      <Plate ref={contactRef} position={[0, 0.5, -8]} args={[5, 5]} />
       {show ? (
         visit ? (
-          <Html
-            sprite
-            style={{
-              color: "#fff",
-              backgroundColor: "rgba(0,0,0,0.8)",
-              fontSize: "30px",
-              padding: "100px 200px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexDirection: "column",
-            }}
-            position={[
-              controlsRef.current.getObject().position.x,
-              controlsRef.current.getObject().position.y - 2,
-              controlsRef.current.getObject().position.z + 20,
-            ]}
-            transform
-          >
-            {
-              <>
-                <span>Press E to visit Profile</span>
-                <span>Move out of Plate to Exit</span>
-              </>
-            }
-          </Html>
+          <SpriteComponent controlsRef={controlsRef} type="links" />
         ) : (
-          <Html
-            sprite
-            style={{
-              color: "#fff",
-              backgroundColor: "rgba(0,0,0,0.3)",
-              fontSize: "30px",
-              padding: "100px 200px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexDirection: "column",
-            }}
-            position={[
-              controlsRef.current.getObject().position.x < -100
-                ? controlsRef.current.getObject().position.x - 20
-                : controlsRef.current.getObject().position.x + 20,
-              controlsRef.current.getObject().position.y - 2,
-              controlsRef.current.getObject().position.z,
-            ]}
-            transform
-          >
-            {obj ? (
-              (obj === "sf" && sfSprite) ||
-              (obj === "iic" && iicSprite) ||
-              (obj === "chat" && chatSprite) ||
-              (obj === "museum" && museumSprite) ||
-              (obj === "ttt" && tttSprite)
-            ) : (
-              <>
-                <span>Press B for brief introduction</span>
-                <span>Press V to visit Project</span>
-                <span>Press G to visit Project Github</span>
-                <span>Move out of Plate to Exit</span>
-              </>
-            )}
-          </Html>
+          <SpriteComponent controlsRef={controlsRef} obj={obj} />
         )
       ) : (
         <>
