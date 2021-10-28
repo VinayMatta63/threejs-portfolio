@@ -6,7 +6,7 @@ import Scene from "./Body";
 // import Sky from "./Setup/Sky";
 import Lights from "./Setup/Lights";
 import Particles from "react-particles-js";
-import { Stars, Loader } from "@react-three/drei";
+import { Loader, Preload, Stars } from "@react-three/drei";
 
 const App = () => {
   return (
@@ -105,10 +105,11 @@ const App = () => {
         id="canvas"
         // shadows
       >
-        <fog attach="fog" args={["#0d1a26", 60, 100]} />
+        <fog attach="fog" args={["#0d1a26", 70, 100]} />
 
         <Suspense fallback={null}>
           <Scene />
+          <Preload all />
         </Suspense>
         <Stars
           radius={160}
@@ -118,6 +119,7 @@ const App = () => {
           saturation={0}
           fade
         />
+
         <Lights />
       </Canvas>
       <div className="controls">

@@ -1,15 +1,15 @@
 import React from "react";
 import Tree from "./Tree";
 
-const Trees = ({ treeTop, treeBottom }) => {
+const Trees = ({ tree }) => {
   const treePositions = [
-    [40, 0, 10],
+    [60, 0, 35],
     [20, 0, -30],
     [30, 0, -70],
     [10, 0, -55],
     [-40, 0, 10],
     [-30, 0, -60],
-    [-15, 0, -10],
+    [-25, 0, -10],
     [-10, 0, -80],
     [-25, 0, -40],
   ];
@@ -26,7 +26,7 @@ const Trees = ({ treeTop, treeBottom }) => {
     ]);
   }
   return treePositions.map((pos, index) => (
-    <Tree treeTop={treeTop} treeBottom={treeBottom} pos={pos} key={index} />
+    <Tree tree={tree} pos={pos} key={index} />
   ));
 };
 

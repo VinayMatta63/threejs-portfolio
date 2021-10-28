@@ -12,9 +12,11 @@ const Contact = () => {
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const [disabled, setDisabled] = useState(false);
 
   const submitEmail = async (e) => {
     e.preventDefault();
+    setDisabled(true);
     axios({
       method: "POST",
       url: "https://vinay-matta-server.herokuapp.com/send",
@@ -26,8 +28,10 @@ const Contact = () => {
       if (response.data.flag === "success") {
         alert("Message Sent.");
         resetForm();
+        setDisabled(false);
       } else if (response.data.flag === "fail") {
         alert(response.data.data);
+        setDisabled(false);
       }
     });
   };
@@ -176,7 +180,11 @@ const Contact = () => {
                 onChange={(e) => setMessage(e.target.value)}
               />
             </div>
-            <button type="submit" className="primary-btn submit">
+            <button
+              type="submit"
+              className="primary-btn submit"
+              disabled={disabled}
+            >
               Submit
             </button>
           </form>

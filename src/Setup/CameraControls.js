@@ -19,6 +19,7 @@ const CameraControls = ({ icon }) => {
   const [contact, setContact] = useState(null);
   const z = 79;
   const z_sub = 8;
+
   let moveForward = false;
   let moveBackward = false;
   let moveLeft = false;
@@ -46,6 +47,7 @@ const CameraControls = ({ icon }) => {
   let prevTime = 0;
   const velocity = new Vector3();
   const direction = new Vector3();
+
   const onKeyDown = function (event) {
     switch (event.code) {
       case "ArrowUp":
@@ -139,7 +141,6 @@ const CameraControls = ({ icon }) => {
           if (onObject[0].object?.uuid === museum.current.uuid)
             setObj("museum");
           break;
-
         default:
           setObj(null);
           break;
@@ -275,6 +276,7 @@ const CameraControls = ({ icon }) => {
       <Plate ref={ttt} position={[-120 + 10, 0.01, -140]} />
       {[hr, cc, lc, li, gh].map((ref, index) => (
         <Plate
+          key={index}
           ref={ref}
           position={[-3, 0.01, z - z_sub * index]}
           args={[5, 5]}

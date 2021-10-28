@@ -29,7 +29,6 @@ const vertexShader = vertex;
 const fragmentShader = fragment;
 
 function Body() {
-  // { bakedMap, skills, sf, iic, chat, museum, scene }
   const textures = useTexture([
     "/textures/baked.jpg",
     "/textures/arrow.png",
@@ -49,8 +48,7 @@ function Body() {
   ]);
   const [
     portal,
-    treesTop,
-    treesBottom,
+    tree,
     lamp,
     path,
     chatModel,
@@ -69,8 +67,7 @@ function Body() {
     largeSignModel,
   ] = useLoader(GLTFLoader, [
     "/models/portal.glb",
-    "/models/treeTops.glb",
-    "/models/treeBase.glb",
+    "/models/tree.glb",
     "/models/lamps.glb",
     "/models/tile.glb",
     "/models/chat.glb",
@@ -133,7 +130,7 @@ function Body() {
       <Lamps position={[139, 0, 80]} bakedLamp={lamps} scene={lamp.scene} />
       <Lamps position={[49, 0, -57]} bakedLamp={lamps} scene={lamp.scene} />
       <Lamps position={[-141, 0, -57]} bakedLamp={lamps} scene={lamp.scene} />
-      <Trees treeTop={treesTop} treeBottom={treesBottom} />
+      <Trees tree={tree} />
       <Skills icons={skills} font={font} />
       <Boards
         font={font}
