@@ -7,8 +7,7 @@ import Scene from "./Body";
 import Lights from "./Setup/Lights";
 import Particles from "react-particles-js";
 import { Loader, Preload, Stars } from "@react-three/drei";
-//
-//
+
 const App = () => {
   return (
     <div id="cover">
