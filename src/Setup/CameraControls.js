@@ -11,17 +11,22 @@ import {
   openProjectTab,
 } from "../helpers/helpers";
 import Track from "../Game/Track";
+import gsap from "gsap";
+import Game from "../Game";
 
-const CameraControls = forwardRef(({ icon, startGameFunction }, group) => {
+const CameraControls = ({ icon }) => {
   const [show, setShow] = useState(false);
   const [ascend, setAscend] = useState(false);
   const [startGame, setStartGame] = useState(false);
   const [obj, setObj] = useState(null);
   const [visit, setVisit] = useState(null);
   const [contact, setContact] = useState(null);
-
+  let failed = false;
   const z = 79;
   const z_sub = 8;
+  useEffect(() => {
+    startOp(startGame);
+  }, [startGame]);
 
   let moveForward = false;
   let moveBackward = false;
@@ -31,6 +36,7 @@ const CameraControls = forwardRef(({ icon, startGameFunction }, group) => {
   const controlsRef = useRef(null);
   const objects = [];
   let raycaster;
+  const group = useRef(null);
   const sf = useRef(null);
   const iic = useRef(null);
   const chat = useRef(null);
@@ -48,6 +54,19 @@ const CameraControls = forwardRef(({ icon, startGameFunction }, group) => {
   const play = useRef(null);
   const end = useRef(null);
   let onObject = [];
+
+  const delay = (ms) => {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  };
+
+  const startOp = async (game) => {
+    if (!game) return;
+    gsap.to(group.current.rotation, { y: 0, duration: 0.45 });
+    await delay(Math.random() * 1000 + 1000);
+    gsap.to(group.current.rotation, { y: Math.PI, duration: 0.45 });
+    await delay(Math.random() * 750 + 750);
+    startOp(!failed);
+  };
 
   let prevTime = 0;
   const velocity = new Vector3();
@@ -94,6 +113,7 @@ const CameraControls = forwardRef(({ icon, startGameFunction }, group) => {
         case "KeyW":
           if (group.current.rotation.y === 0) {
             setStartGame(false);
+            failed = true;
             controlsRef.current.camera.position.x = 100;
             controlsRef.current.camera.position.z = 20;
           } else moveForward = true;
@@ -101,6 +121,12 @@ const CameraControls = forwardRef(({ icon, startGameFunction }, group) => {
 
         case "ArrowDown":
         case "KeyS":
+          if (group.current.rotation.y === 0) {
+            setStartGame(false);
+            failed = true;
+            controlsRef.current.camera.position.x = 100;
+            controlsRef.current.camera.position.z = 20;
+          }
           moveBackward = true;
           break;
       }
@@ -237,9 +263,12 @@ const CameraControls = forwardRef(({ icon, startGameFunction }, group) => {
     );
     if (onObject.length > 0 && onObject[0].object.uuid === play.current.uuid) {
       setStartGame(true);
+      failed = false;
     }
+
     if (onObject.length > 0 && onObject[0].object.uuid === end.current.uuid) {
       setStartGame(false);
+      failed = true;
     }
     // Getting the delta time to change location of camera.
     const elapsedTime = clock.getElapsedTime();
@@ -310,6 +339,8 @@ const CameraControls = forwardRef(({ icon, startGameFunction }, group) => {
       <Plate ref={museum} position={[-60 - 10, 0.01, -140]} />
       <Plate ref={ttt} position={[-120 + 10, 0.01, -140]} />
       <Track position={[100, 0.01, -45]} ref={track} show={startGame} />
+      <Game position={[100, 5, -100]} ref={group} />
+
       <Plate
         position={[100, 0.015, 0]}
         ref={play}
@@ -355,6 +386,6 @@ const CameraControls = forwardRef(({ icon, startGameFunction }, group) => {
       )}
     </>
   );
-});
+};
 
 export default CameraControls;
