@@ -106,7 +106,7 @@ const App = () => {
         id="canvas"
         // shadows
       >
-        <fog attach="fog" args={["#0d1a26", 70, 100]} />
+        {/* <fog attach="fog" args={["#0d1a26", 70, 100]} /> */}
 
         <Suspense fallback={null}>
           <Scene />

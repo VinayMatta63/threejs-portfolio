@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { forwardRef, useEffect, useRef, useState } from "react";
 import { PointerLockControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { Raycaster, SpriteMaterial, Vector3 } from "three";
@@ -10,13 +10,16 @@ import {
   openProjectGithub,
   openProjectTab,
 } from "../helpers/helpers";
+import Track from "../Game/Track";
 
-const CameraControls = ({ icon }) => {
+const CameraControls = forwardRef(({ icon, startGameFunction }, group) => {
   const [show, setShow] = useState(false);
   const [ascend, setAscend] = useState(false);
+  const [startGame, setStartGame] = useState(false);
   const [obj, setObj] = useState(null);
   const [visit, setVisit] = useState(null);
   const [contact, setContact] = useState(null);
+
   const z = 79;
   const z_sub = 8;
 
@@ -41,7 +44,9 @@ const CameraControls = ({ icon }) => {
   const arrow = useRef(null);
   const arrow1 = useRef(null);
   const contactRef = useRef(null);
-
+  const track = useRef(null);
+  const play = useRef(null);
+  const end = useRef(null);
   let onObject = [];
 
   let prevTime = 0;
@@ -49,38 +54,56 @@ const CameraControls = ({ icon }) => {
   const direction = new Vector3();
 
   const onKeyDown = function (event) {
-    switch (event.code) {
-      case "ArrowUp":
-      case "KeyW":
-        moveForward = true;
-        break;
+    if (!startGame) {
+      switch (event.code) {
+        case "ArrowUp":
+        case "KeyW":
+          moveForward = true;
+          break;
 
-      case "ArrowLeft":
-      case "KeyA":
-        moveLeft = true;
-        break;
+        case "ArrowLeft":
+        case "KeyA":
+          moveLeft = true;
+          break;
 
-      case "ArrowDown":
-      case "KeyS":
-        moveBackward = true;
-        break;
+        case "ArrowDown":
+        case "KeyS":
+          moveBackward = true;
+          break;
 
-      case "ArrowRight":
-      case "KeyD":
-        moveRight = true;
-        break;
+        case "ArrowRight":
+        case "KeyD":
+          moveRight = true;
+          break;
 
-      case "Space":
-        if (canJump === true) velocity.y += 350;
-        canJump = false;
-        break;
-      case "ShiftLeft":
-        velocity.x *= 15;
-        velocity.z *= 15;
-        break;
+        case "Space":
+          if (canJump === true) velocity.y += 350;
+          canJump = false;
+          break;
+        case "ShiftLeft":
+          velocity.x *= 15;
+          velocity.z *= 15;
+          break;
 
-      default:
-        break;
+        default:
+          break;
+      }
+    } else {
+      switch (event.code) {
+        case "ArrowUp":
+        case "KeyW":
+          if (group.current.rotation.y === 0) {
+            setStartGame(false);
+            controlsRef.current.camera.position.x = 100;
+            controlsRef.current.camera.position.z = 20;
+          } else moveForward = true;
+          break;
+
+        case "ArrowDown":
+        case "KeyS":
+          moveBackward = true;
+          break;
+      }
     }
   };
 
@@ -165,6 +188,8 @@ const CameraControls = ({ icon }) => {
     !objects.includes(cc.current) && objects.push(cc.current);
     !objects.includes(hr.current) && objects.push(hr.current);
     !objects.includes(contactRef.current) && objects.push(contactRef.current);
+    !objects.includes(play.current) && objects.push(play.current);
+    !objects.includes(end.current) && objects.push(end.current);
 
     //showing welcome page on locking and unlocking of controls
     controlsRef.current.addEventListener("lock", () => {
@@ -204,8 +229,18 @@ const CameraControls = ({ icon }) => {
     } else {
       setContact(true);
     }
-    setShow(onObject.length > 0);
-
+    setShow(
+      onObject.length > 0 &&
+        onObject[0].object.uuid !== contactRef.current.uuid &&
+        onObject[0].object.uuid !== play.current.uuid &&
+        onObject[0].object.uuid !== end.current.uuid
+    );
+    if (onObject.length > 0 && onObject[0].object.uuid === play.current.uuid) {
+      setStartGame(true);
+    }
+    if (onObject.length > 0 && onObject[0].object.uuid === end.current.uuid) {
+      setStartGame(false);
+    }
     // Getting the delta time to change location of camera.
     const elapsedTime = clock.getElapsedTime();
     const delta = elapsedTime - prevTime;
@@ -261,10 +296,10 @@ const CameraControls = ({ icon }) => {
 
   const material = new SpriteMaterial({ map: icon });
   // Unlock controls
-  controlsRef.current &&
-    window.addEventListener("touchstart", (e) => {
-      controlsRef.current.lock();
-    });
+  // controlsRef.current &&
+  //   window.addEventListener("touchstart", (e) => {
+  //     controlsRef.current.lock();
+  //   });
 
   return (
     <>
@@ -274,6 +309,19 @@ const CameraControls = ({ icon }) => {
       <Plate ref={chat} position={[-120 + 10, 0.01, -70]} />
       <Plate ref={museum} position={[-60 - 10, 0.01, -140]} />
       <Plate ref={ttt} position={[-120 + 10, 0.01, -140]} />
+      <Track position={[100, 0.01, -45]} ref={track} show={startGame} />
+      <Plate
+        position={[100, 0.015, 0]}
+        ref={play}
+        args={[30, 10]}
+        color="#c2ba69"
+      />
+      <Plate
+        position={[100, 0.015, -90]}
+        ref={end}
+        args={[30, 10]}
+        color="#c2ba69"
+      />
       {[hr, cc, lc, li, gh].map((ref, index) => (
         <Plate
           key={index}
@@ -307,6 +355,6 @@ const CameraControls = ({ icon }) => {
       )}
     </>
   );
-};
+});
 
 export default CameraControls;

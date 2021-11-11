@@ -4,7 +4,7 @@ import Roboto from "./Skills/fonts/Roboto_Regular";
 import About from "./About/index";
 import Floor from "./Setup/Floor";
 
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Color,
   DoubleSide,
@@ -24,11 +24,26 @@ import Boards from "./Boards";
 import Fireflies from "./Effects/Fireflies";
 import Signs from "./SignBoards/Signs";
 import { fragment, vertex } from "./helpers/shaders";
+import Game from "./Game";
+import gsap from "gsap";
 
 const vertexShader = vertex;
 const fragmentShader = fragment;
 
 function Body() {
+  const group = useRef(null);
+
+  const delay = (ms) => {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  };
+
+  const start = async () => {
+    gsap.to(group.current.rotation, { y: 0, duration: 0.45 });
+    await delay(Math.random() * 1000 + 1000);
+    gsap.to(group.current.rotation, { y: Math.PI, duration: 0.45 });
+    await delay(Math.random() * 750 + 750);
+  };
+
   const textures = useTexture([
     "/textures/baked.jpg",
     "/textures/arrow.png",
@@ -148,9 +163,10 @@ function Body() {
         tttLeft={tttLeft}
       />
       <Fireflies pointCount={30} />
-      <CameraControls icon={arrow} />
+      <CameraControls icon={arrow} ref={group} startGameFunction={start} />
       <About font={font} />
       <Floor />
+      <Game position={[100, 5, -100]} ref={group} />
       <Signs largeSignModel={largeSignModel} model={signModel} font={font} />
     </>
   );
