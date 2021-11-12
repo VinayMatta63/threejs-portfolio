@@ -14,7 +14,7 @@ import Track from "../Game/Track";
 import gsap from "gsap";
 import Game from "../Game";
 
-const CameraControls = ({ icon }) => {
+const CameraControls = ({ icon, squidDoll }) => {
   const [show, setShow] = useState(false);
   const [ascend, setAscend] = useState(false);
   const [startGame, setStartGame] = useState(false);
@@ -341,7 +341,7 @@ const CameraControls = ({ icon }) => {
       <Plate ref={museum} position={[-60 - 10, 0.01, -140]} />
       <Plate ref={ttt} position={[-120 + 10, 0.01, -140]} />
       <Track position={[100, 0.01, -45]} ref={track} show={startGame} />
-      <Game position={[100, 5, -100]} ref={group} />
+      <Game position={[100, 5, -100]} ref={group} squidDoll={squidDoll} />
 
       <Plate
         position={[100, 0.015, 0]}

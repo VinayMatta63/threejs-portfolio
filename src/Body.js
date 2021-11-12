@@ -65,6 +65,7 @@ function Body() {
     tttLeft,
     signModel,
     largeSignModel,
+    squidDoll,
   ] = useLoader(GLTFLoader, [
     "/models/portal.glb",
     "/models/tree.glb",
@@ -84,6 +85,7 @@ function Body() {
     "/models/ttt1.glb",
     "/models/sign.glb",
     "/models/largeSign.glb",
+    "/models/squid/scene.gltf",
   ]);
   const font = new FontLoader().parse(Roboto);
 
@@ -149,9 +151,8 @@ function Body() {
         tttLeft={tttLeft}
       />
       <Fireflies pointCount={30} />
-      <CameraControls icon={arrow} />
+      <CameraControls icon={arrow} squidDoll={squidDoll} />
       <About font={font} />
-
       <Floor />
       <Signs largeSignModel={largeSignModel} model={signModel} font={font} />
     </>
