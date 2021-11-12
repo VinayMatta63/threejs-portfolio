@@ -4,7 +4,7 @@ import Roboto from "./Skills/fonts/Roboto_Regular";
 import About from "./About/index";
 import Floor from "./Setup/Floor";
 
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import {
   Color,
   DoubleSide,
@@ -106,6 +106,7 @@ function Body() {
     fragmentShader: fragmentShader,
     side: DoubleSide,
   });
+
   portal.scene.children.map((child) => {
     if (child.name === "PoleLightA" || child.name === "PoleLightB") {
       child.material = lampMaterial;
@@ -150,6 +151,7 @@ function Body() {
       <Fireflies pointCount={30} />
       <CameraControls icon={arrow} />
       <About font={font} />
+
       <Floor />
       <Signs largeSignModel={largeSignModel} model={signModel} font={font} />
     </>

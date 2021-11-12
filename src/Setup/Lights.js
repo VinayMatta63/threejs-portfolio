@@ -99,6 +99,7 @@ const Lights = () => {
         args={["#fafafa", 0.5, 30, 1]}
         // ref={helper}
       />
+      <pointLight position={[100, 15, -50]} args={["#fafafa", 0.5, 70]} />
     </mesh>
   );
 };

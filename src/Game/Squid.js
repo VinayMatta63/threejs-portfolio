@@ -10,7 +10,7 @@ import React, { forwardRef } from "react";
 import { useGLTF } from "@react-three/drei";
 
 const Model = forwardRef(({ ...props }, group) => {
-  const { nodes, materials } = useGLTF("/models/squid/scene.gltf");
+  const { nodes } = useGLTF("/models/squid/scene.gltf");
 
   return (
     <group ref={group} {...props} dispose={null} rotation={[0, Math.PI, 0]}>

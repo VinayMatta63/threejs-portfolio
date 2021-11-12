@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { PointerLockControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { Raycaster, SpriteMaterial, Vector3 } from "three";
@@ -24,9 +24,19 @@ const CameraControls = ({ icon }) => {
   let failed = false;
   const z = 79;
   const z_sub = 8;
+
   useEffect(() => {
+    const startOp = async (game) => {
+      if (!game) return;
+      gsap.to(group.current.rotation, { y: 0, duration: 0.45 });
+      await delay(Math.random() * 1000 + 1000);
+      gsap.to(group.current.rotation, { y: Math.PI, duration: 0.45 });
+      await delay(Math.random() * 750 + 750);
+      startOp(!failed);
+    };
+
     startOp(startGame);
-  }, [startGame]);
+  }, [startGame, failed]);
 
   let moveForward = false;
   let moveBackward = false;
@@ -57,15 +67,6 @@ const CameraControls = ({ icon }) => {
 
   const delay = (ms) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
-  };
-
-  const startOp = async (game) => {
-    if (!game) return;
-    gsap.to(group.current.rotation, { y: 0, duration: 0.45 });
-    await delay(Math.random() * 1000 + 1000);
-    gsap.to(group.current.rotation, { y: Math.PI, duration: 0.45 });
-    await delay(Math.random() * 750 + 750);
-    startOp(!failed);
   };
 
   let prevTime = 0;
@@ -100,8 +101,8 @@ const CameraControls = ({ icon }) => {
           canJump = false;
           break;
         case "ShiftLeft":
-          velocity.x *= 15;
-          velocity.z *= 15;
+          velocity.x *= 12;
+          velocity.z *= 12;
           break;
 
         default:
@@ -115,7 +116,7 @@ const CameraControls = ({ icon }) => {
             setStartGame(false);
             failed = true;
             controlsRef.current.camera.position.x = 100;
-            controlsRef.current.camera.position.z = 20;
+            controlsRef.current.camera.position.z = 40;
           } else moveForward = true;
           break;
 
@@ -125,10 +126,11 @@ const CameraControls = ({ icon }) => {
             setStartGame(false);
             failed = true;
             controlsRef.current.camera.position.x = 100;
-            controlsRef.current.camera.position.z = 20;
-          }
-          moveBackward = true;
+            controlsRef.current.camera.position.z = 40;
+          } else moveBackward = true;
           break;
+        default:
+          return;
       }
     }
   };
@@ -152,8 +154,8 @@ const CameraControls = ({ icon }) => {
         moveRight = false;
         break;
       case "ShiftLeft":
-        velocity.x /= 15;
-        velocity.z /= 15;
+        velocity.x /= 12;
+        velocity.z /= 12;
         break;
       default:
         break;

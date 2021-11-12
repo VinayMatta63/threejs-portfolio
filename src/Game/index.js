@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import Squid from "../Squid";
+import Squid from "./Squid";
 
 const Game = forwardRef(({ position }, group) => {
   return (
