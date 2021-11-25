@@ -30,7 +30,7 @@ const Track = forwardRef(
                 <span>Start Game</span>
                 <br />
                 <span>( Only move forward or backward</span>
-                <span>While the Dool is looking away )</span>
+                <span>While the Doll is looking away )</span>
               </>
             ) : (
               <>completed</>
