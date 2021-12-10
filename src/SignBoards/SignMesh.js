@@ -21,7 +21,7 @@ const SignMesh = ({
         position={position}
         scale={scale}
         rotation={rotation}
-      ></mesh>
+       />
       <mesh position={textPosition} scale={textScale} rotation={textRotation}>
         <textBufferGeometry
           attach="geometry"
