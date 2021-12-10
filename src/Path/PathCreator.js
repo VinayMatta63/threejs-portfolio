@@ -6,11 +6,7 @@ const PathCreator = ({ count, x, z, start, shadow = false, path }) => {
   let i = start;
   while (count--) {
     let position = [];
-    if (i % 2 === 0) {
-      position = [x ? x : i * 4, 0, z ? z : i * 4];
-    } else {
-      position = [x ? x - 3 : i * 4, 0, z ? z + 3 : i * 4];
-    }
+    position = i % 2 === 0 ? [x ? x : i * 4, 0, z ? z : i * 4] : [x ? x - 3 : i * 4, 0, z ? z + 3 : i * 4];
     pathArray.push(position);
     i += 1;
   }
