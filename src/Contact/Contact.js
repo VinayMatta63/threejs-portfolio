@@ -2,7 +2,6 @@ import { Loader } from "@react-three/drei";
 import { Canvas, useLoader } from "@react-three/fiber";
 import axios from "axios";
 import React, { useState } from "react";
-import Particles from "react-particles-js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import "./Contact.css";
 import ContactModel from "./ContactModel";
@@ -81,44 +80,6 @@ const Contact = () => {
       />
 
       <div className="container">
-        <Particles
-          id="particles"
-          params={{
-            particles: {
-              number: {
-                value: 500,
-                density: {
-                  enable: true,
-                  value_area: 1000,
-                },
-              },
-              color: {
-                value: "#91fff8",
-                // value: "#daf277",
-              },
-              opacity: {
-                value: 0.5,
-                anim: {
-                  enable: true,
-                },
-              },
-              size: {
-                value: 5,
-                random: true,
-                anim: {
-                  enable: true,
-                  speed: 5,
-                },
-              },
-              line_linked: {
-                enable: false,
-              },
-              move: {
-                speed: 0.4,
-              },
-            },
-          }}
-        />
         <div className="right">
           <h2 className="title">Contact Me</h2>
           <p className="tag">
