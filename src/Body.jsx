@@ -21,7 +21,6 @@ import Skills from "./Skills";
 import CameraControls from "./Setup/CameraControls";
 
 import Boards from "./Boards";
-import Fireflies from "./Effects/Fireflies";
 import Signs from "./SignBoards/Signs";
 import { fragment, vertex } from "./helpers/shaders";
 
@@ -150,7 +149,7 @@ function Body() {
         tttModel={tttModel}
         tttLeft={tttLeft}
       />
-      <Fireflies pointCount={30} />
+      {/* <Fireflies pointCount={30} /> */}
       <CameraControls icon={arrow} squidDoll={squidDoll} />
       <About font={font} />
       <Floor />
