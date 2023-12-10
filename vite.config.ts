@@ -7,7 +7,7 @@ import svgrPlugin from "vite-plugin-svgr";
 export default defineConfig(({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
   return {
-    plugins: [react(), viteTsconfigPaths(), svgrPlugin()],
+    plugins: [react(), svgrPlugin()],
     define: {
       "process.env": process.env,
     },

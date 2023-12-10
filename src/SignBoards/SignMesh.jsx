@@ -1,3 +1,4 @@
+import { Text3D } from "@react-three/drei";
 import React from "react";
 
 const SignMesh = ({
@@ -21,13 +22,12 @@ const SignMesh = ({
         position={position}
         scale={scale}
         rotation={rotation}
-       />
+      />
       <mesh position={textPosition} scale={textScale} rotation={textRotation}>
-        <textBufferGeometry
-          attach="geometry"
-          args={[text, { font, size: 1, height: 0.1 }]}
-        />
-        <meshBasicMaterial attach="material" color="#fafafa" metalness={1} />
+        <Text3D font={font} size={1} height={0.1}>
+          {text}
+          <meshBasicMaterial attach="material" color="#fafafa" metalness={1} />
+        </Text3D>
       </mesh>
     </group>
   );

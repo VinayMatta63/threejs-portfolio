@@ -16,7 +16,7 @@ const Track = forwardRef(
     return (
       <group>
         <mesh position={position} rotation={[-Math.PI / 2, 0, 0]} ref={ref}>
-          <planeBufferGeometry args={args} />
+          <planeGeometry args={args} />
           <meshStandardMaterial
             attach="material"
             color={"#e0d296"}

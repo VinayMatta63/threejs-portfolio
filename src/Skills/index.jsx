@@ -1,5 +1,6 @@
 import React from "react";
 import Skill from "./Skill";
+import { Text3D } from "@react-three/drei";
 const Skills = ({ icons, font }) => {
   const textOptions = {
     font,
@@ -9,7 +10,7 @@ const Skills = ({ icons, font }) => {
   return (
     <group>
       <mesh rotation={[0, Math.PI, 0]} position={[-80, 0, 120]}>
-        <textBufferGeometry attach="geometry" args={["Skills", textOptions]} />
+        <Text3D {...textOptions}>Skills</Text3D>
         <meshStandardMaterial attach="material" color="#fafafa" metalness={1} />
       </mesh>
       {/*React*/}
