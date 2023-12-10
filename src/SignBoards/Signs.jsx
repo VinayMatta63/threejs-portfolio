@@ -1,6 +1,7 @@
 import React from "react";
 import SignMesh from "./SignMesh";
 import SignText from "./SignText";
+import { Text3D } from "@react-three/drei";
 
 const Signs = ({ model, font, largeSignModel }) => {
   const skillsPos = { x: -60, y: 0, z: 30 };
@@ -123,14 +124,13 @@ const Signs = ({ model, font, largeSignModel }) => {
         scale={signScale / 8}
         rotation={[0, 0, 0]}
       >
-        <textBufferGeometry
-          attach="geometry"
-          args={["to contact me...", { font, size: 1, height: 0.1 }]}
-        />
+        <Text3D font={font} size={1} height={0.1}>
+          to contact me...
+        </Text3D>
         <meshBasicMaterial attach="material" color="#fafafa" metalness={1} />
       </mesh>
       <mesh rotation={[0, 0, 0]} position={[-20, 20, -15]}>
-        <textBufferGeometry attach="geometry" args={["Contact", textOptions]} />
+        <Text3D {...textOptions}>Contact</Text3D>
         <meshBasicMaterial attach="material" color="#fff" metalness={1} />
       </mesh>
     </>

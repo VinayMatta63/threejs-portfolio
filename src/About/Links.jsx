@@ -1,3 +1,4 @@
+import { Text3D } from "@react-three/drei";
 import React from "react";
 
 const Links = ({ font }) => {
@@ -8,46 +9,40 @@ const Links = ({ font }) => {
   return (
     <>
       <mesh rotation={[0, Math.PI, 0]} position={[x + 2, 0.01, 90]}>
-        <textBufferGeometry
-          attach="geometry"
-          args={["Links", { font, size: 3, height: 1 }]}
-        />
+        <Text3D font={font} size={3} height={1}>
+          Links
+        </Text3D>
         <meshBasicMaterial attach="material" color="#fafafa" metalness={1} />
       </mesh>
       <group>
         <mesh rotation={text_angle} position={[x, 0.1, z]}>
-          <textBufferGeometry
-            attach="geometry"
-            args={["Hackerrank", { font, size: 1, height: 0.1 }]}
-          />
+          <Text3D font={font} size={1} height={0.1}>
+            Hackerrank
+          </Text3D>
           <meshBasicMaterial attach="material" color="#fafafa" metalness={1} />
         </mesh>
         <mesh rotation={text_angle} position={[x, 0.1, z - z_sub]}>
-          <textBufferGeometry
-            attach="geometry"
-            args={["Codechef", { font, size: 1, height: 0.1 }]}
-          />
+          <Text3D font={font} size={1} height={0.1}>
+            Codechef
+          </Text3D>
           <meshBasicMaterial attach="material" color="#fafafa" metalness={1} />
         </mesh>
         <mesh rotation={text_angle} position={[x, 0.1, z - z_sub * 2]}>
-          <textBufferGeometry
-            attach="geometry"
-            args={["Leetcode", { font, size: 1, height: 0.1 }]}
-          />
+          <Text3D font={font} size={1} height={0.1}>
+            Leetcode
+          </Text3D>
           <meshBasicMaterial attach="material" color="#fafafa" metalness={1} />
         </mesh>
         <mesh rotation={text_angle} position={[x, 0.1, z - z_sub * 3]}>
-          <textBufferGeometry
-            attach="geometry"
-            args={["LinkedIn", { font, size: 1, height: 0.1 }]}
-          />
+          <Text3D font={font} size={1} height={0.1}>
+            Linkedin
+          </Text3D>
           <meshBasicMaterial attach="material" color="#fafafa" metalness={1} />
         </mesh>
         <mesh rotation={text_angle} position={[x, 0.1, z - z_sub * 4]}>
-          <textBufferGeometry
-            attach="geometry"
-            args={["Github", { font, size: 1, height: 0.1 }]}
-          />
+          <Text3D font={font} size={1} height={0.1}>
+            Github
+          </Text3D>
           <meshBasicMaterial attach="material" color="#fafafa" metalness={1} />
         </mesh>
       </group>

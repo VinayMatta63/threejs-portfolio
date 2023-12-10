@@ -1,15 +1,16 @@
 import { Loader } from "@react-three/drei";
-import React, { Suspense } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Suspense } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import App from "./App";
 import Contact from "./Contact/Contact";
 
 const Routing = () => {
   return (
     <Router>
-      <div>
-        <Switch>
-          <Route path="/contact">
+      <Routes>
+        <Route
+          path="/contact"
+          element={
             <Suspense
               fallback={
                 <Loader
@@ -37,12 +38,10 @@ const Routing = () => {
             >
               <Contact />
             </Suspense>
-          </Route>
-          <Route path="*">
-            <App />
-          </Route>
-        </Switch>
-      </div>
+          }
+        />
+        <Route path="*" element={<App />} />
+      </Routes>
     </Router>
   );
 };

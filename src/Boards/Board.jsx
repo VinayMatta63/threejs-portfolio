@@ -1,3 +1,4 @@
+import { Text3D } from "@react-three/drei";
 import React from "react";
 
 const Board = ({
@@ -22,7 +23,7 @@ const Board = ({
         rotation={[0, Math.PI / 2, 0]}
         position={[0, 15, (text.length / 2) * 3.2]}
       >
-        <textBufferGeometry attach="geometry" args={[text, textOptions]} />
+        <Text3D {...textOptions}>{text}</Text3D>
         <meshBasicMaterial attach="material" color="#fff" metalness={0.5} />
       </mesh>
 

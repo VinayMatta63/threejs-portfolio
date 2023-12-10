@@ -8,7 +8,6 @@ import React from "react";
 import {
   Color,
   DoubleSide,
-  FontLoader,
   MeshBasicMaterial,
   ShaderMaterial,
   sRGBEncoding,
@@ -86,7 +85,7 @@ function Body() {
     "/models/largeSign.glb",
     "/models/squid/scene.gltf",
   ]);
-  const font = new FontLoader().parse(Roboto);
+  const font = Roboto;
 
   const bakedMap = textures[0];
   const arrow = textures[1];
