@@ -1,7 +1,7 @@
 import React from "react";
 import SignMesh from "./SignMesh";
 import SignText from "./SignText";
-import { Text3D } from "@react-three/drei";
+import TextMesh from "../components/TextMesh";
 
 const Signs = ({ model, font, largeSignModel }) => {
   const skillsPos = { x: -60, y: 0, z: 30 };
@@ -119,20 +119,17 @@ const Signs = ({ model, font, largeSignModel }) => {
         textRotation={[0, 0, 0]}
         font={font}
       />
-      <mesh
+      <TextMesh
         position={[4, 4, 15 + 0.35]}
         scale={signScale / 8}
-        rotation={[0, 0, 0]}
+        size={1}
+        height={0.1}
       >
-        <Text3D font={font} size={1} height={0.1}>
-          to contact me...
-        </Text3D>
-        <meshBasicMaterial attach="material" color="#fafafa" metalness={1} />
-      </mesh>
-      <mesh rotation={[0, 0, 0]} position={[-20, 20, -15]}>
-        <Text3D {...textOptions}>Contact</Text3D>
-        <meshBasicMaterial attach="material" color="#fff" metalness={1} />
-      </mesh>
+        to contact me...
+      </TextMesh>
+      <TextMesh position={[-20, 20, -15]} size={8} height={3}>
+        Contact
+      </TextMesh>
     </>
   );
 };

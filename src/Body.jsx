@@ -1,6 +1,5 @@
 import { useTexture } from "@react-three/drei";
 import { useFrame, useLoader } from "@react-three/fiber";
-import Roboto from "./Skills/fonts/Roboto_Regular";
 import About from "./About/index";
 import Floor from "./Setup/Floor";
 
@@ -9,8 +8,8 @@ import {
   Color,
   DoubleSide,
   MeshBasicMaterial,
+  SRGBColorSpace,
   ShaderMaterial,
-  sRGBEncoding,
 } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import Lamps from "./Lamps";
@@ -85,14 +84,15 @@ function Body() {
     "/models/largeSign.glb",
     "/models/squid/scene.gltf",
   ]);
-  const font = Roboto;
+
+  const font = "/fonts/roboto.json";
 
   const bakedMap = textures[0];
   const arrow = textures[1];
   const skills = textures.slice(2, 14);
   const lamps = textures[14];
   bakedMap.flipY = false;
-  bakedMap.encoding = sRGBEncoding;
+  bakedMap.colorSpace = SRGBColorSpace;
 
   const material = new MeshBasicMaterial({ map: bakedMap });
   const lampMaterial = new MeshBasicMaterial({ color: 0xffffe5 });
@@ -150,7 +150,7 @@ function Body() {
       />
       {/* <Fireflies pointCount={30} /> */}
       <CameraControls icon={arrow} squidDoll={squidDoll} />
-      <About font={font} />
+      <About />
       <Floor />
       <Signs largeSignModel={largeSignModel} model={signModel} font={font} />
     </>

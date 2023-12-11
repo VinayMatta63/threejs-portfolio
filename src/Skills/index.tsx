@@ -1,18 +1,28 @@
-import React from "react";
 import Skill from "./Skill";
-import { Text3D } from "@react-three/drei";
-const Skills = ({ icons, font }) => {
-  const textOptions = {
-    font,
-    size: 10,
-    height: 4,
-  };
+import TextMesh from "../components/TextMesh";
+
+interface SkillsProps {
+  icons: string[];
+}
+
+const Skills = ({ icons }: SkillsProps) => {
   return (
     <group>
-      <mesh rotation={[0, Math.PI, 0]} position={[-80, 0, 120]}>
-        <Text3D {...textOptions}>Skills</Text3D>
-        <meshStandardMaterial attach="material" color="#fafafa" metalness={1} />
-      </mesh>
+      <TextMesh
+        rotation={[0, Math.PI, 0]}
+        position={[-80, 0, 120]}
+        size={10}
+        height={4}
+        materialComponent={
+          <meshStandardMaterial
+            attach="material"
+            color="#fafafa"
+            metalness={1}
+          />
+        }
+      >
+        Skills
+      </TextMesh>
       {/*React*/}
       <Skill icon={icons[0]} position={[-80, 5, 40]} scale={[7, 7, 1]} />
       {/*Node js*/}

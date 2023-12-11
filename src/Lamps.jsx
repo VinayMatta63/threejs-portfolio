@@ -1,9 +1,9 @@
 import React from "react";
-import { MeshBasicMaterial, sRGBEncoding } from "three";
+import { MeshBasicMaterial, SRGBColorSpace } from "three";
 
 const Lamps = ({ position, bakedLamp, scene }) => {
   bakedLamp.flipY = false;
-  bakedLamp.encoding = sRGBEncoding;
+  bakedLamp.colorSpace = SRGBColorSpace;
   const bakedLampMaterial = new MeshBasicMaterial({ map: bakedLamp });
   const lampMaterial = new MeshBasicMaterial({ color: 0xffffe5 });
   scene.children.map((child) => {

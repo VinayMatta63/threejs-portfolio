@@ -1,31 +1,25 @@
-import { Text3D } from "@react-three/drei";
 import React from "react";
+import TextMesh from "../components/TextMesh";
 
 const Board = ({
   x,
   z,
   text,
   rotation = [0, 0, 0],
-  font,
   model,
   modelLeft,
   modelRight,
 }) => {
-  const textOptions = {
-    font,
-    size: 5,
-    height: 1,
-  };
   return (
     <group position={[x, 0, z]} rotation={rotation}>
-      {/* Text */}
-      <mesh
+      <TextMesh
         rotation={[0, Math.PI / 2, 0]}
         position={[0, 15, (text.length / 2) * 3.2]}
+        size={5}
+        height={1}
       >
-        <Text3D {...textOptions}>{text}</Text3D>
-        <meshBasicMaterial attach="material" color="#fff" metalness={0.5} />
-      </mesh>
+        {text}
+      </TextMesh>
 
       {model && <primitive object={model.scene} />}
       {modelLeft && <primitive object={modelLeft.scene} />}

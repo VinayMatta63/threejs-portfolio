@@ -23,13 +23,6 @@
     "noFallthroughCasesInSwitch": true,
     "types": ["vite/client", "vite-plugin-svgr/client"]
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "src/custom.d.ts",
-    "vite.config.ts",
-    "src/index.jsx",
-    "src/Routing.jsx"
-  ],
+  "include": ["**/*.ts", "**/*.tsx", "src/custom.d.ts", "vite.config.ts"],
   "exclude": ["node_modules", "build"]
 }

@@ -1,5 +1,5 @@
-import { Text3D } from "@react-three/drei";
 import React from "react";
+import TextMesh from "../components/TextMesh";
 
 const SignMesh = ({
   model,
@@ -7,7 +7,6 @@ const SignMesh = ({
   scale,
   text,
   textScale,
-  font,
   rotation,
   textRotation,
   textPosition,
@@ -23,12 +22,15 @@ const SignMesh = ({
         scale={scale}
         rotation={rotation}
       />
-      <mesh position={textPosition} scale={textScale} rotation={textRotation}>
-        <Text3D font={font} size={1} height={0.1}>
-          {text}
-          <meshBasicMaterial attach="material" color="#fafafa" metalness={1} />
-        </Text3D>
-      </mesh>
+      <TextMesh
+        position={textPosition}
+        scale={textScale}
+        rotation={textRotation}
+        size={1}
+        height={0.1}
+      >
+        {text}
+      </TextMesh>
     </group>
   );
 };
