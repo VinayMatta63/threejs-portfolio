@@ -1,4 +1,4 @@
-import TextMesh from "../components/TextMesh";
+import TextMesh from "../meshs/TextMesh";
 import { Euler } from "@react-three/fiber";
 
 const Links = () => {

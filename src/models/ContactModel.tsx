@@ -1,7 +1,10 @@
 import { useFrame } from "@react-three/fiber";
-import React from "react";
 
-const ContactModel = ({ messageModel }) => {
+interface ContactModelProps {
+  messageModel: any;
+}
+
+const ContactModel = ({ messageModel }: ContactModelProps) => {
   let mouseX = 0;
   let TargetX = 0;
 

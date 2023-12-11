@@ -1,8 +1,6 @@
-import React from "react";
-import Board from "./Board";
+import Board from "../meshs/Board";
 
 const Boards = ({
-  font,
   chatModel,
   sfModel,
   mfModel,
@@ -15,7 +13,7 @@ const Boards = ({
   mcRight,
   tttModel,
   tttLeft,
-}) => {
+}: any) => {
   sfModel.scene.position.y = 0.1;
   sfModel.scene.position.x = 0;
   sfModel.scene.position.z = 0;
@@ -113,40 +111,32 @@ const Boards = ({
   return (
     <>
       <Board
-        x={-120}
-        z={-10}
+        position={[-120, 0, -10]}
         text="Social Freaks"
-        font={font}
         model={sfModel}
         modelLeft={mfModel}
         modelRight={fsModel}
       />
       <Board
-        x={-60}
-        z={-40}
+        position={[-60, 0, -40]}
         text="IIC DCRUST"
         rotation={[0, Math.PI, 0]}
-        font={font}
         model={iicModel}
         modelRight={eventsModel}
         modelLeft={loginModel}
       />
-      <Board x={-120} z={-70} text="Chat App" font={font} model={chatModel} />
+      <Board position={[-120, 0, -70]} text="Chat App" model={chatModel} />
       <Board
-        x={-60}
-        z={-140}
+        position={[-60, 0, -140]}
         text="Museum Counsel"
         rotation={[0, Math.PI, 0]}
-        font={font}
         model={mcModel}
         modelLeft={mcLeft}
         modelRight={mcRight}
       />
       <Board
-        x={-120}
-        z={-140}
+        position={[-120, 0, -140]}
         text="Tic Tac Toe"
-        font={font}
         model={tttModel}
         modelLeft={tttLeft}
       />

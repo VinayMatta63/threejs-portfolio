@@ -1,10 +1,10 @@
 import { Loader } from "@react-three/drei";
 import { Canvas, useLoader } from "@react-three/fiber";
 import axios from "axios";
-import React, { useState } from "react";
+import { FormEvent, useState } from "react";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import "./Contact.css";
-import ContactModel from "./ContactModel";
+import "../styles/Contact.css";
+import ContactModel from "../models/ContactModel";
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -13,7 +13,7 @@ const Contact = () => {
   const [message, setMessage] = useState("");
   const [disabled, setDisabled] = useState(false);
 
-  const submitEmail = async (e) => {
+  const submitEmail = async (e: FormEvent) => {
     e.preventDefault();
     setDisabled(true);
     axios({
@@ -135,7 +135,7 @@ const Contact = () => {
                 placeholder="Message"
                 id="message"
                 className="form-control"
-                rows="3"
+                rows={3}
                 required
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}

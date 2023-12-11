@@ -1,7 +1,7 @@
 import React from "react";
 import SignMesh from "./SignMesh";
 import SignText from "./SignText";
-import TextMesh from "../components/TextMesh";
+import TextMesh from "../meshs/TextMesh";
 
 const Signs = ({ model, font, largeSignModel }) => {
   const skillsPos = { x: -60, y: 0, z: 30 };

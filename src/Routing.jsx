@@ -2,7 +2,7 @@ import { Loader } from "@react-three/drei";
 import { Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import App from "./App";
-import Contact from "./Contact/Contact";
+import Contact from "./pages/Contact";
 
 const Routing = () => {
   return (

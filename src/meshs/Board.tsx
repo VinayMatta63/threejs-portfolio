@@ -1,17 +1,22 @@
-import React from "react";
-import TextMesh from "../components/TextMesh";
+import TextMesh from "./TextMesh";
+import { GroupProps } from "@react-three/fiber";
+
+interface BoardProps extends GroupProps {
+  model: any;
+  modelLeft?: any;
+  modelRight?: any;
+  text: string;
+}
 
 const Board = ({
-  x,
-  z,
   text,
-  rotation = [0, 0, 0],
   model,
   modelLeft,
   modelRight,
-}) => {
+  ...props
+}: BoardProps) => {
   return (
-    <group position={[x, 0, z]} rotation={rotation}>
+    <group {...props}>
       <TextMesh
         rotation={[0, Math.PI / 2, 0]}
         position={[0, 15, (text.length / 2) * 3.2]}

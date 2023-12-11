@@ -1,7 +1,7 @@
 import Education from "./Education";
 import Links from "./Links";
 import Me from "./Me";
-import TextMesh from "../components/TextMesh";
+import TextMesh from "../meshs/TextMesh";
 
 const About = () => {
   return (

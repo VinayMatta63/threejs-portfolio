@@ -1,6 +1,6 @@
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
-import TextMesh from "../components/TextMesh";
+import TextMesh from "../meshs/TextMesh";
 import { Mesh } from "three";
 
 const Me = () => {

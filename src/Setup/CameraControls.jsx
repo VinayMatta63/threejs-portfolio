@@ -2,14 +2,14 @@ import React, { useEffect, useRef, useState } from "react";
 import { PointerLockControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { Raycaster, SpriteMaterial, Vector3 } from "three";
-import Plate from "../helpers/plate";
-import SpriteComponent from "../helpers/SpriteComponent";
+import Plate from "../utils/plate";
+import SpriteComponent from "../utils/SpriteComponent";
 
 import {
   openProfileTab,
   openProjectGithub,
   openProjectTab,
-} from "../helpers/helpers";
+} from "../utils/helpers";
 import Track from "../Game/Track";
 import gsap from "gsap";
 import Game from "../Game";

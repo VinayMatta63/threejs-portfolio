@@ -1,6 +1,10 @@
-import React from "react";
+import { MeshProps } from "@react-three/fiber";
 
-const Path = ({ position, castShadow, path }) => {
+interface PathProps extends MeshProps {
+  path: any;
+}
+
+const Path = ({ position, castShadow, path }: PathProps) => {
   return (
     <mesh
       geometry={path.Cube078.geometry}

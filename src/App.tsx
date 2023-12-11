@@ -1,12 +1,10 @@
-import "./App.css";
-import React, { Suspense } from "react";
+import "./styles/App.css";
+import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import Scene from "./Body";
-// import Sky from "./Setup/Sky";
 import Lights from "./Setup/Lights";
 import { Loader, Preload, Stars } from "@react-three/drei";
-//
-//
+
 const App = () => {
   return (
     <div id="cover">

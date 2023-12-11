@@ -1,4 +1,4 @@
-import TextMesh from "../components/TextMesh";
+import TextMesh from "../meshs/TextMesh";
 
 const Education = () => {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import TextMesh from "../components/TextMesh";
+import TextMesh from "../meshs/TextMesh";
 
 const SignText = ({ scale, position, text }) => {
   return (

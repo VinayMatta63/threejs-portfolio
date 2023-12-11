@@ -1,8 +1,9 @@
-import Skill from "./Skill";
-import TextMesh from "../components/TextMesh";
+import Skill from "../meshs/Skill";
+import TextMesh from "../meshs/TextMesh";
+import { Texture } from "three";
 
 interface SkillsProps {
-  icons: string[];
+  icons: Texture[];
 }
 
 const Skills = ({ icons }: SkillsProps) => {

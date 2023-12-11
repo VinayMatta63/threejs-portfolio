@@ -1,6 +1,6 @@
 import { useTexture } from "@react-three/drei";
 import { useFrame, useLoader } from "@react-three/fiber";
-import About from "./About/index";
+import About from "./groups/About";
 import Floor from "./Setup/Floor";
 
 import React from "react";
@@ -12,15 +12,15 @@ import {
   ShaderMaterial,
 } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import Lamps from "./Lamps";
-import Trees from "./Trees";
+import Lamps from "./models/LampModel";
+import Trees from "./groups/Trees";
 import PathMesh from "./Path/index";
-import Skills from "./Skills";
+import Skills from "./groups/Skills";
 import CameraControls from "./Setup/CameraControls";
 
-import Boards from "./Boards";
+import Boards from "./groups/Boards";
 import Signs from "./SignBoards/Signs";
-import { fragment, vertex } from "./helpers/shaders";
+import { fragment, vertex } from "./utils/shaders";
 
 const vertexShader = vertex;
 const fragmentShader = fragment;
@@ -109,10 +109,13 @@ function Body() {
 
   portal.scene.children.map((child) => {
     if (child.name === "PoleLightA" || child.name === "PoleLightB") {
+      // @ts-ignore
       child.material = lampMaterial;
     } else if (child.name === "PortalLight") {
+      // @ts-ignore
       child.material = portalMaterial;
     } else {
+      // @ts-ignore
       child.material = material;
       child.castShadow = true;
     }
@@ -132,7 +135,7 @@ function Body() {
       <Lamps position={[49, 0, -57]} bakedLamp={lamps} scene={lamp.scene} />
       <Lamps position={[-141, 0, -57]} bakedLamp={lamps} scene={lamp.scene} />
       <Trees tree={tree} />
-      <Skills icons={skills} font={font} />
+      <Skills icons={skills} />
       <Boards
         font={font}
         sfModel={sfModel}
