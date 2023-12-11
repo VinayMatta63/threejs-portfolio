@@ -1,7 +1,11 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { AdditiveBlending } from "three";
 
-const Sky = ({ pointCount }) => {
+interface SkyProps {
+  pointCount: number;
+}
+
+const Sky = ({ pointCount }: SkyProps) => {
   const [positions] = useMemo(() => {
     let positions = [];
     for (let i = 0; i < pointCount; i++) {
@@ -16,6 +20,7 @@ const Sky = ({ pointCount }) => {
     <points>
       <bufferGeometry attach="geometry">
         <bufferAttribute
+          // @ts-ignore
           attachObject={["attributes", "position"]}
           array={positions}
           count={positions.length / 3}

@@ -3,7 +3,7 @@ import { Text3D } from "@react-three/drei";
 import { Color, MeshProps } from "@react-three/fiber";
 import { Mesh } from "three";
 
-interface TextMeshProps extends MeshProps {
+export interface TextMeshProps extends MeshProps {
   color?: Color;
   children: ReactNode;
   size?: number;

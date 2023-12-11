@@ -1,7 +1,10 @@
-import React from "react";
-import PathCreator from "./PathCreator";
+import PathCreator from "../meshs/PathCreator";
 
-const PathMesh = ({ path }) => {
+interface PathsProps {
+  path: any;
+}
+
+const PathMesh = ({ path }: PathsProps) => {
   return (
     <>
       <PathCreator count={6} x={1} start={0} shadow={true} path={path} />

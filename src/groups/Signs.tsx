@@ -1,18 +1,17 @@
-import React from "react";
-import SignMesh from "./SignMesh";
-import SignText from "./SignText";
+import SignMesh from "../models/SignModel";
+import SignText from "../meshs/SignText";
 import TextMesh from "../meshs/TextMesh";
 
-const Signs = ({ model, font, largeSignModel }) => {
+interface SignsProps {
+  model: any;
+  largeSignModel: any;
+}
+
+const Signs = ({ model, largeSignModel }: SignsProps) => {
   const skillsPos = { x: -60, y: 0, z: 30 };
   const projPos = { x: -80, y: 0, z: 15 };
   const aboutPos = { x: -40, y: 0, z: 35 };
   const signScale = 1.6;
-  const textOptions = {
-    font,
-    size: 8,
-    height: 3,
-  };
 
   return (
     <>
@@ -22,36 +21,21 @@ const Signs = ({ model, font, largeSignModel }) => {
         rotation={[0, Math.PI, 0]}
       >
         <primitive object={largeSignModel.scene} />
-        <SignText
-          scale={signScale / 5.5}
-          position={[0.85, 5.05, -0.38]}
-          text="Skills"
-          font={font}
-        />
-        <SignText
-          scale={signScale / 5.5}
-          position={[1, 4.38, -0.38]}
-          text="Projects"
-          font={font}
-        />
-        <SignText
-          scale={signScale / 5.35}
-          position={[0.55, 3.45, -0.38]}
-          text="About"
-          font={font}
-        />
-        <SignText
-          scale={signScale / 6.8}
-          position={[0.45, 2.5, -0.38]}
-          text="Experience"
-          font={font}
-        />
-        <SignText
-          scale={signScale / 6.8}
-          position={[0.45, 1.8, -0.38]}
-          text="Contact Me"
-          font={font}
-        />
+        <SignText scale={signScale / 5.5} position={[0.85, 5.05, -0.38]}>
+          Skills
+        </SignText>
+        <SignText scale={signScale / 5.5} position={[1, 4.38, -0.38]}>
+          Projects
+        </SignText>
+        <SignText scale={signScale / 5.35} position={[0.55, 3.45, -0.38]}>
+          About
+        </SignText>
+        <SignText scale={signScale / 6.8} position={[0.45, 2.5, -0.38]}>
+          Experience
+        </SignText>
+        <SignText scale={signScale / 6.8} position={[0.45, 1.8, -0.38]}>
+          Contact Me
+        </SignText>
       </group>
       <SignMesh
         model={model}
@@ -62,7 +46,6 @@ const Signs = ({ model, font, largeSignModel }) => {
         textScale={signScale / 2.2}
         rotation={[0, -Math.PI / 2, 0]}
         textRotation={[0, Math.PI / 2, 0]}
-        font={font}
       />
       <SignMesh
         model={model}
@@ -73,7 +56,6 @@ const Signs = ({ model, font, largeSignModel }) => {
         textScale={signScale / 2.5}
         rotation={[0, -Math.PI / 2, 0]}
         textRotation={[0, Math.PI / 2, 0]}
-        font={font}
       />
       <SignMesh
         model={model}
@@ -84,7 +66,6 @@ const Signs = ({ model, font, largeSignModel }) => {
         textScale={signScale / 3}
         rotation={[0, -Math.PI / 2, 0]}
         textRotation={[0, Math.PI / 2, 0]}
-        font={font}
       />
       <SignMesh
         model={model}
@@ -95,7 +76,6 @@ const Signs = ({ model, font, largeSignModel }) => {
         textScale={signScale / 9.5}
         rotation={[0, Math.PI, 0]}
         textRotation={[0, 0, 0]}
-        font={font}
       />
       <SignMesh
         model={model}
@@ -106,7 +86,6 @@ const Signs = ({ model, font, largeSignModel }) => {
         textScale={signScale / 9.5}
         rotation={[0, Math.PI, 0]}
         textRotation={[0, 0, 0]}
-        font={font}
       />
       <SignMesh
         model={model}
@@ -117,7 +96,6 @@ const Signs = ({ model, font, largeSignModel }) => {
         textScale={signScale / 10}
         rotation={[0, Math.PI, 0]}
         textRotation={[0, 0, 0]}
-        font={font}
       />
       <TextMesh
         position={[4, 4, 15 + 0.35]}

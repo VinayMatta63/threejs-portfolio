@@ -1,5 +1,7 @@
 import { Html } from "@react-three/drei";
-import React, { forwardRef } from "react";
+import { Vector3 } from "@react-three/fiber";
+import { forwardRef } from "react";
+import { Mesh } from "three";
 
 const spriteStyles = {
   color: "#fff",
@@ -11,7 +13,20 @@ const spriteStyles = {
   justifyContent: "center",
   flexDirection: "column",
 };
-const Track = forwardRef(
+
+interface TrackProps {
+  position: Vector3;
+  args: [
+    width?: number,
+    height?: number,
+    widthSegments?: number,
+    heightSegments?: number
+  ];
+  show: boolean;
+  completed: boolean;
+}
+
+const Track = forwardRef<Mesh, TrackProps>(
   ({ position, args = [30, 80], show, completed }, ref) => {
     return (
       <group>
@@ -24,6 +39,7 @@ const Track = forwardRef(
           />
         </mesh>
         {!show && (
+          // @ts-ignore
           <Html sprite style={spriteStyles} position={[100, 5, 0]} transform>
             {!completed ? (
               <>

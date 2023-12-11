@@ -1,25 +1,18 @@
-import { useHelper } from "@react-three/drei";
-import React, { useRef } from "react";
-import { PointLightHelper } from "three";
-import LampsLights from "./LampsLights";
+import LampsLights from "../meshs/LampsLight";
 
 const Lights = () => {
-  const helper = useRef(null);
-  useHelper(helper, PointLightHelper);
   return (
-    <mesh>
+    <group>
       <rectAreaLight
         width={1000}
         height={1000}
         color="#fafafa"
         intensity={0.2}
         position={[100, 100, 200]}
-        lookAt={[0, 0, 0]}
-        penumbra={1}
+        lookAt={() => [0, 0, 0]}
         castShadow={false}
       />
       <directionalLight
-        // color={"#C34CFF"}
         color={"#E7B7FF"}
         intensity={0.05}
         position={[0, 5, -9]}
@@ -62,45 +55,15 @@ const Lights = () => {
         pos2={[-138, 5, -57]}
         args={["#FF7A1F", 0.1, 20, 0.5]}
       />
-      <pointLight
-        position={[-95, 2, 125]}
-        args={["#FF7A1F", 0.5, 20, 1]}
-        // ref={helper}
-      />
-      <pointLight
-        position={[0, 2, 125]}
-        args={["#FF7A1F", 0.5, 20, 1]}
-        // ref={helper}
-      />
-      <pointLight
-        position={[-110, 7, -10]}
-        args={["#fafafa", 0.5, 30, 1]}
-        // castShadow
-        // ref={helper}
-      />
-      <pointLight
-        position={[-70, 5, -40]}
-        args={["#fafafa", 0.5, 30, 1]}
-        // ref={helper}
-        // castShadow
-      />
-      <pointLight
-        position={[-105, 5, -70]}
-        args={["#fafafa", 0.5, 30, 1]}
-        // ref={helper}
-      />
-      <pointLight
-        position={[-65, 7, -140]}
-        args={["#fafafa", 0.5, 30, 1]}
-        // ref={helper}
-      />
-      <pointLight
-        position={[-105, 7, -140]}
-        args={["#fafafa", 0.5, 30, 1]}
-        // ref={helper}
-      />
+      <pointLight position={[-95, 2, 125]} args={["#FF7A1F", 0.5, 20, 1]} />
+      <pointLight position={[0, 2, 125]} args={["#FF7A1F", 0.5, 20, 1]} />
+      <pointLight position={[-110, 7, -10]} args={["#fafafa", 0.5, 30, 1]} />
+      <pointLight position={[-70, 5, -40]} args={["#fafafa", 0.5, 30, 1]} />
+      <pointLight position={[-105, 5, -70]} args={["#fafafa", 0.5, 30, 1]} />
+      <pointLight position={[-65, 7, -140]} args={["#fafafa", 0.5, 30, 1]} />
+      <pointLight position={[-105, 7, -140]} args={["#fafafa", 0.5, 30, 1]} />
       <pointLight position={[100, 15, -50]} args={["#fafafa", 0.5, 70]} />
-    </mesh>
+    </group>
   );
 };
 

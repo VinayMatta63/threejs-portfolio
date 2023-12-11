@@ -1,5 +1,16 @@
-import React from "react";
 import TextMesh from "../meshs/TextMesh";
+import { Euler, Vector3 } from "@react-three/fiber";
+
+interface SignMeshProps {
+  model: any;
+  position: Vector3;
+  scale: Vector3;
+  text: string;
+  textScale: Vector3;
+  rotation: Euler;
+  textRotation: Euler;
+  textPosition: Vector3;
+}
 
 const SignMesh = ({
   model,
@@ -10,7 +21,7 @@ const SignMesh = ({
   rotation,
   textRotation,
   textPosition,
-}) => {
+}: SignMeshProps) => {
   const geometry = model.nodes.Cube.geometry;
   const material = model.nodes.Cube.material;
   return (

@@ -1,7 +1,6 @@
-import React from "react";
-import TextMesh from "../meshs/TextMesh";
+import TextMesh, { TextMeshProps } from "./TextMesh";
 
-const SignText = ({ scale, position, text }) => {
+const SignText = ({ scale, position, children }: TextMeshProps) => {
   return (
     <TextMesh
       scale={scale}
@@ -10,7 +9,7 @@ const SignText = ({ scale, position, text }) => {
       size={1}
       height={0.1}
     >
-      {text}
+      {children}
     </TextMesh>
   );
 };

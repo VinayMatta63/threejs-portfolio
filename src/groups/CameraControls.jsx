@@ -10,9 +10,9 @@ import {
   openProjectGithub,
   openProjectTab,
 } from "../utils/helpers";
-import Track from "../Game/Track";
+import Track from "../meshs/Track";
 import gsap from "gsap";
-import Game from "../Game";
+import Game from "./Game";
 
 const CameraControls = ({ icon, squidDoll }) => {
   const [show, setShow] = useState(false);

@@ -1,8 +1,8 @@
-import "./styles/App.css";
+import "../styles/App.css";
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import Scene from "./Body";
-import Lights from "./Setup/Lights";
+import Scene from "../groups/Body";
+import Lights from "../groups/Lights";
 import { Loader, Preload, Stars } from "@react-three/drei";
 
 const App = () => {

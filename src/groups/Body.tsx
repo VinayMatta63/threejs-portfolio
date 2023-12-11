@@ -1,9 +1,8 @@
 import { useTexture } from "@react-three/drei";
 import { useFrame, useLoader } from "@react-three/fiber";
-import About from "./groups/About";
-import Floor from "./Setup/Floor";
+import About from "./About";
+import Floor from "../meshs/Floor";
 
-import React from "react";
 import {
   Color,
   DoubleSide,
@@ -12,15 +11,15 @@ import {
   ShaderMaterial,
 } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import Lamps from "./models/LampModel";
-import Trees from "./groups/Trees";
-import PathMesh from "./Path/index";
-import Skills from "./groups/Skills";
-import CameraControls from "./Setup/CameraControls";
+import Lamps from "../models/LampModel";
+import Trees from "./Trees";
+import PathMesh from "./Paths";
+import Skills from "./Skills";
+import CameraControls from "./CameraControls";
 
-import Boards from "./groups/Boards";
-import Signs from "./SignBoards/Signs";
-import { fragment, vertex } from "./utils/shaders";
+import Boards from "./Boards";
+import Signs from "./Signs";
+import { fragment, vertex } from "../utils/shaders";
 
 const vertexShader = vertex;
 const fragmentShader = fragment;
@@ -155,7 +154,7 @@ function Body() {
       <CameraControls icon={arrow} squidDoll={squidDoll} />
       <About />
       <Floor />
-      <Signs largeSignModel={largeSignModel} model={signModel} font={font} />
+      <Signs largeSignModel={largeSignModel} model={signModel} />
     </>
   );
 }
