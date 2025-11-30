@@ -2,7 +2,7 @@ import { jsx as _jsx, Fragment as _Fragment, jsxs as _jsxs } from "react/jsx-run
 import { useEffect, useRef, useState } from "react";
 import { PointerLockControls as PointerLockControlsImpl } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { Raycaster, SpriteMaterial, Vector3 } from "three";
+import { Raycaster, SpriteMaterial, Vector3, } from "three";
 import Plate from "../helpers/plate";
 import SpriteComponent from "../helpers/SpriteComponent";
 import { openProfileTab, openProjectGithub, openProjectTab, } from "../helpers/helpers";
@@ -203,16 +203,24 @@ const CameraControls = ({ icon, squidDoll }) => {
         // Adding all the plates ref to an array which will be used to check intersection of raycaster with plates.
         !objects.includes(sf.current) && sf.current && objects.push(sf.current);
         !objects.includes(iic.current) && iic.current && objects.push(iic.current);
-        !objects.includes(chat.current) && chat.current && objects.push(chat.current);
-        !objects.includes(museum.current) && museum.current && objects.push(museum.current);
+        !objects.includes(chat.current) &&
+            chat.current &&
+            objects.push(chat.current);
+        !objects.includes(museum.current) &&
+            museum.current &&
+            objects.push(museum.current);
         !objects.includes(ttt.current) && ttt.current && objects.push(ttt.current);
         !objects.includes(gh.current) && gh.current && objects.push(gh.current);
         !objects.includes(li.current) && li.current && objects.push(li.current);
         !objects.includes(lc.current) && lc.current && objects.push(lc.current);
         !objects.includes(cc.current) && cc.current && objects.push(cc.current);
         !objects.includes(hr.current) && hr.current && objects.push(hr.current);
-        !objects.includes(contactRef.current) && contactRef.current && objects.push(contactRef.current);
-        !objects.includes(play.current) && play.current && objects.push(play.current);
+        !objects.includes(contactRef.current) &&
+            contactRef.current &&
+            objects.push(contactRef.current);
+        !objects.includes(play.current) &&
+            play.current &&
+            objects.push(play.current);
         !objects.includes(end.current) && end.current && objects.push(end.current);
         //showing welcome page on locking and unlocking of controls
         if (controlsRef.current) {

@@ -11,7 +11,7 @@ const spriteStyles = {
     justifyContent: "center",
     flexDirection: "column",
 };
-const SpriteComponent = ({ controlsRef, obj, type }) => {
+const SpriteComponent = ({ controlsRef, obj, type, }) => {
     return type === "links" ? (_jsx(Html, { sprite: true, style: spriteStyles, position: [
             controlsRef.current.getObject().position.x,
             controlsRef.current.getObject().position.y - 2,
