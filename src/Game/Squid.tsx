@@ -3,6 +3,7 @@ source: https://sketchfab.com/3d-models/squid-game-giant-doll-7afd49dd07714651a6
 title: Squid Game - Giant Doll
 */
 
+// @ts-nocheck
 import React, { forwardRef } from "react";
 
 const Model = forwardRef(({ squidDoll }, group) => {

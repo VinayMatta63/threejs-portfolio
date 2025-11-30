@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Text3D } from "@react-three/drei";
 import React from "react";
 

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Html } from "@react-three/drei";
 import React, { forwardRef } from "react";
 

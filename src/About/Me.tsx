@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Text3D } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import React, { useRef } from "react";

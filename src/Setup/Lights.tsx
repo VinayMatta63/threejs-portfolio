@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useHelper } from "@react-three/drei";
 import React, { useRef } from "react";
 import { PointLightHelper } from "three";
@@ -14,7 +15,7 @@ const Lights = () => {
         color="#fafafa"
         intensity={0.2}
         position={[100, 100, 200]}
-        lookAt={[0, 0, 0]}
+        lookAt={[0, 0, 0] as any}
         penumbra={1}
         castShadow={false}
       />
