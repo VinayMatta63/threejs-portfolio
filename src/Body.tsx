@@ -91,8 +91,28 @@ function Body(): React.ReactElement {
     "/models/sign.glb",
     "/models/largeSign.glb",
     "/models/squid/scene.gltf",
-  ]) as unknown as [GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel];
-  
+  ]) as unknown as [
+    GLTFModel,
+    GLTFModel,
+    GLTFModel,
+    GLTFModel,
+    GLTFModel,
+    GLTFModel,
+    GLTFModel,
+    GLTFModel,
+    GLTFModel,
+    GLTFModel,
+    GLTFModel,
+    GLTFModel,
+    GLTFModel,
+    GLTFModel,
+    GLTFModel,
+    GLTFModel,
+    GLTFModel,
+    GLTFModel,
+    GLTFModel
+  ];
+
   const font: any = Roboto;
 
   const bakedMap = textures[0];

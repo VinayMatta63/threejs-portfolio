@@ -101,7 +101,9 @@ const Contact: React.FC = () => {
                     className="form-control"
                     required
                     value={name}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                      setName(e.target.value)
+                    }
                   />
                 </div>
                 <div className="col-md-6">
@@ -113,7 +115,9 @@ const Contact: React.FC = () => {
                     aria-describedby="emailHelp"
                     required
                     value={email}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                      setEmail(e.target.value)
+                    }
                   />
                 </div>
               </div>
@@ -126,7 +130,9 @@ const Contact: React.FC = () => {
                 className="form-control"
                 required
                 value={subject}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => setSubject(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setSubject(e.target.value)
+                }
               />
             </div>
             <div className="form-group">
@@ -137,7 +143,9 @@ const Contact: React.FC = () => {
                 rows={3}
                 required
                 value={message}
-                onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+                  setMessage(e.target.value)
+                }
               />
             </div>
             <button

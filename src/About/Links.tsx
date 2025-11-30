@@ -9,7 +9,11 @@ const Links: React.FC<LinksProps> = ({ font }) => {
   const z = 83;
   const x = -0.5;
   const z_sub = 8;
-  const text_angle: [number, number, number] = [Math.PI / 2 - Math.PI / 8, Math.PI, 0];
+  const text_angle: [number, number, number] = [
+    Math.PI / 2 - Math.PI / 8,
+    Math.PI,
+    0,
+  ];
   return (
     <>
       <mesh rotation={[0, Math.PI, 0]} position={[x + 2, 0.01, 90]}>

@@ -26,7 +26,11 @@ const spriteStyles: React.CSSProperties = {
   flexDirection: "column",
 };
 
-const SpriteComponent: React.FC<SpriteComponentProps> = ({ controlsRef, obj, type }) => {
+const SpriteComponent: React.FC<SpriteComponentProps> = ({
+  controlsRef,
+  obj,
+  type,
+}) => {
   return type === "links" ? (
     <Html
       sprite

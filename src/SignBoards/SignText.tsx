@@ -2,8 +2,8 @@ import { Text3D } from "@react-three/drei";
 import React from "react";
 
 interface SignTextProps {
-  scale: [number,number,number]|number;
-  position: [number,number,number];
+  scale: [number, number, number] | number;
+  position: [number, number, number];
   font: any;
   text: string;
 }

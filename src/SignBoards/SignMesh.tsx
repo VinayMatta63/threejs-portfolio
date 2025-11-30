@@ -3,14 +3,14 @@ import React from "react";
 
 interface SignMeshProps {
   model: any;
-  position: [number,number,number];
-  scale: [number,number,number]|number;
+  position: [number, number, number];
+  scale: [number, number, number] | number;
   text: string;
-  textScale: [number,number,number]|number;
+  textScale: [number, number, number] | number;
   font: any;
-  rotation?: [number,number,number];
-  textRotation?: [number,number,number];
-  textPosition?: [number,number,number];
+  rotation?: [number, number, number];
+  textRotation?: [number, number, number];
+  textPosition?: [number, number, number];
 }
 
 const SignMesh: React.FC<SignMeshProps> = ({

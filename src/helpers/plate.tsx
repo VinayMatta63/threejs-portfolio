@@ -7,17 +7,16 @@ interface PlateProps {
   color?: string;
 }
 
-const Plate = forwardRef<Mesh, PlateProps>((
-  { position, args = [15, 10], color = "red" },
-  ref
-) => {
-  return (
-    <mesh position={position} rotation={[-Math.PI / 2, 0, 0]} ref={ref}>
-      <planeGeometry args={args} />
-      <meshStandardMaterial attach="material" color={color} roughness={1} />
-    </mesh>
-  );
-});
+const Plate = forwardRef<Mesh, PlateProps>(
+  ({ position, args = [15, 10], color = "red" }, ref) => {
+    return (
+      <mesh position={position} rotation={[-Math.PI / 2, 0, 0]} ref={ref}>
+        <planeGeometry args={args} />
+        <meshStandardMaterial attach="material" color={color} roughness={1} />
+      </mesh>
+    );
+  }
+);
 
 Plate.displayName = "Plate";
 
