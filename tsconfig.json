@@ -13,7 +13,7 @@
     "moduleResolution": "Bundler",
     "isolatedModules": true,
     "resolveJsonModule": true,
-    "noEmit": false,
+    "noEmit": true,
     "jsx": "react-jsx",
     "sourceMap": false,
     "declaration": false,

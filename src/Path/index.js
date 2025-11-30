@@ -1,6 +1,0 @@
-import { jsx as _jsx, Fragment as _Fragment, jsxs as _jsxs } from "react/jsx-runtime";
-import PathCreator from "./PathCreator";
-const PathMesh = ({ path }) => {
-    return (_jsxs(_Fragment, { children: [_jsx(PathCreator, { count: 6, x: 1, start: 0, shadow: true, path: path }), _jsx(PathCreator, { count: 35, z: 20, start: 1, path: path }), _jsx(PathCreator, { count: 35, z: 20, start: -36, path: path }), _jsx(PathCreator, { count: 30, x: 50, start: 7, path: path }), _jsx(PathCreator, { count: 30, x: -50, start: 7, path: path, shadow: true }), _jsx(PathCreator, { count: 35, z: 150, start: 0, path: path }), _jsx(PathCreator, { count: 35, z: 150, start: -35, path: path }), _jsx(PathCreator, { count: 30, x: 50, start: -25, path: path, shadow: true }), _jsx(PathCreator, { count: 35, z: -110, start: 0, path: path }), _jsx(PathCreator, { count: 35, z: -110, start: -35, path: path }), _jsx(PathCreator, { count: 30, x: 140, start: -25, path: path }), _jsx(PathCreator, { count: 30, x: -140, start: -25, path: path, shadow: true }), _jsx(PathCreator, { count: 30, x: 140, start: 7, path: path, shadow: true }), _jsx(PathCreator, { count: 30, x: -140, start: 7, path: path }), _jsx(PathCreator, { count: 30, x: -90, start: -25, path: path, shadow: true }), _jsx(PathCreator, { count: 20, x: -90, start: -48, path: path })] }));
-};
-export default PathMesh;
