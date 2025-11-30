@@ -1,10 +1,11 @@
 import "./App.css";
-import React, { Suspense } from "react";
+import React, { Suspense, use } from "react";
 import { Canvas } from "@react-three/fiber";
 import Scene from "./Body";
 // import Sky from "./Setup/Sky";
 import Lights from "./Setup/Lights";
-import { Loader, Preload, Stars } from "@react-three/drei";
+import { KeyboardControls, Loader, Preload, Stars } from "@react-three/drei";
+import usePlayerMovement, { KEYBOARD_MAP } from "./hooks/usePlayerMovement";
 //
 //
 const App = () => {
@@ -55,34 +56,34 @@ const App = () => {
           )}
         </div>
       </div>
+      <KeyboardControls map={KEYBOARD_MAP}>
+        <Canvas
+          style={{
+            height: "95vh",
+            width: "100vw",
+            backgroundColor: "black",
+          }}
+          camera={{ fov: 45, near: 0.1, far: 1000, position: [0, 5, 25] }}
+          id="canvas"
+        >
+          <fog attach="fog" args={["#0d1a26", 70, 120]} />
 
-      <Canvas
-        style={{
-          height: "95vh",
-          width: "100vw",
-          backgroundColor: "black",
-        }}
-        camera={{ fov: 45, near: 0.1, far: 1000, position: [0, 5, 25] }}
-        id="canvas"
-        // shadows
-      >
-        <fog attach="fog" args={["#0d1a26", 70, 120]} />
+          <Suspense fallback={null}>
+            <Scene />
+            <Preload all />
+          </Suspense>
+          <Stars
+            radius={160}
+            depth={50}
+            count={5000}
+            factor={4}
+            saturation={0}
+            fade
+          />
+          <Lights />
+        </Canvas>
+      </KeyboardControls>
 
-        <Suspense fallback={null}>
-          <Scene />
-          <Preload all />
-        </Suspense>
-        <Stars
-          radius={160}
-          depth={50}
-          count={5000}
-          factor={4}
-          saturation={0}
-          fade
-        />
-
-        <Lights />
-      </Canvas>
       <div className="controls">
         <span>WASD - Move</span>
         <span>Shift - Sprint</span>

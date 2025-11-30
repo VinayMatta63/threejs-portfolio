@@ -1,24 +1,26 @@
-import React from "react";
+import { useTexture } from "@react-three/drei";
+import { RepeatWrapping, SRGBColorSpace } from "three";
 
-const Floor = () => {
+interface FloorProps {
+  height: number;
+  width: number;
+}
+
+const Floor: React.FC<FloorProps> = ({ height = 400, width = 400 }) => {
+  const floorTexture = useTexture("/assets/grass.jpg", (texture) => {
+    texture.wrapS = texture.wrapT = RepeatWrapping;
+    texture.repeat.set(height / 2, width / 2);
+    texture.colorSpace = SRGBColorSpace;
+  });
+
   return (
     <mesh rotation={[-Math.PI / 2, 0, 0]}>
-      <planeGeometry args={[400, 400]} />
-      <meshStandardMaterial
-        color="#80e93d"
-        attach="material"
-        opacity={0.8}
-        roughness={1}
-        metalness={0}
-      />
-      {/* <shadowMaterial
-        attach="material"
-        opacity={1}
-        color="#80e93d"
-        roughness={1}
-      /> */}
+      <planeGeometry args={[height, width]} />
+      <meshStandardMaterial map={floorTexture} />
     </mesh>
   );
 };
 
 export default Floor;
+
+useTexture.preload("/assets/grass.jpg");
