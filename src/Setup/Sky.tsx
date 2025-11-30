@@ -1,23 +1,26 @@
-// @ts-nocheck
 import React, { useMemo } from "react";
 import { AdditiveBlending } from "three";
 
-const Sky = ({ pointCount }) => {
+interface SkyProps {
+  pointCount: number;
+}
+
+const Sky: React.FC<SkyProps> = ({ pointCount }) => {
   const [positions] = useMemo(() => {
-    let positions = [];
+    const posArray: number[] = [];
     for (let i = 0; i < pointCount; i++) {
-      positions.push((Math.random() - 0.5) * 500);
-      positions.push(Math.random() * 300);
-      positions.push((Math.random() - 0.5) * 500);
+      posArray.push((Math.random() - 0.5) * 500);
+      posArray.push(Math.random() * 300);
+      posArray.push((Math.random() - 0.5) * 500);
     }
-    return [new Float32Array(positions)];
+    return [new Float32Array(posArray)];
   }, [pointCount]);
 
   return (
     <points>
       <bufferGeometry attach="geometry">
         <bufferAttribute
-          attachObject={["attributes", "position"]}
+          attach="attributes-position"
           array={positions}
           count={positions.length / 3}
           itemSize={3}

@@ -1,8 +1,11 @@
-// @ts-nocheck
 import React from "react";
 import PathCreator from "./PathCreator";
 
-const PathMesh = ({ path }) => {
+interface PathMeshProps {
+  path: any;
+}
+
+const PathMesh: React.FC<PathMeshProps> = ({ path }) => {
   return (
     <>
       <PathCreator count={6} x={1} start={0} shadow={true} path={path} />

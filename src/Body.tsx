@@ -1,7 +1,6 @@
-// @ts-nocheck
 import { useTexture } from "@react-three/drei";
 import { useFrame, useLoader } from "@react-three/fiber";
-import Roboto from "./Skills/fonts/Roboto_Regular";
+import Roboto from "./Skills/fonts/Roboto_Regular.json";
 import About from "./About/index";
 import Floor from "./Setup/Floor";
 
@@ -12,8 +11,10 @@ import {
   MeshBasicMaterial,
   ShaderMaterial,
   SRGBColorSpace,
+  Group,
+  Mesh,
 } from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import Lamps from "./Lamps";
 import Trees from "./Trees";
 import PathMesh from "./Path/index";
@@ -27,7 +28,12 @@ import { fragment, vertex } from "./helpers/shaders";
 const vertexShader = vertex;
 const fragmentShader = fragment;
 
-function Body() {
+interface GLTFModel {
+  scene: Group;
+  nodes: Record<string, Mesh>;
+}
+
+function Body(): React.ReactElement {
   const textures = useTexture([
     "/textures/baked.jpg",
     "/textures/arrow.png",
@@ -85,8 +91,9 @@ function Body() {
     "/models/sign.glb",
     "/models/largeSign.glb",
     "/models/squid/scene.gltf",
-  ]);
-  const font = Roboto;
+  ]) as unknown as [GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel, GLTFModel];
+  
+  const font: any = Roboto;
 
   const bakedMap = textures[0];
   const arrow = textures[1];
@@ -108,16 +115,17 @@ function Body() {
     side: DoubleSide,
   });
 
-  portal.scene.children.map((child) => {
-    if (child.name === "PoleLightA" || child.name === "PoleLightB") {
-      child.material = lampMaterial;
-    } else if (child.name === "PortalLight") {
-      child.material = portalMaterial;
-    } else {
-      child.material = material;
-      child.castShadow = true;
+  portal.scene.children.forEach((child) => {
+    if (child instanceof Mesh) {
+      if (child.name === "PoleLightA" || child.name === "PoleLightB") {
+        child.material = lampMaterial;
+      } else if (child.name === "PortalLight") {
+        child.material = portalMaterial;
+      } else {
+        child.material = material;
+        child.castShadow = true;
+      }
     }
-    return 0;
   });
 
   useFrame(({ clock }) => {

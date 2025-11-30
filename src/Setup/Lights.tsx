@@ -1,11 +1,10 @@
-// @ts-nocheck
 import { useHelper } from "@react-three/drei";
 import React, { useRef } from "react";
 import { PointLightHelper } from "three";
 import LampsLights from "./LampsLights";
 
-const Lights = () => {
-  const helper = useRef(null);
+const Lights: React.FC = () => {
+  const helper = useRef<PointLightHelper>(null);
   useHelper(helper, PointLightHelper);
   return (
     <mesh>
@@ -16,7 +15,6 @@ const Lights = () => {
         intensity={0.2}
         position={[100, 100, 200]}
         lookAt={[0, 0, 0] as any}
-        penumbra={1}
         castShadow={false}
       />
       <directionalLight

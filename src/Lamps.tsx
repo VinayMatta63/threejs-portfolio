@@ -1,16 +1,24 @@
 import React from "react";
-import { MeshBasicMaterial, SRGBColorSpace } from "three";
+import { Group, MeshBasicMaterial, SRGBColorSpace, Texture, Mesh } from "three";
 
-const Lamps = ({ position, bakedLamp, scene }) => {
+interface LampsProps {
+  position: [number, number, number];
+  bakedLamp: Texture;
+  scene: Group;
+}
+
+const Lamps: React.FC<LampsProps> = ({ position, bakedLamp, scene }) => {
   bakedLamp.flipY = false;
   bakedLamp.colorSpace = SRGBColorSpace;
   const bakedLampMaterial = new MeshBasicMaterial({ map: bakedLamp });
   const lampMaterial = new MeshBasicMaterial({ color: 0xffffe5 });
   scene.children.map((child) => {
-    if (child.name === "PoleLightA" || child.name === "PoleLightB") {
-      child.material = lampMaterial;
-    } else {
-      child.material = bakedLampMaterial;
+    if (child instanceof Mesh) {
+      if (child.name === "PoleLightA" || child.name === "PoleLightB") {
+        child.material = lampMaterial;
+      } else {
+        child.material = bakedLampMaterial;
+      }
     }
     return (
       (child.name === "Cube003" ||

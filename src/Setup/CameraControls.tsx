@@ -1,8 +1,7 @@
-// @ts-nocheck
 import React, { useEffect, useRef, useState } from "react";
-import { PointerLockControls } from "@react-three/drei";
+import { PointerLockControls as PointerLockControlsImpl } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { Raycaster, SpriteMaterial, Vector3 } from "three";
+import { Raycaster, SpriteMaterial, Vector3, Intersection, Object3D, Mesh, Texture, Group, Sprite, Camera } from "three";
 import Plate from "../helpers/plate";
 import SpriteComponent from "../helpers/SpriteComponent";
 
@@ -15,58 +14,65 @@ import Track from "../Game/Track";
 import gsap from "gsap";
 import Game from "../Game";
 
-const CameraControls = ({ icon, squidDoll }) => {
+interface CameraControlsProps {
+  icon: Texture;
+  squidDoll: { scene: Group };
+}
+
+const CameraControls: React.FC<CameraControlsProps> = ({ icon, squidDoll }) => {
   const [show, setShow] = useState(false);
   const [ascend, setAscend] = useState(false);
   const [startGame, setStartGame] = useState(false);
-  const [obj, setObj] = useState(null);
-  const [visit, setVisit] = useState(null);
-  const [contact, setContact] = useState(null);
+  const [obj, setObj] = useState<string | null>(null);
+  const [visit, setVisit] = useState(false);
+  const [contact, setContact] = useState(false);
   let failed = false;
   const z = 79;
   const z_sub = 8;
 
   useEffect(() => {
-    const startOp = async (game) => {
+    const startOp = async (game: boolean) => {
       if (!game) return;
-      gsap.to(group.current.rotation, { y: 0, duration: 0.45 });
-      await delay(Math.random() * 1000 + 1000);
-      gsap.to(group.current.rotation, { y: Math.PI, duration: 0.45 });
-      await delay(Math.random() * 750 + 750);
-      startOp(!failed);
+      if (group.current) {
+        gsap.to(group.current.rotation, { y: 0, duration: 0.45 });
+        await delay(Math.random() * 1000 + 1000);
+        gsap.to(group.current.rotation, { y: Math.PI, duration: 0.45 });
+        await delay(Math.random() * 750 + 750);
+        startOp(!failed);
+      }
     };
 
     startOp(startGame);
-  }, [startGame, failed]);
+  }, [startGame]);
 
   let moveForward = false;
   let moveBackward = false;
   let moveLeft = false;
   let moveRight = false;
   let canJump = false;
-  const controlsRef = useRef(null);
-  const objects = [];
-  let raycaster;
-  const group = useRef(null);
-  const sf = useRef(null);
-  const iic = useRef(null);
-  const chat = useRef(null);
-  const museum = useRef(null);
-  const ttt = useRef(null);
-  const gh = useRef(null);
-  const li = useRef(null);
-  const lc = useRef(null);
-  const cc = useRef(null);
-  const hr = useRef(null);
-  const arrow = useRef(null);
-  const arrow1 = useRef(null);
-  const contactRef = useRef(null);
-  const track = useRef(null);
-  const play = useRef(null);
-  const end = useRef(null);
-  let onObject = [];
+  const controlsRef = useRef<any>(null);
+  const objects: (Mesh | null)[] = [];
+  let raycaster: Raycaster;
+  const group = useRef<Group>(null);
+  const sf = useRef<Mesh>(null);
+  const iic = useRef<Mesh>(null);
+  const chat = useRef<Mesh>(null);
+  const museum = useRef<Mesh>(null);
+  const ttt = useRef<Mesh>(null);
+  const gh = useRef<Mesh>(null);
+  const li = useRef<Mesh>(null);
+  const lc = useRef<Mesh>(null);
+  const cc = useRef<Mesh>(null);
+  const hr = useRef<Mesh>(null);
+  const arrow = useRef<Sprite>(null);
+  const arrow1 = useRef<Sprite>(null);
+  const contactRef = useRef<Mesh>(null);
+  const track = useRef<Mesh>(null);
+  const play = useRef<Mesh>(null);
+  const end = useRef<Mesh>(null);
+  let onObject: Intersection<Object3D>[] = [];
 
-  const delay = (ms) => {
+  const delay = (ms: number) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
   };
 
@@ -74,7 +80,7 @@ const CameraControls = ({ icon, squidDoll }) => {
   const velocity = new Vector3();
   const direction = new Vector3();
 
-  const onKeyDown = function (event) {
+  const onKeyDown = function (event: KeyboardEvent) {
     if (!startGame) {
       switch (event.code) {
         case "ArrowUp":
@@ -113,21 +119,25 @@ const CameraControls = ({ icon, squidDoll }) => {
       switch (event.code) {
         case "ArrowUp":
         case "KeyW":
-          if (group.current.rotation.y === 0) {
+          if (group.current && group.current.rotation.y === 0) {
             setStartGame(false);
             failed = true;
-            controlsRef.current.camera.position.x = 100;
-            controlsRef.current.camera.position.z = 40;
+            if (controlsRef.current) {
+              controlsRef.current.camera.position.x = 100;
+              controlsRef.current.camera.position.z = 40;
+            }
           } else moveForward = true;
           break;
 
         case "ArrowDown":
         case "KeyS":
-          if (group.current.rotation.y === 0) {
+          if (group.current && group.current.rotation.y === 0) {
             setStartGame(false);
             failed = true;
-            controlsRef.current.camera.position.x = 100;
-            controlsRef.current.camera.position.z = 40;
+            if (controlsRef.current) {
+              controlsRef.current.camera.position.x = 100;
+              controlsRef.current.camera.position.z = 40;
+            }
           } else moveBackward = true;
           break;
         default:
@@ -136,7 +146,7 @@ const CameraControls = ({ icon, squidDoll }) => {
     }
   };
 
-  const onKeyUp = function (event) {
+  const onKeyUp = function (event: KeyboardEvent) {
     switch (event.code) {
       case "ArrowUp":
       case "KeyW":
@@ -165,7 +175,7 @@ const CameraControls = ({ icon, squidDoll }) => {
 
   document.addEventListener("keydown", onKeyDown);
   document.addEventListener("keyup", onKeyUp);
-  document.addEventListener("keypress", (e) => {
+  document.addEventListener("keypress", (e: KeyboardEvent) => {
     switch (e.code) {
       case "KeyF":
         setAscend(!ascend);
@@ -186,11 +196,11 @@ const CameraControls = ({ icon, squidDoll }) => {
           openProjectGithub(sf, iic, chat, museum, ttt, onObject[0]);
           break;
         case "KeyB":
-          if (onObject[0].object?.uuid === sf.current.uuid) setObj("sf");
-          if (onObject[0].object?.uuid === iic.current.uuid) setObj("iic");
-          if (onObject[0].object?.uuid === chat.current.uuid) setObj("chat");
-          if (onObject[0].object?.uuid === ttt.current.uuid) setObj("ttt");
-          if (onObject[0].object?.uuid === museum.current.uuid)
+          if (onObject[0].object?.uuid === sf.current?.uuid) setObj("sf");
+          if (onObject[0].object?.uuid === iic.current?.uuid) setObj("iic");
+          if (onObject[0].object?.uuid === chat.current?.uuid) setObj("chat");
+          if (onObject[0].object?.uuid === ttt.current?.uuid) setObj("ttt");
+          if (onObject[0].object?.uuid === museum.current?.uuid)
             setObj("museum");
           break;
         default:
@@ -206,70 +216,72 @@ const CameraControls = ({ icon, squidDoll }) => {
 
   useFrame(({ clock }) => {
     // Adding all the plates ref to an array which will be used to check intersection of raycaster with plates.
-    !objects.includes(sf.current) && objects.push(sf.current);
-    !objects.includes(iic.current) && objects.push(iic.current);
-    !objects.includes(chat.current) && objects.push(chat.current);
-    !objects.includes(museum.current) && objects.push(museum.current);
-    !objects.includes(ttt.current) && objects.push(ttt.current);
-    !objects.includes(gh.current) && objects.push(gh.current);
-    !objects.includes(li.current) && objects.push(li.current);
-    !objects.includes(lc.current) && objects.push(lc.current);
-    !objects.includes(cc.current) && objects.push(cc.current);
-    !objects.includes(hr.current) && objects.push(hr.current);
-    !objects.includes(contactRef.current) && objects.push(contactRef.current);
-    !objects.includes(play.current) && objects.push(play.current);
-    !objects.includes(end.current) && objects.push(end.current);
+    !objects.includes(sf.current) && sf.current && objects.push(sf.current);
+    !objects.includes(iic.current) && iic.current && objects.push(iic.current);
+    !objects.includes(chat.current) && chat.current && objects.push(chat.current);
+    !objects.includes(museum.current) && museum.current && objects.push(museum.current);
+    !objects.includes(ttt.current) && ttt.current && objects.push(ttt.current);
+    !objects.includes(gh.current) && gh.current && objects.push(gh.current);
+    !objects.includes(li.current) && li.current && objects.push(li.current);
+    !objects.includes(lc.current) && lc.current && objects.push(lc.current);
+    !objects.includes(cc.current) && cc.current && objects.push(cc.current);
+    !objects.includes(hr.current) && hr.current && objects.push(hr.current);
+    !objects.includes(contactRef.current) && contactRef.current && objects.push(contactRef.current);
+    !objects.includes(play.current) && play.current && objects.push(play.current);
+    !objects.includes(end.current) && end.current && objects.push(end.current);
 
     //showing welcome page on locking and unlocking of controls
-    controlsRef.current.addEventListener("lock", () => {
-      welcome.style.display = "none";
-      canvas.style.display = "block";
-    });
-    controlsRef.current.addEventListener("unlock", function () {
-      welcome.style.display = "flex";
-      canvas.style.display = "none";
-    });
+    if (controlsRef.current) {
+      controlsRef.current.addEventListener("lock", () => {
+        if (welcome) welcome.style.display = "none";
+        if (canvas) canvas.style.display = "block";
+      });
+      controlsRef.current.addEventListener("unlock", function () {
+        if (welcome) welcome.style.display = "flex";
+        if (canvas) canvas.style.display = "none";
+      });
 
-    // Moving raycaster around with change of camera location
-    raycaster.ray.origin.copy(controlsRef.current.getObject().position);
-    // check if raycaster intersected with any of the plates
-    onObject = raycaster.intersectObjects(objects);
+      // Moving raycaster around with change of camera location
+      raycaster.ray.origin.copy(controlsRef.current.getObject().position);
+      // check if raycaster intersected with any of the plates
+      onObject = raycaster.intersectObjects(objects);
+    }
 
     // conditionally setting sprites based on the type of plate that the camera has interacted with.
     // eg: show different sprite for profile links and project links. Also redirect to contact form when going through portal
     if (
       onObject.length > 0 &&
       onObject[0].object &&
-      (onObject[0].object.uuid === gh.current.uuid ||
-        onObject[0].object.uuid === li.current.uuid ||
-        onObject[0].object.uuid === lc.current.uuid ||
-        onObject[0].object.uuid === cc.current.uuid ||
-        onObject[0].object.uuid === hr.current.uuid)
+      (onObject[0].object.uuid === gh.current?.uuid ||
+        onObject[0].object.uuid === li.current?.uuid ||
+        onObject[0].object.uuid === lc.current?.uuid ||
+        onObject[0].object.uuid === cc.current?.uuid ||
+        onObject[0].object.uuid === hr.current?.uuid)
     )
       setVisit(true);
     else setVisit(false);
     if (
       onObject.length > 0 &&
       onObject[0].object &&
-      onObject[0].object.uuid === contactRef.current.uuid
+      onObject[0].object.uuid === contactRef.current?.uuid
     ) {
-      contact && window.open("https://vinay-matta.web.app/contact", "contact");
+      if (contact) window.open("https://vinay-matta.web.app/contact", "contact");
       setContact(false);
     } else {
       setContact(true);
     }
     setShow(
       onObject.length > 0 &&
-        onObject[0].object.uuid !== contactRef.current.uuid &&
-        onObject[0].object.uuid !== play.current.uuid &&
-        onObject[0].object.uuid !== end.current.uuid
+        onObject[0].object.uuid !== contactRef.current?.uuid &&
+        onObject[0].object.uuid !== play.current?.uuid &&
+        onObject[0].object.uuid !== end.current?.uuid
     );
-    if (onObject.length > 0 && onObject[0].object.uuid === play.current.uuid) {
+    if (onObject.length > 0 && onObject[0].object.uuid === play.current?.uuid) {
       setStartGame(true);
       failed = false;
     }
 
-    if (onObject.length > 0 && onObject[0].object.uuid === end.current.uuid) {
+    if (onObject.length > 0 && onObject[0].object.uuid === end.current?.uuid) {
       setStartGame(false);
       failed = true;
     }
@@ -299,30 +311,32 @@ const CameraControls = ({ icon, squidDoll }) => {
     // Movement controls for FPS specified in Three.js Docs.
     if (moveForward || moveBackward) velocity.z -= direction.z * 50 * delta;
     if (moveLeft || moveRight) velocity.x -= direction.x * 50 * delta;
-    controlsRef.current.moveRight(-velocity.x * delta);
-    controlsRef.current.moveForward(-velocity.z * delta);
+    if (controlsRef.current) {
+      controlsRef.current.moveRight(-velocity.x * delta);
+      controlsRef.current.moveForward(-velocity.z * delta);
 
-    // Increasing height on pressing F key
-    if (!ascend)
-      controlsRef.current.getObject().position.y += velocity.y * delta;
-    else controlsRef.current.getObject().position.y = 40; // new behavior
+      // Increasing height on pressing F key
+      if (!ascend)
+        controlsRef.current.getObject().position.y += velocity.y * delta;
+      else controlsRef.current.getObject().position.y = 40; // new behavior
 
-    // bringing user back to plane after jump limit reached.
-    if (controlsRef.current.getObject().position.y < 10) {
-      velocity.y = 0;
-      controlsRef.current.getObject().position.y = 5;
-      canJump = true;
-    }
+      // bringing user back to plane after jump limit reached.
+      if (controlsRef.current.getObject().position.y < 10) {
+        velocity.y = 0;
+        controlsRef.current.getObject().position.y = 5;
+        canJump = true;
+      }
 
-    // Teleporting user back to middle of plane of goes out of boundary.
-    if (
-      controlsRef.current.getObject().position.x > 200 ||
-      controlsRef.current.getObject().position.z > 200 ||
-      controlsRef.current.getObject().position.x < -200 ||
-      controlsRef.current.getObject().position.z < -200
-    ) {
-      controlsRef.current.getObject().position.x = 0;
-      controlsRef.current.getObject().position.z = 25;
+      // Teleporting user back to middle of plane of goes out of boundary.
+      if (
+        controlsRef.current.getObject().position.x > 200 ||
+        controlsRef.current.getObject().position.z > 200 ||
+        controlsRef.current.getObject().position.x < -200 ||
+        controlsRef.current.getObject().position.z < -200
+      ) {
+        controlsRef.current.getObject().position.x = 0;
+        controlsRef.current.getObject().position.z = 25;
+      }
     }
   });
 
@@ -335,7 +349,7 @@ const CameraControls = ({ icon, squidDoll }) => {
 
   return (
     <>
-      <PointerLockControls ref={controlsRef} selector="#selector" />
+      <PointerLockControlsImpl ref={controlsRef} selector="#selector" />
       <Plate ref={sf} position={[-120 + 10, 0.01, -10]} />
       <Plate ref={iic} position={[-60 - 10, 0.01, -40]} />
       <Plate ref={chat} position={[-120 + 10, 0.01, -70]} />
@@ -369,7 +383,7 @@ const CameraControls = ({ icon, squidDoll }) => {
         visit ? (
           <SpriteComponent controlsRef={controlsRef} type="links" />
         ) : (
-          <SpriteComponent controlsRef={controlsRef} obj={obj} />
+          <SpriteComponent controlsRef={controlsRef} obj={obj} type="object" />
         )
       ) : (
         <>

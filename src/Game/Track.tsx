@@ -1,8 +1,15 @@
-// @ts-nocheck
 import { Html } from "@react-three/drei";
 import React, { forwardRef } from "react";
+import { Mesh } from "three";
 
-const spriteStyles = {
+interface TrackProps {
+  position: [number, number, number];
+  args?: [number, number];
+  show?: boolean;
+  completed?: boolean;
+}
+
+const spriteStyles: React.CSSProperties = {
   color: "#fff",
   backgroundColor: "rgba(0,0,0,0.8)",
   fontSize: "30px",
@@ -12,7 +19,8 @@ const spriteStyles = {
   justifyContent: "center",
   flexDirection: "column",
 };
-const Track = forwardRef(
+
+const Track = forwardRef<Mesh, TrackProps>(
   ({ position, args = [30, 80], show, completed }, ref) => {
     return (
       <group>
@@ -42,5 +50,7 @@ const Track = forwardRef(
     );
   }
 );
+
+Track.displayName = "Track";
 
 export default Track;

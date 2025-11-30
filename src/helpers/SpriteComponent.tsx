@@ -1,6 +1,6 @@
-// @ts-nocheck
 import { Html } from "@react-three/drei";
 import React from "react";
+import { MutableRefObject } from "react";
 import {
   chatSprite,
   iicSprite,
@@ -8,7 +8,14 @@ import {
   sfSprite,
   tttSprite,
 } from "./sprites";
-const spriteStyles = {
+
+interface SpriteComponentProps {
+  controlsRef: MutableRefObject<any>;
+  obj?: string;
+  type: "links" | string;
+}
+
+const spriteStyles: React.CSSProperties = {
   color: "#fff",
   backgroundColor: "rgba(0,0,0,0.8)",
   fontSize: "30px",
@@ -19,7 +26,7 @@ const spriteStyles = {
   flexDirection: "column",
 };
 
-const SpriteComponent = ({ controlsRef, obj, type }) => {
+const SpriteComponent: React.FC<SpriteComponentProps> = ({ controlsRef, obj, type }) => {
   return type === "links" ? (
     <Html
       sprite

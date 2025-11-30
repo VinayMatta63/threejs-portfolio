@@ -1,8 +1,19 @@
-// @ts-nocheck
 import { Text3D } from "@react-three/drei";
 import React from "react";
 
-const SignMesh = ({
+interface SignMeshProps {
+  model: any;
+  position: [number,number,number];
+  scale: [number,number,number]|number;
+  text: string;
+  textScale: [number,number,number]|number;
+  font: any;
+  rotation?: [number,number,number];
+  textRotation?: [number,number,number];
+  textPosition?: [number,number,number];
+}
+
+const SignMesh: React.FC<SignMeshProps> = ({
   model,
   position,
   scale,
@@ -27,7 +38,7 @@ const SignMesh = ({
       <mesh position={textPosition} scale={textScale} rotation={textRotation}>
         <Text3D font={font} size={1} height={0.1}>
           {text}
-          <meshBasicMaterial attach="material" color="#fafafa" metalness={1} />
+          <meshBasicMaterial attach="material" color="#fafafa" />
         </Text3D>
       </mesh>
     </group>

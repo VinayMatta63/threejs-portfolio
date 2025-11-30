@@ -1,8 +1,19 @@
-// @ts-nocheck
 import { Text3D } from "@react-three/drei";
 import React from "react";
+import { Group } from "three";
 
-const Board = ({
+interface BoardProps {
+  x: number;
+  z: number;
+  text: string;
+  rotation?: [number, number, number];
+  font: any;
+  model?: { scene: Group };
+  modelLeft?: { scene: Group };
+  modelRight?: { scene: Group };
+}
+
+const Board: React.FC<BoardProps> = ({
   x,
   z,
   text,
@@ -25,7 +36,7 @@ const Board = ({
         position={[0, 15, (text.length / 2) * 3.2]}
       >
         <Text3D {...textOptions}>{text}</Text3D>
-        <meshBasicMaterial attach="material" color="#fff" metalness={0.5} />
+        <meshBasicMaterial attach="material" color="#fff" />
       </mesh>
 
       {model && <primitive object={model.scene} />}

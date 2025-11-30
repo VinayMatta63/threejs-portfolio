@@ -1,21 +1,18 @@
-// @ts-nocheck
-import { Loader } from "@react-three/drei";
-import { Canvas, useLoader } from "@react-three/fiber";
+import { Loader, useGLTF } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
 import axios from "axios";
-// @ts-nocheck
-import React, { useState } from "react";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import React, { useState, ChangeEvent, FormEvent } from "react";
 import "./Contact.css";
 import ContactModel from "./ContactModel";
 
-const Contact = () => {
+const Contact: React.FC = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [disabled, setDisabled] = useState(false);
 
-  const submitEmail = async (e) => {
+  const submitEmail = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setDisabled(true);
     axios({
@@ -43,7 +40,7 @@ const Contact = () => {
     setMessage("");
     setSubject("");
   };
-  const [messageModel] = useLoader(GLTFLoader, ["/models/message.glb"]);
+  const messageModel = useGLTF("/models/message.glb");
 
   return (
     <div className="section">
@@ -71,8 +68,8 @@ const Contact = () => {
         barStyles={{
           backgroundColor: "lightgreen",
         }} // Loading-bar styles
-        dataInterpolation={(p) => `Loading ${Math.round(p)}%`}
-        initialState={(active) => active}
+        dataInterpolation={(p: number) => `Loading ${Math.round(p)}%`}
+        initialState={(active: boolean) => active}
         dataStyles={{
           color: "#fafafa",
           fontSize: "25px",
@@ -104,7 +101,7 @@ const Contact = () => {
                     className="form-control"
                     required
                     value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
                   />
                 </div>
                 <div className="col-md-6">
@@ -116,7 +113,7 @@ const Contact = () => {
                     aria-describedby="emailHelp"
                     required
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                   />
                 </div>
               </div>
@@ -129,7 +126,7 @@ const Contact = () => {
                 className="form-control"
                 required
                 value={subject}
-                onChange={(e) => setSubject(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setSubject(e.target.value)}
               />
             </div>
             <div className="form-group">
@@ -137,10 +134,10 @@ const Contact = () => {
                 placeholder="Message"
                 id="message"
                 className="form-control"
-                rows="3"
+                rows={3}
                 required
                 value={message}
-                onChange={(e) => setMessage(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)}
               />
             </div>
             <button

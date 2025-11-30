@@ -1,8 +1,28 @@
-// @ts-nocheck
 import React from "react";
+import { Group } from "three";
 import Board from "./Board";
 
-const Boards = ({
+interface Model {
+  scene: Group;
+}
+
+interface BoardsProps {
+  font: any;
+  chatModel: Model;
+  sfModel: Model;
+  mfModel: Model;
+  fsModel: Model;
+  iicModel: Model;
+  eventsModel: Model;
+  loginModel: Model;
+  mcModel: Model;
+  mcLeft: Model;
+  mcRight: Model;
+  tttModel: Model;
+  tttLeft: Model;
+}
+
+const Boards: React.FC<BoardsProps> = ({
   font,
   chatModel,
   sfModel,

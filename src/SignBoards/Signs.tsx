@@ -1,10 +1,16 @@
-// @ts-nocheck
 import React from "react";
 import SignMesh from "./SignMesh";
 import SignText from "./SignText";
 import { Text3D } from "@react-three/drei";
+import { Group } from "three";
 
-const Signs = ({ model, font, largeSignModel }) => {
+interface SignsProps {
+  model: { scene: Group };
+  font: string;
+  largeSignModel: { scene: Group };
+}
+
+const Signs: React.FC<SignsProps> = ({ model, font, largeSignModel }) => {
   const skillsPos = { x: -60, y: 0, z: 30 };
   const projPos = { x: -80, y: 0, z: 15 };
   const aboutPos = { x: -40, y: 0, z: 35 };
@@ -128,11 +134,11 @@ const Signs = ({ model, font, largeSignModel }) => {
         <Text3D font={font} size={1} height={0.1}>
           to contact me...
         </Text3D>
-        <meshBasicMaterial attach="material" color="#fafafa" metalness={1} />
+        <meshBasicMaterial attach="material" color="#fafafa" />
       </mesh>
       <mesh rotation={[0, 0, 0]} position={[-20, 20, -15]}>
         <Text3D {...textOptions}>Contact</Text3D>
-        <meshBasicMaterial attach="material" color="#fff" metalness={1} />
+        <meshBasicMaterial attach="material" color="#fff" />
       </mesh>
     </>
   );
