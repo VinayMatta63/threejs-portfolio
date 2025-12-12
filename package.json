@@ -6,6 +6,7 @@
   "dependencies": {
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.4.2",
+    "@react-three/rapier": "^2.2.0",
     "axios": "^1.13.2",
     "gsap": "^3.13.0",
     "react": "^19.2.0",

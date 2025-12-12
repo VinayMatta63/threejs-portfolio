@@ -1,9 +1,10 @@
 import { useTexture } from "@react-three/drei";
+import { RigidBody } from "@react-three/rapier";
 import { RepeatWrapping, SRGBColorSpace } from "three";
 
 interface FloorProps {
-  height: number;
-  width: number;
+  height?: number;
+  width?: number;
 }
 
 const Floor: React.FC<FloorProps> = ({ height = 400, width = 400 }) => {
@@ -14,10 +15,12 @@ const Floor: React.FC<FloorProps> = ({ height = 400, width = 400 }) => {
   });
 
   return (
-    <mesh rotation={[-Math.PI / 2, 0, 0]}>
-      <planeGeometry args={[height, width]} />
-      <meshStandardMaterial map={floorTexture} />
-    </mesh>
+    <RigidBody colliders="cuboid" type="fixed">
+      <mesh rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[height, width]} />
+        <meshStandardMaterial map={floorTexture} />
+      </mesh>
+    </RigidBody>
   );
 };
 

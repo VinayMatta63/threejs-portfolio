@@ -1,4 +1,4 @@
-import { useTexture } from "@react-three/drei";
+import { OrbitControls, useTexture } from "@react-three/drei";
 import { useFrame, useLoader } from "@react-three/fiber";
 import Roboto from "./Skills/fonts/Roboto_Regular.json";
 import About from "./About/index";
@@ -24,6 +24,7 @@ import CameraControls from "./Setup/CameraControls";
 import Boards from "./Boards";
 import Signs from "./SignBoards/Signs";
 import { fragment, vertex } from "./helpers/shaders";
+import { RigidBody } from "@react-three/rapier";
 
 const vertexShader = vertex;
 const fragmentShader = fragment;
@@ -178,9 +179,16 @@ function Body(): React.ReactElement {
         tttLeft={tttLeft}
       />
       {/* <Fireflies pointCount={30} /> */}
-      <CameraControls icon={arrow} squidDoll={squidDoll} />
+      {/* <CameraControls icon={arrow} squidDoll={squidDoll} /> */}
+      <OrbitControls />
       <About font={font} />
       <Floor />
+      <RigidBody colliders="cuboid" position={[0, 1, 0]} type="dynamic">
+        <mesh>
+          <capsuleGeometry args={[1, 2, 8, 16]} />
+          <meshBasicMaterial />
+        </mesh>
+      </RigidBody>
       <Signs largeSignModel={largeSignModel} model={signModel} font={font} />
     </>
   );

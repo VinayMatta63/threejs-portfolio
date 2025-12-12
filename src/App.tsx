@@ -6,12 +6,13 @@ import Scene from "./Body";
 import Lights from "./Setup/Lights";
 import { KeyboardControls, Loader, Preload, Stars } from "@react-three/drei";
 import usePlayerMovement, { KEYBOARD_MAP } from "./hooks/usePlayerMovement";
+import { Physics } from "@react-three/rapier";
 //
 //
 const App = () => {
   return (
     <div id="cover">
-      <div id="selector">
+      {/* <div id="selector">
         <div id="welcome">
           <div>
             <h1
@@ -55,7 +56,7 @@ const App = () => {
             </div>
           )}
         </div>
-      </div>
+      </div> */}
       <KeyboardControls map={KEYBOARD_MAP}>
         <Canvas
           style={{
@@ -69,7 +70,9 @@ const App = () => {
           <fog attach="fog" args={["#0d1a26", 70, 120]} />
 
           <Suspense fallback={null}>
-            <Scene />
+            <Physics debug>
+              <Scene />
+            </Physics>
             <Preload all />
           </Suspense>
           <Stars
