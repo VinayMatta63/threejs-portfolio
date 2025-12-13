@@ -1,6 +1,7 @@
+import React from "react";
+import { RepeatWrapping, SRGBColorSpace } from "three";
 import { useTexture } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
-import { RepeatWrapping, SRGBColorSpace } from "three";
 
 interface FloorProps {
   height?: number;

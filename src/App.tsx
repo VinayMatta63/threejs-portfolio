@@ -1,13 +1,14 @@
-import "./App.css";
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
 import { KeyboardControls, Loader, Preload } from "@react-three/drei";
 import Scene from "./Body";
 import Lights from "./Setup/Lights";
-import Player from "./Player";
+import Player from "./components/Player";
+import Floor from "./components/Floor";
 import { KEYBOARD_MAP } from "./hooks/useMovementState";
-import Floor from "./Setup/Floor";
+import "./App.css";
+import CollisionPlate from "./components/CollisionPlate";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
             width: "100vw",
           }}
           camera={{ fov: 55, near: 0.1, far: 1000, position: [0, 20, 35] }}
+          gl={{ antialias: true, outputColorSpace: "srgb" }}
           id="canvas"
         >
           <Suspense fallback={null}>
@@ -26,6 +28,20 @@ const App = () => {
               <Player />
               <Floor />
               <Scene />
+              <CollisionPlate
+                name="contact"
+                position={[10, 1, 10]}
+                onCollision={(payload) =>
+                  console.log(`${payload.type} plate ${payload.name}`)
+                }
+              />
+              <CollisionPlate
+                name="visit"
+                position={[20, 1, 20]}
+                onCollision={(payload) =>
+                  console.log(`${payload.type} plate ${payload.name}`)
+                }
+              />
             </Physics>
             <Preload all />
           </Suspense>

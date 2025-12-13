@@ -1,10 +1,10 @@
-import { RefObject, useRef } from "react";
+import React, { useRef } from "react";
 import { Vector3 } from "three";
 import { useFrame, useThree } from "@react-three/fiber";
 import { RapierRigidBody } from "@react-three/rapier";
 
 interface CameraMovementProps {
-  playerRef: RefObject<RapierRigidBody>;
+  playerRef: React.RefObject<RapierRigidBody>;
 }
 
 const CAMERA_DISTANCE = 35;
