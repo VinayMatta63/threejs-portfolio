@@ -1,18 +1,10 @@
 import { useTexture } from "@react-three/drei";
-import { useFrame, useLoader } from "@react-three/fiber";
+import { useLoader } from "@react-three/fiber";
 import Roboto from "./Skills/fonts/Roboto_Regular.json";
 import About from "./About/index";
 
 import React from "react";
-import {
-  Color,
-  DoubleSide,
-  MeshBasicMaterial,
-  ShaderMaterial,
-  SRGBColorSpace,
-  Group,
-  Mesh,
-} from "three";
+import { Group, Mesh } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import Lamps from "./Lamps";
 import Trees from "./Trees";
@@ -21,10 +13,7 @@ import Skills from "./Skills";
 
 import Boards from "./Boards";
 import Signs from "./SignBoards/Signs";
-import { fragment, vertex } from "./helpers/shaders";
-
-const vertexShader = vertex;
-const fragmentShader = fragment;
+import Portal from "./components/Portal";
 
 interface GLTFModel {
   scene: Group;
@@ -50,7 +39,6 @@ function Body(): React.ReactElement {
     "/textures/lamps.jpg",
   ]);
   const [
-    portal,
     tree,
     lamp,
     path,
@@ -69,7 +57,6 @@ function Body(): React.ReactElement {
     signModel,
     largeSignModel,
   ] = useLoader(GLTFLoader, [
-    "/models/portal.glb",
     "/models/tree.glb",
     "/models/lamps.glb",
     "/models/tile.glb",
@@ -110,48 +97,14 @@ function Body(): React.ReactElement {
     GLTFModel
   ];
 
-  const font: any = Roboto;
+  const font = Roboto;
 
-  const bakedMap = textures[0];
-  const arrow = textures[1];
   const skills = textures.slice(2, 14);
   const lamps = textures[14];
-  bakedMap.flipY = false;
-  bakedMap.colorSpace = SRGBColorSpace;
 
-  const material = new MeshBasicMaterial({ map: bakedMap });
-  const lampMaterial = new MeshBasicMaterial({ color: 0xffffe5 });
-  const portalMaterial = new ShaderMaterial({
-    uniforms: {
-      uTime: { value: 0 },
-      uColorStart: { value: new Color(0xffffff) },
-      uColorEnd: { value: new Color(0xc34cff) },
-    },
-    vertexShader: vertexShader,
-    fragmentShader: fragmentShader,
-    side: DoubleSide,
-  });
-
-  portal.scene.children.forEach((child) => {
-    if (child instanceof Mesh) {
-      if (child.name === "PoleLightA" || child.name === "PoleLightB") {
-        child.material = lampMaterial;
-      } else if (child.name === "PortalLight") {
-        child.material = portalMaterial;
-      } else {
-        child.material = material;
-        child.castShadow = true;
-      }
-    }
-  });
-
-  useFrame(({ clock }) => {
-    const elapsedTime = clock.getElapsedTime();
-    portalMaterial.uniforms.uTime.value = elapsedTime;
-  });
   return (
     <>
-      <primitive object={portal.scene} />
+      <Portal />
       <PathMesh path={path.nodes} />
       <Lamps position={[-51, 0, 80]} bakedLamp={lamps} scene={lamp.scene} />
       <Lamps position={[139, 0, 80]} bakedLamp={lamps} scene={lamp.scene} />
@@ -175,7 +128,11 @@ function Body(): React.ReactElement {
         tttLeft={tttLeft}
       />
       <About font={font} />
-      <Signs largeSignModel={largeSignModel} model={signModel} font={font} />
+      <Signs
+        largeSignModel={largeSignModel}
+        model={signModel}
+        font={font as unknown as string}
+      />
     </>
   );
 }

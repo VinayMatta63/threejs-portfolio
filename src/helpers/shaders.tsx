@@ -1,4 +1,4 @@
-export const fragment = `
+export const fragmentShader = `
 uniform float uTime;
 uniform vec3 uColorStart;
 uniform vec3 uColorEnd;
@@ -90,7 +90,7 @@ float cnoise(vec3 P){
   }
 `;
 
-export const vertex = `
+export const vertexShader = `
 varying vec2 vUv;
 
   void main() {

@@ -1,4 +1,3 @@
-import React from "react";
 import Skill from "./Skill";
 import { Text3D } from "@react-three/drei";
 const Skills = ({ icons, font }) => {

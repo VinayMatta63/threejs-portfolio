@@ -1,5 +1,5 @@
-import React from "react";
 import { RigidBody, RigidBodyProps } from "@react-three/rapier";
+import { Color } from "three";
 import {
   CollisionPayload,
   useCollisionListener,
@@ -7,11 +7,13 @@ import {
 
 type CollisionPlateProps = RigidBodyProps & {
   name?: string;
+  color?: Color | number | string;
   onCollision: (payload: CollisionPayload) => void;
 };
 
 const CollisionPlate = ({
   name = "plate",
+  color = 0xff0000,
   onCollision,
   ...props
 }: CollisionPlateProps) => {
@@ -28,7 +30,7 @@ const CollisionPlate = ({
     >
       <mesh rotation={[Math.PI / 2, 0, 0]}>
         <planeGeometry args={[5, 5]} />
-        <meshBasicMaterial color={0xff0000} side={1} />
+        <meshBasicMaterial color={color} side={1} />
       </mesh>
     </RigidBody>
   );

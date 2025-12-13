@@ -8,12 +8,12 @@ export interface CollisionPayload {
 type CollisionListener = (payload: CollisionPayload) => void;
 
 class SingleEmitter {
-  private listeners: CollisionListener[] = [];
+  private listeners: Set<CollisionListener> = new Set<CollisionListener>();
 
   subscribe(listener: CollisionListener) {
-    this.listeners.push(listener);
+    this.listeners.add(listener);
     return () => {
-      this.listeners = this.listeners.filter((l) => l !== listener);
+      this.listeners.delete(listener);
     };
   }
 

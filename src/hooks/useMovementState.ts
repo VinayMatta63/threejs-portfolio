@@ -1,5 +1,17 @@
 import { KeyboardControlsEntry, useKeyboardControls } from "@react-three/drei";
 
+export const KEYS = [
+  "ArrowUp",
+  "ArrowDown",
+  "ArrowLeft",
+  "ArrowRight",
+  "KeyW",
+  "KeyS",
+  "KeyA",
+  "KeyD",
+  "ShiftLeft",
+];
+
 export enum KeyControls {
   forward = "forward",
   back = "back",
