@@ -1,88 +1,34 @@
 import "./App.css";
-import React, { Suspense, use } from "react";
+import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import Scene from "./Body";
-// import Sky from "./Setup/Sky";
-import Lights from "./Setup/Lights";
-import { KeyboardControls, Loader, Preload, Stars } from "@react-three/drei";
-import usePlayerMovement, { KEYBOARD_MAP } from "./hooks/usePlayerMovement";
 import { Physics } from "@react-three/rapier";
-//
-//
+import { KeyboardControls, Loader, Preload } from "@react-three/drei";
+import Scene from "./Body";
+import Lights from "./Setup/Lights";
+import Player from "./Player";
+import { KEYBOARD_MAP } from "./hooks/useMovementState";
+import Floor from "./Setup/Floor";
+
 const App = () => {
   return (
     <div id="cover">
-      {/* <div id="selector">
-        <div id="welcome">
-          <div>
-            <h1
-              style={{
-                fontSize: "45px",
-                fontWeight: "500",
-                marginBottom: "50px",
-              }}
-            >
-              Hello, I'm <span>Vinay Matta.</span>
-            </h1>
-            <h2
-              style={{
-                fontSize: "40px",
-                fontWeight: "500",
-                marginBottom: "50px",
-              }}
-            >
-              I'm a full-stack Web Developer.
-            </h2>
-          </div>
-          {window.innerWidth > 767 ? (
-            <div>
-              <p>Click to play</p>
-              <p style={{ textAlign: "center", marginTop: "50px" }}>
-                Move: WASD
-                <br />
-                Jump: SPACE
-                <br />
-                Look: MOUSE
-                <br />
-                Sprint: Left Shift
-                <br />
-                Fly: F
-              </p>
-            </div>
-          ) : (
-            <div>
-              <p>Sorry!</p>
-              <p>This website does not support mobile devices yet.</p>
-            </div>
-          )}
-        </div>
-      </div> */}
       <KeyboardControls map={KEYBOARD_MAP}>
         <Canvas
           style={{
-            height: "95vh",
+            height: "100vh",
             width: "100vw",
-            backgroundColor: "black",
           }}
-          camera={{ fov: 45, near: 0.1, far: 1000, position: [0, 5, 25] }}
+          camera={{ fov: 55, near: 0.1, far: 1000, position: [0, 20, 35] }}
           id="canvas"
         >
-          <fog attach="fog" args={["#0d1a26", 70, 120]} />
-
           <Suspense fallback={null}>
-            <Physics debug>
+            <Physics>
+              <Player />
+              <Floor />
               <Scene />
             </Physics>
             <Preload all />
           </Suspense>
-          <Stars
-            radius={160}
-            depth={50}
-            count={5000}
-            factor={4}
-            saturation={0}
-            fade
-          />
           <Lights />
         </Canvas>
       </KeyboardControls>

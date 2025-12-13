@@ -1,8 +1,7 @@
-import { OrbitControls, useTexture } from "@react-three/drei";
+import { useTexture } from "@react-three/drei";
 import { useFrame, useLoader } from "@react-three/fiber";
 import Roboto from "./Skills/fonts/Roboto_Regular.json";
 import About from "./About/index";
-import Floor from "./Setup/Floor";
 
 import React from "react";
 import {
@@ -177,12 +176,7 @@ function Body(): React.ReactElement {
         tttModel={tttModel}
         tttLeft={tttLeft}
       />
-      {/* <Fireflies pointCount={30} /> */}
-      {/* <CameraControls icon={arrow} squidDoll={squidDoll} /> */}
-      <OrbitControls />
       <About font={font} />
-      <Floor />
-      <Player />
       <Signs largeSignModel={largeSignModel} model={signModel} font={font} />
     </>
   );
