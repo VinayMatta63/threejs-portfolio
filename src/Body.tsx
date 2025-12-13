@@ -1,13 +1,12 @@
-import { useTexture } from "@react-three/drei";
 import { useLoader } from "@react-three/fiber";
-import About from "./About/index";
 
 import React from "react";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 import Trees from "./Trees";
 import PathMesh from "./Path/index";
-import Skills from "./Skills";
+import Skills from "./components/skills/Skills";
+import About from "./components/about/About";
 
 import Boards from "./Boards";
 import Signs from "./SignBoards/Signs";
@@ -15,22 +14,6 @@ import Portal from "./components/portal/Portal";
 import Lamp from "./components/base/Lamp";
 
 function Body(): React.ReactElement {
-  const textures = useTexture([
-    "/textures/arrow.png",
-    "/assets/react.png",
-    "/assets/node.png",
-    "/assets/mongo.png",
-    "/assets/python.png",
-    "/assets/sql.png",
-    "/assets/cpp.png",
-    "/assets/html.png",
-    "/assets/css.png",
-    "/assets/three.png",
-    "/assets/bootstrap.png",
-    "/assets/next.png",
-    "/assets/flutter.png",
-  ]);
-
   const [
     tree,
     path,
@@ -67,18 +50,17 @@ function Body(): React.ReactElement {
 
   const font = "/fonts/Roboto_Regular.json";
 
-  const skills = textures.slice(2, 14);
-
   return (
     <>
       <Portal />
-      <PathMesh path={path.nodes} />
       <Lamp position={[-51, 0, 80]} />
       <Lamp position={[139, 0, 80]} />
       <Lamp position={[49, 0, -57]} />
       <Lamp position={[-141, 0, -57]} />
+      <Skills />
+      <About />
+      <PathMesh path={path.nodes} />
       <Trees tree={tree} />
-      <Skills icons={skills} font={font} />
       <Boards
         font={font}
         sfModel={sfModel}
@@ -94,7 +76,6 @@ function Body(): React.ReactElement {
         tttModel={tttModel}
         tttLeft={tttLeft}
       />
-      <About font={font} />
       <Signs model={signModel} font={font as unknown as string} />
     </>
   );
