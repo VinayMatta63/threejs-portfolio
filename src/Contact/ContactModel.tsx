@@ -1,5 +1,4 @@
 import { useFrame } from "@react-three/fiber";
-import React from "react";
 
 const ContactModel = ({ messageModel }) => {
   let mouseX = 0;

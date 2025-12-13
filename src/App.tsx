@@ -4,8 +4,8 @@ import { Physics } from "@react-three/rapier";
 import { KeyboardControls, Loader, Preload } from "@react-three/drei";
 import Scene from "./Body";
 import Lights from "./Setup/Lights";
-import Player from "./components/Player";
-import Floor from "./components/Floor";
+import Floor from "./components/floor/Floor";
+import Player from "./components/player/Player";
 import { KEYBOARD_MAP } from "./hooks/useMovementState";
 import "./App.css";
 
@@ -14,6 +14,7 @@ const App = () => {
     <div id="cover">
       <KeyboardControls map={KEYBOARD_MAP}>
         <Canvas
+          shadows
           style={{
             height: "100vh",
             width: "100vw",

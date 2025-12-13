@@ -1,16 +1,14 @@
 import React from "react";
 import SignMesh from "./SignMesh";
-import SignText from "./SignText";
 import { Text3D } from "@react-three/drei";
 import { Group } from "three";
 
 interface SignsProps {
   model: { scene: Group };
   font: string;
-  largeSignModel: { scene: Group };
 }
 
-const Signs: React.FC<SignsProps> = ({ model, font, largeSignModel }) => {
+const Signs: React.FC<SignsProps> = ({ model, font }) => {
   const skillsPos = { x: -60, y: 0, z: 30 };
   const projPos = { x: -80, y: 0, z: 15 };
   const aboutPos = { x: -40, y: 0, z: 35 };
@@ -23,43 +21,6 @@ const Signs: React.FC<SignsProps> = ({ model, font, largeSignModel }) => {
 
   return (
     <>
-      <group
-        position={[-10, 0.01, 15]}
-        scale={signScale}
-        rotation={[0, Math.PI, 0]}
-      >
-        <primitive object={largeSignModel.scene} />
-        <SignText
-          scale={signScale / 5.5}
-          position={[0.85, 5.05, -0.38]}
-          text="Skills"
-          font={font}
-        />
-        <SignText
-          scale={signScale / 5.5}
-          position={[1, 4.38, -0.38]}
-          text="Projects"
-          font={font}
-        />
-        <SignText
-          scale={signScale / 5.35}
-          position={[0.55, 3.45, -0.38]}
-          text="About"
-          font={font}
-        />
-        <SignText
-          scale={signScale / 6.8}
-          position={[0.45, 2.5, -0.38]}
-          text="Experience"
-          font={font}
-        />
-        <SignText
-          scale={signScale / 6.8}
-          position={[0.45, 1.8, -0.38]}
-          text="Contact Me"
-          font={font}
-        />
-      </group>
       <SignMesh
         model={model}
         position={[skillsPos.x, skillsPos.y + 0.01, skillsPos.z]}

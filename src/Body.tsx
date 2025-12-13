@@ -1,28 +1,21 @@
 import { useTexture } from "@react-three/drei";
 import { useLoader } from "@react-three/fiber";
-import Roboto from "./Skills/fonts/Roboto_Regular.json";
 import About from "./About/index";
 
 import React from "react";
-import { Group, Mesh } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import Lamps from "./Lamps";
+
 import Trees from "./Trees";
 import PathMesh from "./Path/index";
 import Skills from "./Skills";
 
 import Boards from "./Boards";
 import Signs from "./SignBoards/Signs";
-import Portal from "./components/Portal";
-
-interface GLTFModel {
-  scene: Group;
-  nodes: Record<string, Mesh>;
-}
+import Portal from "./components/portal/Portal";
+import Lamp from "./components/base/Lamp";
 
 function Body(): React.ReactElement {
   const textures = useTexture([
-    "/textures/baked.jpg",
     "/textures/arrow.png",
     "/assets/react.png",
     "/assets/node.png",
@@ -36,11 +29,10 @@ function Body(): React.ReactElement {
     "/assets/bootstrap.png",
     "/assets/next.png",
     "/assets/flutter.png",
-    "/textures/lamps.jpg",
   ]);
+
   const [
     tree,
-    lamp,
     path,
     chatModel,
     sfModel,
@@ -55,10 +47,8 @@ function Body(): React.ReactElement {
     tttModel,
     tttLeft,
     signModel,
-    largeSignModel,
   ] = useLoader(GLTFLoader, [
     "/models/tree.glb",
-    "/models/lamps.glb",
     "/models/tile.glb",
     "/models/chat.glb",
     "/models/sf.glb",
@@ -73,43 +63,20 @@ function Body(): React.ReactElement {
     "/models/ttt.glb",
     "/models/ttt1.glb",
     "/models/sign.glb",
-    "/models/largeSign.glb",
-    "/models/squid/scene.gltf",
-  ]) as unknown as [
-    GLTFModel,
-    GLTFModel,
-    GLTFModel,
-    GLTFModel,
-    GLTFModel,
-    GLTFModel,
-    GLTFModel,
-    GLTFModel,
-    GLTFModel,
-    GLTFModel,
-    GLTFModel,
-    GLTFModel,
-    GLTFModel,
-    GLTFModel,
-    GLTFModel,
-    GLTFModel,
-    GLTFModel,
-    GLTFModel,
-    GLTFModel
-  ];
+  ]);
 
-  const font = Roboto;
+  const font = "/fonts/Roboto_Regular.json";
 
   const skills = textures.slice(2, 14);
-  const lamps = textures[14];
 
   return (
     <>
       <Portal />
       <PathMesh path={path.nodes} />
-      <Lamps position={[-51, 0, 80]} bakedLamp={lamps} scene={lamp.scene} />
-      <Lamps position={[139, 0, 80]} bakedLamp={lamps} scene={lamp.scene} />
-      <Lamps position={[49, 0, -57]} bakedLamp={lamps} scene={lamp.scene} />
-      <Lamps position={[-141, 0, -57]} bakedLamp={lamps} scene={lamp.scene} />
+      <Lamp position={[-51, 0, 80]} />
+      <Lamp position={[139, 0, 80]} />
+      <Lamp position={[49, 0, -57]} />
+      <Lamp position={[-141, 0, -57]} />
       <Trees tree={tree} />
       <Skills icons={skills} font={font} />
       <Boards
@@ -128,11 +95,7 @@ function Body(): React.ReactElement {
         tttLeft={tttLeft}
       />
       <About font={font} />
-      <Signs
-        largeSignModel={largeSignModel}
-        model={signModel}
-        font={font as unknown as string}
-      />
+      <Signs model={signModel} font={font as unknown as string} />
     </>
   );
 }

@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { RapierRigidBody, RigidBody } from "@react-three/rapier";
-import usePlayerMovement from "../hooks/usePlayerMovement";
-import { useCollisionDetector } from "../hooks/useCollisionDetector";
+import usePlayerMovement from "../../hooks/usePlayerMovement";
+import { useCollisionDetector } from "../../hooks/useCollisionDetector";
 
 const Player = () => {
   const playerRef = useRef<RapierRigidBody>(null);

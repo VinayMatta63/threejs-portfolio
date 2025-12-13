@@ -10,10 +10,11 @@ import {
   SRGBColorSpace,
   Texture,
 } from "three";
-import { vertexShader, fragmentShader } from "../helpers/shaders";
-import { CollisionPayload } from "../services/CollisionEmitter";
-import { resetKeyboardEvents } from "../utils/resetKeyboardEvents";
-import CollisionPlate from "./CollisionPlate";
+import { vertexShader, fragmentShader } from "../../helpers/shaders";
+import { CollisionPayload } from "../../services/CollisionEmitter";
+import { resetKeyboardEvents } from "../../utils/resetKeyboardEvents";
+import CollisionPlate from "../base/CollisionPlate";
+import PortalSign from "./PortalSign";
 
 const Portal = () => {
   const portal = useGLTF("/models/portal.glb");
@@ -76,8 +77,10 @@ const Portal = () => {
         position={[0, 0.5, -8]}
         onCollision={handleCollision}
       />
+      <PortalSign />
     </group>
   );
 };
 
 export default memo(Portal);
+useGLTF.preload("/models/portal.glb");

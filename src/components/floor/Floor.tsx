@@ -17,7 +17,7 @@ const Floor: React.FC<FloorProps> = ({ height = 400, width = 400 }) => {
 
   return (
     <RigidBody colliders="cuboid" type="fixed">
-      <mesh rotation={[-Math.PI / 2, 0, 0]}>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
         <planeGeometry args={[height, width]} />
         <meshStandardMaterial map={floorTexture} />
       </mesh>
