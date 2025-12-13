@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { RefObject, useRef } from "react";
 import { Vector3 } from "three";
 import { useFrame } from "@react-three/fiber";
 import { RapierRigidBody } from "@react-three/rapier";
@@ -14,7 +14,7 @@ const ACCELERATION = 50;
 const FRICTION = 0.85;
 
 interface UsePlayerMovementProps {
-  playerRef: React.RefObject<RapierRigidBody>;
+  playerRef: RefObject<RapierRigidBody>;
 }
 
 const usePlayerMovement = ({ playerRef }: UsePlayerMovementProps) => {

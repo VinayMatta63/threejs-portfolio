@@ -22,7 +22,6 @@ import Skills from "./Skills";
 import Boards from "./Boards";
 import Signs from "./SignBoards/Signs";
 import { fragment, vertex } from "./helpers/shaders";
-import Player from "./Player";
 
 const vertexShader = vertex;
 const fragmentShader = fragment;
@@ -69,7 +68,6 @@ function Body(): React.ReactElement {
     tttLeft,
     signModel,
     largeSignModel,
-    squidDoll,
   ] = useLoader(GLTFLoader, [
     "/models/portal.glb",
     "/models/tree.glb",
