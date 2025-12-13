@@ -19,12 +19,11 @@ import Lamps from "./Lamps";
 import Trees from "./Trees";
 import PathMesh from "./Path/index";
 import Skills from "./Skills";
-import CameraControls from "./Setup/CameraControls";
 
 import Boards from "./Boards";
 import Signs from "./SignBoards/Signs";
 import { fragment, vertex } from "./helpers/shaders";
-import { RigidBody } from "@react-three/rapier";
+import Player from "./Player";
 
 const vertexShader = vertex;
 const fragmentShader = fragment;
@@ -183,12 +182,7 @@ function Body(): React.ReactElement {
       <OrbitControls />
       <About font={font} />
       <Floor />
-      <RigidBody colliders="cuboid" position={[0, 1, 0]} type="dynamic">
-        <mesh>
-          <capsuleGeometry args={[1, 2, 8, 16]} />
-          <meshBasicMaterial />
-        </mesh>
-      </RigidBody>
+      <Player />
       <Signs largeSignModel={largeSignModel} model={signModel} font={font} />
     </>
   );
