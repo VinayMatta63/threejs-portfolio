@@ -23,7 +23,7 @@ import {
 } from "../helpers/helpers";
 import Track from "../Game/Track";
 import gsap from "gsap";
-import Game from "../Game";
+import Game from "../Game/Game";
 
 interface CameraControlsProps {
   icon: Texture;

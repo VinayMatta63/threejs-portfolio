@@ -1,7 +1,9 @@
-import React from "react";
+import { useGLTF } from "@react-three/drei";
 import Tree from "./Tree";
 
-const Trees = ({ tree }) => {
+const Trees = () => {
+  const tree = useGLTF("/models/tree.glb");
+
   const treePositions = [
     [60, 0, 35],
     [20, 0, -30],
@@ -13,6 +15,7 @@ const Trees = ({ tree }) => {
     [-10, 0, -80],
     [-25, 0, -40],
   ];
+
   for (let i = 0; i < 50; i++) {
     treePositions.push([
       -150 - Math.floor(Math.random() * 45),
@@ -25,6 +28,7 @@ const Trees = ({ tree }) => {
       Math.floor((Math.random() - 0.5) * 350),
     ]);
   }
+
   return treePositions.map((pos, index) => (
     <Tree tree={tree} pos={pos} key={index} />
   ));

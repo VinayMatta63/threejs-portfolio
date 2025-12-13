@@ -6,12 +6,14 @@ import { useCollisionListener } from "../../hooks/useCollisionDetector";
 type CollisionPlateProps = RigidBodyProps & {
   name?: string;
   color?: Color | number | string;
+  size?: [number, number];
   onCollision: (payload: CollisionPayload) => void;
 };
 
 const CollisionPlate = ({
   name = "plate",
   color = 0xff0000,
+  size = [5, 5],
   onCollision,
   ...props
 }: CollisionPlateProps) => {
@@ -27,8 +29,8 @@ const CollisionPlate = ({
       {...props}
     >
       <mesh rotation={[Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[5, 5]} />
-        <meshBasicMaterial color={color} side={1} />
+        <planeGeometry args={size} />
+        <meshStandardMaterial color={color} side={1} />
       </mesh>
     </RigidBody>
   );

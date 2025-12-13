@@ -1,56 +1,78 @@
 import { Html } from "@react-three/drei";
-import React, { forwardRef } from "react";
-import { Mesh } from "three";
+import { useState } from "react";
+import CollisionPlate from "../components/base/CollisionPlate";
+import { SPRITE_STYLES } from "../constants/spriteStyles";
 
 interface TrackProps {
   position: [number, number, number];
-  args?: [number, number];
-  show?: boolean;
-  completed?: boolean;
+  started: boolean;
+  failed: boolean;
+  setStart: (started: boolean) => void;
 }
 
-const spriteStyles: React.CSSProperties = {
-  color: "#fff",
-  backgroundColor: "rgba(0,0,0,0.8)",
-  fontSize: "30px",
-  padding: "100px 200px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  flexDirection: "column",
+const Track = ({ position, started, failed, setStart }: TrackProps) => {
+  const [completed, setCompleted] = useState(false);
+
+  return (
+    <group position={position}>
+      <mesh rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[30, 80]} />
+        <meshStandardMaterial
+          attach="material"
+          color={"#e0d296"}
+          roughness={1}
+        />
+      </mesh>
+      <CollisionPlate
+        name="gameStart"
+        position={[0, 0.01, 40]}
+        size={[30, 10]}
+        color="#c2ba69"
+        onCollision={({ type }) => {
+          if (type === "enter") {
+            setStart(true);
+          }
+        }}
+      />
+      <CollisionPlate
+        name="gameEnd"
+        position={[0, 0.01, -40]}
+        size={[30, 10]}
+        color="#c2ba69"
+        onCollision={({ type }) => {
+          if (type === "enter") {
+            setCompleted(true);
+          } else {
+            setStart(false);
+            setCompleted(false);
+          }
+        }}
+      />
+
+      {!started && !failed && (
+        <Html sprite style={SPRITE_STYLES} position={[0, 5, 0]} transform>
+          <>
+            <span>Start Game</span>
+            <br />
+            <span>( Only move forward or backward</span>
+            <span>While the Doll is looking away )</span>
+          </>
+        </Html>
+      )}
+
+      {completed && (
+        <Html sprite style={SPRITE_STYLES} position={[0, 5, -50]} transform>
+          <span>Congratulations!</span>
+        </Html>
+      )}
+
+      {failed && (
+        <Html sprite style={SPRITE_STYLES} position={[0, 5, 0]} transform>
+          <span>Game Over! Try Again.</span>
+        </Html>
+      )}
+    </group>
+  );
 };
-
-const Track = forwardRef<Mesh, TrackProps>(
-  ({ position, args = [30, 80], show, completed }, ref) => {
-    return (
-      <group>
-        <mesh position={position} rotation={[-Math.PI / 2, 0, 0]} ref={ref}>
-          <planeGeometry args={args} />
-          <meshStandardMaterial
-            attach="material"
-            color={"#e0d296"}
-            roughness={1}
-          />
-        </mesh>
-        {!show && (
-          <Html sprite style={spriteStyles} position={[100, 5, 0]} transform>
-            {!completed ? (
-              <>
-                <span>Start Game</span>
-                <br />
-                <span>( Only move forward or backward</span>
-                <span>While the Doll is looking away )</span>
-              </>
-            ) : (
-              <>completed</>
-            )}
-          </Html>
-        )}
-      </group>
-    );
-  }
-);
-
-Track.displayName = "Track";
 
 export default Track;

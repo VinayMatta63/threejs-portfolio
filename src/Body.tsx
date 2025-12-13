@@ -11,11 +11,11 @@ import About from "./components/about/About";
 import Boards from "./Boards";
 import Signs from "./SignBoards/Signs";
 import Portal from "./components/portal/Portal";
-import Lamp from "./components/base/Lamp";
+import Lamps from "./components/lamps/Lamps";
+import Game from "./Game/Game";
 
 function Body(): React.ReactElement {
   const [
-    tree,
     path,
     chatModel,
     sfModel,
@@ -31,7 +31,6 @@ function Body(): React.ReactElement {
     tttLeft,
     signModel,
   ] = useLoader(GLTFLoader, [
-    "/models/tree.glb",
     "/models/tile.glb",
     "/models/chat.glb",
     "/models/sf.glb",
@@ -53,14 +52,13 @@ function Body(): React.ReactElement {
   return (
     <>
       <Portal />
-      <Lamp position={[-51, 0, 80]} />
-      <Lamp position={[139, 0, 80]} />
-      <Lamp position={[49, 0, -57]} />
-      <Lamp position={[-141, 0, -57]} />
+      <Lamps />
       <Skills />
       <About />
+      <Game position={[100, 5, -100]} />
+
       <PathMesh path={path.nodes} />
-      <Trees tree={tree} />
+      <Trees />
       <Boards
         font={font}
         sfModel={sfModel}
