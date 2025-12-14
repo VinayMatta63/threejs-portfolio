@@ -1,4 +1,6 @@
 import React, { lazy, Suspense } from "react";
+import { Loader } from "@react-three/drei";
+import { LOADER_CONFIG } from "../../constants/loaderConfig";
 import Paths from "./Paths";
 import Player from "./Player";
 import Trees from "./Trees";
@@ -32,6 +34,7 @@ const World: React.FC = () => {
         <Game />
         <Projects />
       </Suspense>
+      <Loader {...LOADER_CONFIG} />
     </>
   );
 };
