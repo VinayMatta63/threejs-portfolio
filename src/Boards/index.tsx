@@ -1,42 +1,39 @@
 import React from "react";
-import { Group } from "three";
 import Board from "./Board";
+import { useGLTF } from "@react-three/drei";
 
-interface Model {
-  scene: Group;
-}
-
-interface BoardsProps {
-  font: any;
-  chatModel: Model;
-  sfModel: Model;
-  mfModel: Model;
-  fsModel: Model;
-  iicModel: Model;
-  eventsModel: Model;
-  loginModel: Model;
-  mcModel: Model;
-  mcLeft: Model;
-  mcRight: Model;
-  tttModel: Model;
-  tttLeft: Model;
-}
-
-const Boards: React.FC<BoardsProps> = ({
-  font,
-  chatModel,
-  sfModel,
-  mfModel,
-  fsModel,
-  iicModel,
-  eventsModel,
-  loginModel,
-  mcModel,
-  mcLeft,
-  mcRight,
-  tttModel,
-  tttLeft,
-}) => {
+const Boards: React.FC = () => {
+  const font = "/fonts/Roboto_Regular.json";
+  const [
+    chatModel,
+    sfModel,
+    mfModel,
+    fsModel,
+    iicModel,
+    eventsModel,
+    loginModel,
+    mcModel,
+    mcLeft,
+    mcRight,
+    tttModel,
+    tttLeft,
+  ] = useGLTF(
+    [
+      "/models/chat.glb",
+      "/models/sf.glb",
+      "/models/mf.glb",
+      "/models/fs.glb",
+      "/models/iic.glb",
+      "/models/iicEvents.glb",
+      "/models/iicLogin.glb",
+      "/models/mc.glb",
+      "/models/mc1.glb",
+      "/models/mc3.glb",
+      "/models/ttt.glb",
+      "/models/ttt1.glb",
+    ],
+    true
+  );
   sfModel.scene.position.y = 0.1;
   sfModel.scene.position.x = 0;
   sfModel.scene.position.z = 0;

@@ -1,5 +1,5 @@
 import { Html } from "@react-three/drei";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CollisionPlate from "../components/base/CollisionPlate";
 import { SPRITE_STYLES } from "../constants/spriteStyles";
 
@@ -12,6 +12,12 @@ interface TrackProps {
 
 const Track = ({ position, started, failed, setStart }: TrackProps) => {
   const [completed, setCompleted] = useState(false);
+
+  useEffect(() => {
+    if (completed) {
+      setStart(false);
+    }
+  }, [completed, setStart]);
 
   return (
     <group position={position}>
@@ -42,9 +48,9 @@ const Track = ({ position, started, failed, setStart }: TrackProps) => {
         onCollision={({ type }) => {
           if (type === "enter") {
             setCompleted(true);
-          } else {
-            setStart(false);
-            setCompleted(false);
+            setTimeout(() => {
+              setCompleted(false);
+            }, 2000);
           }
         }}
       />

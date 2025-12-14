@@ -1,14 +1,10 @@
 import React from "react";
 import SignMesh from "./SignMesh";
-import { Text3D } from "@react-three/drei";
-import { Group } from "three";
+import { Text3D, useGLTF } from "@react-three/drei";
 
-interface SignsProps {
-  model: { scene: Group };
-  font: string;
-}
-
-const Signs: React.FC<SignsProps> = ({ model, font }) => {
+const Signs: React.FC = () => {
+  const font = "/fonts/Roboto_Regular.json";
+  const model = useGLTF("/models/sign.glb");
   const skillsPos = { x: -60, y: 0, z: 30 };
   const projPos = { x: -80, y: 0, z: 15 };
   const aboutPos = { x: -40, y: 0, z: 35 };

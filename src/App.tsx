@@ -3,7 +3,6 @@ import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
 import { KeyboardControls, Loader, Preload } from "@react-three/drei";
 import Scene from "./Body";
-import Lights from "./Setup/Lights";
 import Floor from "./components/floor/Floor";
 import Player from "./components/player/Player";
 import { KEYBOARD_MAP } from "./hooks/useMovementState";
@@ -16,7 +15,7 @@ const App = () => {
         <Canvas
           shadows
           style={{
-            height: "100vh",
+            height: "95vh",
             width: "100vw",
           }}
           camera={{ fov: 55, near: 0.1, far: 1000, position: [0, 20, 35] }}
@@ -31,7 +30,6 @@ const App = () => {
             </Physics>
             <Preload all />
           </Suspense>
-          <Lights />
         </Canvas>
       </KeyboardControls>
 
