@@ -30,5 +30,3 @@ const Floor: React.FC<FloorProps> = ({ height = 400, width = 400 }) => {
 };
 
 export default Floor;
-
-useTexture.preload("/assets/grass.jpg");

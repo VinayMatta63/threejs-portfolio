@@ -39,6 +39,4 @@ const Trees = () => {
   );
 };
 
-useGLTF.preload("/models/tree.glb");
-
 export default Trees;

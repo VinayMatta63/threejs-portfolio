@@ -49,6 +49,4 @@ const Lamp: React.FC<ThreeElements["group"]> = ({ position, ...props }) => {
   );
 };
 
-useGLTF.preload("/models/lamps.glb");
-
 export default memo(Lamp);

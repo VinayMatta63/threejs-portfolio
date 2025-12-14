@@ -51,6 +51,4 @@ const Skills = () => {
   );
 };
 
-useTexture.preload(SKILL_ICONS);
-
 export default Skills;

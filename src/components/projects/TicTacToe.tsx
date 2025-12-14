@@ -19,6 +19,4 @@ const TicTacToe = () => {
   );
 };
 
-useGLTF.preload(["/models/ttt.glb", "/models/ttt1.glb"]);
-
 export default TicTacToe;

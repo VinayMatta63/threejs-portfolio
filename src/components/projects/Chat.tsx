@@ -14,6 +14,4 @@ const Chat = () => {
   );
 };
 
-useGLTF.preload("/models/chat.glb");
-
 export default Chat;

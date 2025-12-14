@@ -32,6 +32,4 @@ const PortalSign = () => {
   );
 };
 
-useGLTF.preload("/models/largeSign.glb");
-
 export default PortalSign;

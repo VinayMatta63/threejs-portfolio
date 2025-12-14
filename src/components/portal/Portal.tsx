@@ -102,6 +102,4 @@ const Portal = () => {
   );
 };
 
-useGLTF.preload("/models/portal.glb");
-
 export default memo(Portal);

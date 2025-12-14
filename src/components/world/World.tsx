@@ -1,15 +1,17 @@
-import React from "react";
-import Boards from "../projects/Projects";
-import Skills from "../skills/Skills";
-import Portal from "../portal/Portal";
-import Lamps from "../lamps/Lamps";
-import About from "../about/About";
-import Game from "../game/Game";
-import PathMesh from "./Paths";
+import React, { lazy, Suspense } from "react";
+import Paths from "./Paths";
 import Player from "./Player";
 import Trees from "./Trees";
 import Floor from "./Floor";
 import Light from "./Light";
+
+// Lazy load heavy components
+const Portal = lazy(() => import("../portal/Portal"));
+const Game = lazy(() => import("../game/Game"));
+const Projects = lazy(() => import("../projects/Projects"));
+const Lamps = lazy(() => import("../lamps/Lamps"));
+const Skills = lazy(() => import("../skills/Skills"));
+const About = lazy(() => import("../about/About"));
 
 const World: React.FC = () => {
   return (
@@ -19,15 +21,17 @@ const World: React.FC = () => {
       <Floor />
       <Trees />
       <Light />
-      <PathMesh />
+      <Paths />
 
-      {/* Additions */}
-      <Portal />
-      <Lamps />
-      <Skills />
-      <About />
-      <Game />
-      <Boards />
+      {/* Lazy load heavy components */}
+      <Suspense fallback={null}>
+        <Portal />
+        <Lamps />
+        <Skills />
+        <About />
+        <Game />
+        <Projects />
+      </Suspense>
     </>
   );
 };

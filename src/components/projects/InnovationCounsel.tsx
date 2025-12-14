@@ -19,10 +19,4 @@ const InnovationCounsel = () => {
   );
 };
 
-useGLTF.preload([
-  "/models/iic.glb",
-  "/models/iicEvents.glb",
-  "/models/iicLogin.glb",
-]);
-
 export default InnovationCounsel;

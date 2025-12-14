@@ -20,6 +20,4 @@ const MuseumCounsel = () => {
   );
 };
 
-useGLTF.preload(["/models/mc.glb", "/models/mc1.glb", "/models/mc3.glb"]);
-
 export default MuseumCounsel;
