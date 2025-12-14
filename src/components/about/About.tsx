@@ -6,13 +6,13 @@ import Me from "./Me";
 
 const About = () => {
   return (
-    <>
+    <group>
       <Text
-        rotation={[0, Math.PI, 0]}
-        position={[20, 0.5, 120]}
+        rotation={[-Math.PI / 2, Math.PI * 2, 0]}
+        position={[-15, 0.5, 140]}
         textOptions={{
-          size: 10,
-          height: 4,
+          size: 7,
+          height: 1,
           font: "/fonts/Roboto_Regular.json",
         }}
       >
@@ -22,7 +22,7 @@ const About = () => {
       <Education />
       <Links />
       <Me />
-    </>
+    </group>
   );
 };
 

@@ -10,6 +10,7 @@ const SocialFreaks = () => {
   return (
     <Project
       position={[-120, 0, -10]}
+      rotation={[0, -Math.PI / 2, 0]}
       title="Social Freaks"
       model={sfModel}
       modelLeft={mfModel}

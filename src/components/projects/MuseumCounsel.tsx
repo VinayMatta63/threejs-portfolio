@@ -11,7 +11,7 @@ const MuseumCounsel = () => {
     <Project
       position={[-60, 0, -140]}
       title="Museum Counsel"
-      rotation={[0, Math.PI, 0]}
+      rotation={[0, -Math.PI / 2, 0]}
       model={mcModel}
       modelLeft={mcLeft}
       modelRight={mcRight}

@@ -11,7 +11,7 @@ const InnovationCounsel = () => {
     <Project
       position={[-60, 0, -40]}
       title="IIC DCRUST"
-      rotation={[0, Math.PI, 0]}
+      rotation={[0, -Math.PI / 2, 0]}
       model={iicModel}
       modelRight={eventsModel}
       modelLeft={loginModel}

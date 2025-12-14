@@ -5,6 +5,7 @@ import Text from "../../base/Text";
 
 const Me: React.FC = () => {
   const secondRef = useRef<Mesh>(null);
+
   useFrame(({ clock }) => {
     const elapsedTime = clock.getElapsedTime();
     if (secondRef.current) {
@@ -14,11 +15,11 @@ const Me: React.FC = () => {
 
   return (
     <Text
-      position={[130, 2, 110]}
-      rotation={[-Math.PI / 2, 0, -Math.PI]}
+      position={[72, 2, 90]}
+      rotation={[-Math.PI / 2, Math.PI, -Math.PI]}
       ref={secondRef}
       textOptions={{
-        size: 10,
+        size: 7,
         height: 2,
         font: "/fonts/Roboto_Regular.json",
       }}

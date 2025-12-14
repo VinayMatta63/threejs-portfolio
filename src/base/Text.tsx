@@ -1,6 +1,7 @@
 import React from "react";
 import { ThreeElements } from "@react-three/fiber";
 import { Text3D, Text3DProps } from "@react-three/drei";
+import { DoubleSide } from "three";
 
 type TextProps = ThreeElements["mesh"] & {
   textOptions?: Text3DProps;
@@ -15,7 +16,7 @@ const Text: React.FC<TextProps> = ({
   return (
     <mesh rotation={rotation} {...props}>
       <Text3D {...textOptions}>{children}</Text3D>
-      <meshBasicMaterial attach="material" color="#fafafa" />
+      <meshBasicMaterial attach="material" color="#fafafa" side={DoubleSide} />
     </mesh>
   );
 };

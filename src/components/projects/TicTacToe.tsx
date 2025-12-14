@@ -10,6 +10,7 @@ const TicTacToe = () => {
   return (
     <Project
       position={[-120, 0, -140]}
+      rotation={[0, -Math.PI / 2, 0]}
       title="Tic Tac Toe"
       model={tttModel}
       modelLeft={tttLeft}

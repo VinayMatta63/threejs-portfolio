@@ -23,7 +23,7 @@ const Project: React.FC<ProjectProps> = ({
   ...props
 }) => {
   const textOptions = {
-    size: 5,
+    size: 3,
     height: 1,
     font: "/fonts/Roboto_Regular.json",
   };
@@ -32,7 +32,7 @@ const Project: React.FC<ProjectProps> = ({
     <group {...props}>
       <Text
         rotation={[0, Math.PI / 2, 0]}
-        position={[0, 15, (title.length / 2) * 3.2]}
+        position={[0, 15, 12]}
         textOptions={textOptions}
       >
         {title}
@@ -45,7 +45,6 @@ const Project: React.FC<ProjectProps> = ({
         size={[10, 10]}
         position={[10, 0.1, 0]}
         onCollision={({ type }) => {
-          // Collision detection - debug logging removed for production
           if (type === "enter") {
             // Handle collision enter
           }
