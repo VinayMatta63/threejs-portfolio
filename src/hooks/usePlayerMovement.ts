@@ -6,8 +6,8 @@ import useCameraMovement from "./useCameraMovement";
 import useMovementState, { KeyControls } from "./useMovementState";
 
 // Physics constants
-const SPEED = 17;
-const SPRINT_MULTIPLIER = 1.5;
+const SPEED = 12;
+const SPRINT_MULTIPLIER = 1.8;
 const FLOOR_Y = 2;
 const GRAVITY = -9.81;
 const ACCELERATION = 50;
