@@ -1,14 +1,12 @@
 import React, { lazy, Suspense } from "react";
-import { Loader } from "@react-three/drei";
-import { LOADER_CONFIG } from "../../constants/loaderConfig";
 import Paths from "./Paths";
 import Player from "./Player";
 import Trees from "./Trees";
 import Floor from "./Floor";
 import Light from "./Light";
+import Portal from "../portal/Portal";
 
 // Lazy load heavy components
-const Portal = lazy(() => import("../portal/Portal"));
 const Game = lazy(() => import("../game/Game"));
 const Projects = lazy(() => import("../projects/Projects"));
 const Lamps = lazy(() => import("../lamps/Lamps"));
@@ -24,17 +22,16 @@ const World: React.FC = () => {
       <Trees />
       <Light />
       <Paths />
+      <Portal />
 
       {/* Lazy load heavy components */}
       <Suspense fallback={null}>
-        <Portal />
         <Lamps />
         <Skills />
         <About />
         <Game />
         <Projects />
       </Suspense>
-      <Loader {...LOADER_CONFIG} />
     </>
   );
 };
