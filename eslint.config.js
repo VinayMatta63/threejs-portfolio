@@ -15,7 +15,6 @@ export default [
       "*.bundle.js",
       "*.test.js",
       "*.spec.js",
-      ".firebase",
       "coverage",
     ],
   },
