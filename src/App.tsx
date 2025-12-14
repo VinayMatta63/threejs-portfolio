@@ -5,6 +5,7 @@ import { KeyboardControls, Loader, Preload } from "@react-three/drei";
 import { KEYBOARD_MAP } from "./hooks/useMovementState";
 import World from "./components/world/World";
 import "./App.css";
+import { LOADER_CONFIG } from "./constants/loaderConfig";
 
 const App = () => {
   return (
@@ -34,27 +35,7 @@ const App = () => {
         <span>Shift - Sprint</span>
         <span>Space - Jump</span>
       </div>
-      <Loader
-        containerStyles={{
-          background:
-            "radial-gradient(circle farthest-corner at center top,#071021,#19324a)",
-        }} // Flex layout styles
-        innerStyles={{
-          backgroundColor: "salmon",
-          width: "50vw",
-        }} // Inner container styles
-        barStyles={{
-          backgroundColor: "lightgreen",
-        }} // Loading-bar styles
-        dataInterpolation={(p) => `Loading ${Math.round(p)}%`}
-        initialState={(active) => active}
-        dataStyles={{
-          color: "#fafafa",
-          fontSize: "25px",
-          fontFamily: "Raleway",
-          fontWeight: "500",
-        }}
-      />
+      <Loader {...LOADER_CONFIG} />
     </div>
   );
 };

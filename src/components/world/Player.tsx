@@ -1,5 +1,10 @@
 import { useRef } from "react";
-import { RapierRigidBody, RigidBody } from "@react-three/rapier";
+import {
+  IntersectionEnterHandler,
+  IntersectionExitHandler,
+  RapierRigidBody,
+  RigidBody,
+} from "@react-three/rapier";
 import usePlayerMovement from "../../hooks/usePlayerMovement";
 import { useCollisionDetector } from "../../hooks/useCollisionDetector";
 
@@ -17,8 +22,8 @@ const Player = () => {
       colliders="cuboid"
       lockRotations
       sensor
-      onIntersectionEnter={handleCollisionEnter}
-      onIntersectionExit={handleCollisionExit}
+      onIntersectionEnter={handleCollisionEnter as IntersectionEnterHandler}
+      onIntersectionExit={handleCollisionExit as IntersectionExitHandler}
     >
       <mesh>
         <capsuleGeometry args={[1, 2, 8, 16]} />

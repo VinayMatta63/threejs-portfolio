@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/immutability */
+import { useEffect, useRef } from "react";
 import { ObjectMap, useFrame } from "@react-three/fiber";
 import { GLTF } from "three/examples/jsm/Addons.js";
 
@@ -7,17 +8,25 @@ interface ContactModelProps {
 }
 
 const ContactModel = ({ messageModel }: ContactModelProps) => {
-  let mouseX = 0;
-  let TargetX = 0;
+  const mouseX = useRef(0);
+  const windowHalfX = useRef(window.innerWidth / 2);
 
-  const windowHalfX = window.innerWidth / 2;
+  // Use effect to manage event listener lifecycle
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.current = e.clientX - windowHalfX.current;
+    };
 
-  document.addEventListener("mousemove", (e) => {
-    mouseX = e.clientX - windowHalfX;
-  });
+    document.addEventListener("mousemove", handleMouseMove);
+
+    // Cleanup: remove event listener on unmount
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
 
   useFrame(({ clock }) => {
-    TargetX = mouseX * 0.001;
+    const TargetX = mouseX.current * 0.001;
 
     const elapsedTime = clock.getElapsedTime();
     messageModel.scene.children[0].rotation.z = 0.8 * elapsedTime;

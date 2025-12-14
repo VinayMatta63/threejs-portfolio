@@ -44,9 +44,10 @@ const Project: React.FC<ProjectProps> = ({
         name={title.toLowerCase().replace(/\s+/g, "-") + "-plate"}
         size={[10, 10]}
         position={[10, 0.1, 0]}
-        onCollision={({ type, name }) => {
+        onCollision={({ type }) => {
+          // Collision detection - debug logging removed for production
           if (type === "enter") {
-            console.log(name);
+            // Handle collision enter
           }
         }}
       />

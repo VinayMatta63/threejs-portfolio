@@ -1,3 +1,4 @@
+// @ts-expect-error TODO: fix this ts error
 export const openProfileTab = (gh, li, lc, cc, hr, onObject) => {
   if (onObject.object.uuid === gh.current.uuid)
     window.open("https://github.com/VinayMatta63", "new");
@@ -11,6 +12,7 @@ export const openProfileTab = (gh, li, lc, cc, hr, onObject) => {
     window.open("https://www.hackerrank.com/vinaymatta63", "new");
 };
 
+// @ts-expect-error TODO: fix this ts error
 export const openProjectTab = (sf, iic, chat, museum, ttt, onObject) => {
   if (onObject.object.uuid === sf.current.uuid)
     window.open("https://social-freaks.vercel.app/", "new");
@@ -24,6 +26,7 @@ export const openProjectTab = (sf, iic, chat, museum, ttt, onObject) => {
     window.open("https://tic-tac-toe-7fcb8.web.app/", "new");
 };
 
+// @ts-expect-error TODO: fix this ts error
 export const openProjectGithub = (sf, iic, chat, museum, ttt, onObject) => {
   if (onObject.object.uuid === sf.current.uuid)
     window.open("https://github.com/VinayMatta63/Social-Freaks", "new");

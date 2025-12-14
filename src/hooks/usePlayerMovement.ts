@@ -14,7 +14,7 @@ const ACCELERATION = 50;
 const FRICTION = 0.85;
 
 interface UsePlayerMovementProps {
-  playerRef: React.RefObject<RapierRigidBody>;
+  playerRef: React.RefObject<RapierRigidBody | null>;
 }
 
 const usePlayerMovement = ({ playerRef }: UsePlayerMovementProps) => {

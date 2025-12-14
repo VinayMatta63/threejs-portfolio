@@ -4,6 +4,7 @@ import axios from "axios";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import "./Contact.css";
 import ContactModel from "./ContactModel";
+import { LOADER_CONFIG } from "../../constants/loaderConfig";
 
 const Contact: React.FC = () => {
   const [name, setName] = useState("");
@@ -57,27 +58,7 @@ const Contact: React.FC = () => {
         <ContactModel messageModel={messageModel} />
       </Canvas>
 
-      <Loader
-        containerStyles={{
-          background:
-            "radial-gradient(circle farthest-corner at center top,#071021,#19324a)",
-        }} // Flex layout styles
-        innerStyles={{
-          backgroundColor: "salmon",
-          width: "50vw",
-        }} // Inner container styles
-        barStyles={{
-          backgroundColor: "lightgreen",
-        }} // Loading-bar styles
-        dataInterpolation={(p: number) => `Loading ${Math.round(p)}%`}
-        initialState={(active: boolean) => active}
-        dataStyles={{
-          color: "#fafafa",
-          fontSize: "25px",
-          fontFamily: "Raleway",
-          fontWeight: "500",
-        }}
-      />
+      <Loader {...LOADER_CONFIG} />
 
       <div className="container">
         <div className="right">

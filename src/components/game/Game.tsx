@@ -21,15 +21,18 @@ const Game = () => {
   const isMoving = forwardPressed || backPressed || leftPressed || rightPressed;
 
   useEffect(() => {
+    if (!squidRef.current) return;
+
     if (failed || !startGame) {
       isRunningRef.current = false;
-      gsap.killTweensOf(squidRef.current.rotation);
+      gsap.killTweensOf(squidRef.current?.rotation);
       if (failed) squidRef.current.rotation.y = Math.PI;
       return;
     }
 
     const animate = async () => {
       isRunningRef.current = true;
+      if (!squidRef.current) return;
 
       while (isRunningRef.current) {
         gsap.to(squidRef.current.rotation, { y: 0, duration: 0.45 });
@@ -46,7 +49,7 @@ const Game = () => {
   }, [startGame, failed]);
 
   useEffect(() => {
-    let timeout;
+    let timeout: ReturnType<typeof setTimeout>;
 
     if (failed) {
       timeout = setTimeout(() => {
