@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Group } from "three";
 import gsap from "gsap";
+import useMovementState, { KeyControls } from "../../hooks/useMovementState";
+import { delay } from "../../utils/delay";
 import Squid from "./Squid";
 import Track from "./Track";
-import { delay } from "../utils/delay";
-import useMovementState, { KeyControls } from "../hooks/useMovementState";
 
 const Game = () => {
   const [startGame, setStartGame] = useState(false);

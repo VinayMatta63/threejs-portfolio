@@ -1,4 +1,4 @@
-import Text from "../base/Text";
+import Text from "../../base/Text";
 import Education from "./Education";
 import Links from "./Links";
 import Me from "./Me";

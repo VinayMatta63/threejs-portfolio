@@ -1,7 +1,7 @@
 import { RigidBody, RigidBodyProps } from "@react-three/rapier";
 import { Color } from "three";
-import { CollisionPayload } from "../../services/CollisionEmitter";
-import { useCollisionListener } from "../../hooks/useCollisionDetector";
+import { CollisionPayload } from "../services/CollisionEmitter";
+import { useCollisionListener } from "../hooks/useCollisionDetector";
 
 type CollisionPlateProps = RigidBodyProps & {
   name?: string;

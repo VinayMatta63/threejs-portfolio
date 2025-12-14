@@ -1,5 +1,5 @@
 import { useGLTF } from "@react-three/drei";
-import Text from "../base/Text";
+import Text from "../../base/Text";
 
 const SIGN_SCALE = 1.6;
 

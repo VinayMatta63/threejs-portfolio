@@ -21,9 +21,9 @@ import {
   openProjectGithub,
   openProjectTab,
 } from "../helpers/helpers";
-import Track from "../Game/Track";
+import Track from "../game/Track";
 import gsap from "gsap";
-import Game from "../Game/Game";
+import Game from "../game/Game";
 
 interface CameraControlsProps {
   icon: Texture;

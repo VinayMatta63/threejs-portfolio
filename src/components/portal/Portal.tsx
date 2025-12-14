@@ -10,10 +10,10 @@ import {
   SRGBColorSpace,
   Texture,
 } from "three";
-import { vertexShader, fragmentShader } from "../../helpers/shaders";
+import { vertexShader, fragmentShader } from "../../shaders/portal/shaders";
 import { CollisionPayload } from "../../services/CollisionEmitter";
 import { resetKeyboardEvents } from "../../utils/resetKeyboardEvents";
-import CollisionPlate from "../base/CollisionPlate";
+import CollisionPlate from "../../base/CollisionPlate";
 import PortalSign from "./PortalSign";
 
 const Portal = () => {

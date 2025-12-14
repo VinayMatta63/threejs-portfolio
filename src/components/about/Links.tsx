@@ -1,5 +1,5 @@
 import React from "react";
-import Text from "../base/Text";
+import Text from "../../base/Text";
 
 const Links: React.FC = () => {
   const z = 83;

@@ -1,7 +1,7 @@
 import { useTexture } from "@react-three/drei";
 import { SKILL_ICONS } from "../../constants/skillIcons";
-import Sprite from "../base/Sprite";
-import Text from "../base/Text";
+import Sprite from "../../base/Sprite";
+import Text from "../../base/Text";
 
 const Skills = () => {
   const icons = useTexture([...SKILL_ICONS]);

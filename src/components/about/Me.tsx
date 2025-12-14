@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Mesh } from "three";
 import { useFrame } from "@react-three/fiber";
-import Text from "../base/Text";
+import Text from "../../base/Text";
 
 const Me: React.FC = () => {
   const secondRef = useRef<Mesh>(null);

@@ -2,10 +2,8 @@ import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
 import { KeyboardControls, Loader, Preload } from "@react-three/drei";
-import Scene from "./Body";
-import Floor from "./components/floor/Floor";
-import Player from "./components/player/Player";
 import { KEYBOARD_MAP } from "./hooks/useMovementState";
+import World from "./components/world/World";
 import "./App.css";
 
 const App = () => {
@@ -24,9 +22,7 @@ const App = () => {
         >
           <Suspense fallback={null}>
             <Physics>
-              <Player />
-              <Floor />
-              <Scene />
+              <World />
             </Physics>
             <Preload all />
           </Suspense>

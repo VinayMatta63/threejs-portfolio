@@ -1,7 +1,7 @@
 import { Html } from "@react-three/drei";
 import { useEffect, useState } from "react";
-import CollisionPlate from "../components/base/CollisionPlate";
-import { SPRITE_STYLES } from "../constants/spriteStyles";
+import CollisionPlate from "../../base/CollisionPlate";
+import { SPRITE_STYLES } from "../../constants/spriteStyles";
 
 interface TrackProps {
   position: [number, number, number];
