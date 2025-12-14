@@ -1,7 +1,8 @@
 import React from "react";
 import { Group } from "three";
-import Text from "./Text";
 import { ThreeElements } from "@react-three/fiber";
+import CollisionPlate from "./CollisionPlate";
+import Text from "./Text";
 
 type ProjectProps = ThreeElements["group"] & {
   title: string;
@@ -36,6 +37,19 @@ const Project: React.FC<ProjectProps> = ({
       >
         {title}
       </Text>
+
+      <pointLight position={[10, 15, 0]} args={["#fafafa", 0.75, 30, 0.1]} />
+
+      <CollisionPlate
+        name={title.toLowerCase().replace(/\s+/g, "-") + "-plate"}
+        size={[10, 10]}
+        position={[10, 0.1, 0]}
+        onCollision={({ type, name }) => {
+          if (type === "enter") {
+            console.log(name);
+          }
+        }}
+      />
 
       {model && (
         <primitive

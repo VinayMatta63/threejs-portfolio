@@ -16,41 +16,11 @@
     #19324a
   );
 }
+
 .controls {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   height: 5vh;
   color: #fff;
-}
-#selector {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  z-index: 101;
-  background: radial-gradient(
-    circle farthest-corner at center top,
-    #071021,
-    #19324a
-  );
-  color: rgb(255, 255, 255);
-  font-size: 20px;
-}
-
-#particles-js {
-  width: 100vw;
-  height: 100vh;
-}
-#welcome {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 100vw;
-  height: 100%;
 }

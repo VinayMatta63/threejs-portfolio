@@ -1,7 +1,10 @@
 import { useMemo } from "react";
 import { Instance, Instances, useGLTF } from "@react-three/drei";
 import { BufferGeometry, Object3D } from "three";
-import { getTreePositions, getTreeScales } from "../../utils/getTreePositions";
+import {
+  getTreePositions,
+  getTreeScales,
+} from "../../helpers/getTreePositions";
 
 type TreeNode = Object3D & {
   geometry: BufferGeometry;
@@ -22,6 +25,7 @@ const Trees = () => {
       geometry={(nodes.tree as TreeNode).geometry}
       material={materials["Material_1019.001"]}
       frustumCulled={false}
+      castShadow
     >
       {treePositions.map((pos, index) => (
         <Instance

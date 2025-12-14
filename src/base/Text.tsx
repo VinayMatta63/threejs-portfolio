@@ -8,11 +8,12 @@ type TextProps = ThreeElements["mesh"] & {
 
 const Text: React.FC<TextProps> = ({
   children,
+  rotation = [0, Math.PI, 0],
   textOptions = { size: 1, height: 0.1, font: "/fonts/Roboto_Regular.json" },
   ...props
 }) => {
   return (
-    <mesh rotation={[0, Math.PI, 0]} {...props}>
+    <mesh rotation={rotation} {...props}>
       <Text3D {...textOptions}>{children}</Text3D>
       <meshBasicMaterial attach="material" color="#fafafa" />
     </mesh>

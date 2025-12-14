@@ -3,7 +3,7 @@ import { useFrame } from "@react-three/fiber";
 import { Group } from "three";
 import gsap from "gsap";
 import useMovementState, { KeyControls } from "../../hooks/useMovementState";
-import { delay } from "../../utils/delay";
+import { delay } from "../../helpers/delay";
 import Squid from "./Squid";
 import Track from "./Track";
 

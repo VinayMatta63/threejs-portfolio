@@ -29,6 +29,7 @@ const Track = ({ position, started, failed, setStart }: TrackProps) => {
           roughness={1}
         />
       </mesh>
+      <pointLight position={[0, 50, 5]} args={["#fafafa", 0.9, 80, 0.05]} />
       <CollisionPlate
         name="gameStart"
         position={[0, 0.01, 40]}

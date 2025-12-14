@@ -1,4 +1,5 @@
 import Text from "../../base/Text";
+import AboutSign from "./AboutSign";
 import Education from "./Education";
 import Links from "./Links";
 import Me from "./Me";
@@ -17,6 +18,7 @@ const About = () => {
       >
         About
       </Text>
+      <AboutSign />
       <Education />
       <Links />
       <Me />

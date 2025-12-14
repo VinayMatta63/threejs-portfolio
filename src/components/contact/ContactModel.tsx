@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/immutability */
 import { useFrame } from "@react-three/fiber";
 
 const ContactModel = ({ messageModel }) => {

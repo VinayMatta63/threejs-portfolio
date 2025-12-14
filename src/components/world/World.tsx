@@ -5,10 +5,9 @@ import Portal from "../portal/Portal";
 import Lamps from "../lamps/Lamps";
 import About from "../about/About";
 import Game from "../game/Game";
-import Signs from "../../SignBoards/Signs";
 import PathMesh from "./Paths";
-import Trees from "./Trees";
 import Player from "./Player";
+import Trees from "./Trees";
 import Floor from "./Floor";
 import Light from "./Light";
 
@@ -29,7 +28,6 @@ const World: React.FC = () => {
       <About />
       <Game />
       <Boards />
-      <Signs />
     </>
   );
 };

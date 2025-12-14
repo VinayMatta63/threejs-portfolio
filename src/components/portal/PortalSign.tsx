@@ -13,7 +13,7 @@ const PortalSign = () => {
       rotation={[0, Math.PI, 0]}
     >
       <primitive object={largeSignModel.scene} />
-      <Text scale={SIGN_SCALE / 5.5} position={[0.85, 5.05, -0.38]}>
+      <Text scale={SIGN_SCALE / 5.5} position={[0.8, 5.1, -0.38]}>
         Skills
       </Text>
       <Text scale={SIGN_SCALE / 5.5} position={[1, 4.38, -0.38]}>
@@ -32,6 +32,6 @@ const PortalSign = () => {
   );
 };
 
-export default PortalSign;
-
 useGLTF.preload("/models/largeSign.glb");
+
+export default PortalSign;

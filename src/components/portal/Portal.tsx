@@ -12,9 +12,11 @@ import {
 } from "three";
 import { vertexShader, fragmentShader } from "../../shaders/portal/shaders";
 import { CollisionPayload } from "../../services/CollisionEmitter";
-import { resetKeyboardEvents } from "../../utils/resetKeyboardEvents";
+import { resetKeyboardEvents } from "../../helpers/resetKeyboardEvents";
 import CollisionPlate from "../../base/CollisionPlate";
 import PortalSign from "./PortalSign";
+import ContactSign from "./ContactSign";
+import Text from "../../base/Text";
 
 const Portal = () => {
   const portal = useGLTF("/models/portal.glb");
@@ -71,16 +73,31 @@ const Portal = () => {
 
   return (
     <group>
+      <Text
+        rotation={[0, 0, 0]}
+        position={[-8, 15, -4]}
+        textOptions={{
+          size: 3,
+          height: 1,
+          font: "/fonts/Roboto_Regular.json",
+        }}
+      >
+        Contact
+      </Text>
+
       <primitive object={portal.scene} />
+      <pointLight position={[0, 15, 5]} args={["#fafafa", 0.75, 30, 0.1]} />
+      <PortalSign />
+      <ContactSign />
       <CollisionPlate
         name="contact"
         position={[0, 0.5, -8]}
         onCollision={handleCollision}
       />
-      <PortalSign />
     </group>
   );
 };
 
-export default memo(Portal);
 useGLTF.preload("/models/portal.glb");
+
+export default memo(Portal);

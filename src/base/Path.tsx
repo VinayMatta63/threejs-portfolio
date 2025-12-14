@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { Instance, Instances, useGLTF } from "@react-three/drei";
 import { BufferGeometry, Object3D } from "three";
-import { getPathTilePositions } from "../utils/getPathTilePositions";
+import { getPathTilePositions } from "../helpers/getPathTilePositions";
 
 type PathNode = Object3D & {
   geometry: BufferGeometry;
@@ -27,6 +27,7 @@ const Path: React.FC<PathProps> = ({ count, x, z, start }) => {
       limit={count}
       geometry={(nodes.Cube078 as PathNode).geometry}
       frustumCulled={false}
+      castShadow
     >
       <meshStandardMaterial
         color="#aaa"

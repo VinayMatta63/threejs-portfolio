@@ -2,6 +2,7 @@ import { useTexture } from "@react-three/drei";
 import { SKILL_ICONS } from "../../constants/skillIcons";
 import Sprite from "../../base/Sprite";
 import Text from "../../base/Text";
+import SkillsSign from "./SkillsSign";
 
 const Skills = () => {
   const icons = useTexture([...SKILL_ICONS]);
@@ -21,7 +22,7 @@ const Skills = () => {
       >
         Skills
       </Text>
-
+      <SkillsSign />
       {/*React*/}
       <Sprite icon={icons[0]} position={[-80, 5, 40]} scale={[7, 7, 1]} />
       {/*Node js*/}
