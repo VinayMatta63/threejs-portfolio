@@ -15,10 +15,10 @@ const Contact: React.FC = () => {
   const submitEmail = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setDisabled(true);
+
     axios({
       method: "POST",
       url: "https://vinay-matta-server.herokuapp.com/send",
-      // url: "http://localhost:3001/send",
       headers: { "Content-Type": "application/json" },
       data: { name: name, email: email, subject: subject, message: message },
     }).then((response) => {
@@ -40,7 +40,7 @@ const Contact: React.FC = () => {
     setMessage("");
     setSubject("");
   };
-  const messageModel = useGLTF("/models/message.glb");
+  const messageModel = useGLTF("/models/message.glb", true);
 
   return (
     <div className="section">
@@ -53,6 +53,7 @@ const Contact: React.FC = () => {
         id="canvas-contact"
         // shadows
       >
+        {/* @ts-expect-error Weird ts behavior */}
         <ContactModel messageModel={messageModel} />
       </Canvas>
 

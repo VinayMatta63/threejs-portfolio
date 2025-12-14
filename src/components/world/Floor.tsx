@@ -2,6 +2,7 @@ import React from "react";
 import { RepeatWrapping, SRGBColorSpace } from "three";
 import { useTexture } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
+import { useDispose } from "../../hooks/useDispose";
 
 interface FloorProps {
   height?: number;
@@ -14,6 +15,9 @@ const Floor: React.FC<FloorProps> = ({ height = 400, width = 400 }) => {
     texture.repeat.set(height / 2, width / 2);
     texture.colorSpace = SRGBColorSpace;
   });
+
+  // Dispose texture on unmount
+  useDispose(floorTexture);
 
   return (
     <RigidBody colliders="cuboid" type="fixed">

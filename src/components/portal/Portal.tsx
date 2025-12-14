@@ -13,6 +13,7 @@ import {
 import { vertexShader, fragmentShader } from "../../shaders/portal/shaders";
 import { CollisionPayload } from "../../services/CollisionEmitter";
 import { resetKeyboardEvents } from "../../helpers/resetKeyboardEvents";
+import { useDispose } from "../../hooks/useDispose";
 import CollisionPlate from "../../base/CollisionPlate";
 import PortalSign from "./PortalSign";
 import ContactSign from "./ContactSign";
@@ -40,6 +41,9 @@ const Portal = () => {
     });
     return { material: mat, lampMaterial: lampMat, portalMaterial: portalMat };
   }, [bakedMap]);
+
+  // Dispose materials on unmount
+  useDispose([material, lampMaterial, portalMaterial]);
 
   const portalMaterialRef = useRef(portalMaterial);
 

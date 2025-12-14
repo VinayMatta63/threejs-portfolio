@@ -1,7 +1,12 @@
 /* eslint-disable react-hooks/immutability */
-import { useFrame } from "@react-three/fiber";
+import { ObjectMap, useFrame } from "@react-three/fiber";
+import { GLTF } from "three/examples/jsm/Addons.js";
 
-const ContactModel = ({ messageModel }) => {
+interface ContactModelProps {
+  messageModel: GLTF & ObjectMap;
+}
+
+const ContactModel = ({ messageModel }: ContactModelProps) => {
   let mouseX = 0;
   let TargetX = 0;
 
