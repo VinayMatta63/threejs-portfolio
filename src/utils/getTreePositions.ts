@@ -1,9 +1,4 @@
-import { useGLTF } from "@react-three/drei";
-import Tree from "./Tree";
-
-const Trees = () => {
-  const tree = useGLTF("/models/tree.glb");
-
+export const getTreePositions = () => {
   const treePositions = [
     [60, 0, 35],
     [20, 0, -30],
@@ -29,9 +24,9 @@ const Trees = () => {
     ]);
   }
 
-  return treePositions.map((pos, index) => (
-    <Tree tree={tree} pos={pos} key={index} />
-  ));
+  return treePositions;
 };
 
-export default Trees;
+export const getTreeScales = () => {
+  return getTreePositions().map(() => Math.random() + 0.7);
+};

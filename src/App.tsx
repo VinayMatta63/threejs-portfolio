@@ -33,8 +33,6 @@ const App = () => {
         <span>WASD - Move</span>
         <span>Shift - Sprint</span>
         <span>Space - Jump</span>
-        <span>F - Fly and Land</span>
-        <span>Mouse - Look Around</span>
       </div>
       <Loader
         containerStyles={{

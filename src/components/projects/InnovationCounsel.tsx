@@ -3,16 +3,7 @@ import Project from "../../base/Project";
 
 const InnovationCounsel = () => {
   const [iicModel, eventsModel, loginModel] = useGLTF(
-    [
-      "/models/iic.glb",
-      "/models/iicEvents.glb",
-      "/models/iicLogin.glb",
-      "/models/mc.glb",
-      "/models/mc1.glb",
-      "/models/mc3.glb",
-      "/models/ttt.glb",
-      "/models/ttt1.glb",
-    ],
+    ["/models/iic.glb", "/models/iicEvents.glb", "/models/iicLogin.glb"],
     true
   );
 
@@ -27,5 +18,11 @@ const InnovationCounsel = () => {
     />
   );
 };
+
+useGLTF.preload([
+  "/models/iic.glb",
+  "/models/iicEvents.glb",
+  "/models/iicLogin.glb",
+]);
 
 export default InnovationCounsel;

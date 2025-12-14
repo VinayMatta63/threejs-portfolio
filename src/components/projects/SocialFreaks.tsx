@@ -19,4 +19,6 @@ const SocialFreaks = () => {
   );
 };
 
+useGLTF.preload(["/models/sf.glb", "/models/mf.glb", "/models/fs.glb"]);
+
 export default SocialFreaks;
