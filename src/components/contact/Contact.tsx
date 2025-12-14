@@ -1,4 +1,4 @@
-import { Loader, useGLTF } from "@react-three/drei";
+import { Loader, useGLTF, Preload } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import axios from "axios";
 import React, { useState, ChangeEvent, FormEvent } from "react";
@@ -56,6 +56,7 @@ const Contact: React.FC = () => {
       >
         {/* @ts-expect-error Weird ts behavior */}
         <ContactModel messageModel={messageModel} />
+        <Preload all />
       </Canvas>
 
       <Loader {...LOADER_CONFIG} />

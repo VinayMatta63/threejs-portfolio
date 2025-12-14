@@ -1,4 +1,5 @@
 import React, { lazy, Suspense } from "react";
+import { Preload } from "@react-three/drei";
 import Paths from "./Paths";
 import Player from "./Player";
 import Trees from "./Trees";
@@ -31,6 +32,7 @@ const World: React.FC = () => {
         <About />
         <Game />
         <Projects />
+        <Preload all />
       </Suspense>
     </>
   );
