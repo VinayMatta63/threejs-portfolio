@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Group } from "three";
+import { Html } from "@react-three/drei";
 import { ThreeElements } from "@react-three/fiber";
 import CollisionPlate from "./CollisionPlate";
 import Text from "./Text";
+import { SPRITE_STYLES } from "../constants/spriteStyles";
 
 type ProjectProps = ThreeElements["group"] & {
   title: string;
@@ -11,6 +13,7 @@ type ProjectProps = ThreeElements["group"] & {
   model?: { scene: Group };
   modelLeft?: { scene: Group };
   modelRight?: { scene: Group };
+  ScreenComponent: React.FC;
 };
 
 const Project: React.FC<ProjectProps> = ({
@@ -20,8 +23,11 @@ const Project: React.FC<ProjectProps> = ({
   modelRight,
   scale,
   subScale = 0.7,
+  ScreenComponent,
   ...props
 }) => {
+  const [isColliding, setIsColliding] = useState(false);
+
   const textOptions = {
     size: 3,
     height: 1,
@@ -46,10 +52,18 @@ const Project: React.FC<ProjectProps> = ({
         position={[10, 0.1, 0]}
         onCollision={({ type }) => {
           if (type === "enter") {
-            // Handle collision enter
+            setIsColliding(true);
+          } else if (type === "exit") {
+            setIsColliding(false);
           }
         }}
       />
+
+      {isColliding && (
+        <Html style={SPRITE_STYLES} transform rotation={[0, Math.PI / 2, 0]}>
+          <ScreenComponent />
+        </Html>
+      )}
 
       {model && (
         <primitive

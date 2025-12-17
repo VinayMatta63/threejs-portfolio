@@ -1,12 +1,11 @@
 import React from "react";
 import Text from "../../base/Text";
-import CollisionPlate from "../../base/CollisionPlate";
+import Link from "../../base/Link";
 
 const Links: React.FC = () => {
   const z = 100;
   const x = -10;
   const z_sub = 12;
-  const text_angle: [number, number, number] = [-Math.PI / 8, 0, 0];
 
   return (
     <group>
@@ -18,58 +17,33 @@ const Links: React.FC = () => {
         Links
       </Text>
       <group position={[x, 0.1, z + 15]} rotation={[0, Math.PI * 2, 0]}>
-        <group position={[0, 0, 0]}>
-          <Text rotation={text_angle}>Hackerrank</Text>
-          <CollisionPlate
-            position={[3.5, 0, 3.5]}
-            name="hackerrank"
-            onCollision={() => {}}
-          />
-        </group>
-
-        <group position={[0, 0, -z_sub]}>
-          <Text position={[0.65, 0, 0]} rotation={text_angle}>
-            Codechef
-          </Text>
-          <CollisionPlate
-            position={[3.5, 0, 3.5]}
-            name="codechef"
-            onCollision={() => {}}
-          />
-        </group>
-
-        <group position={[0, 0, -z_sub * 2]}>
-          <Text position={[0.75, 0, 0]} rotation={text_angle}>
-            Leetcode
-          </Text>
-          <CollisionPlate
-            position={[3.5, 0, 3.5]}
-            name="leetcode"
-            onCollision={() => {}}
-          />
-        </group>
-
-        <group position={[0, 0, -z_sub * 3]}>
-          <Text position={[0.75, 0, 0]} rotation={text_angle}>
-            Linkedin
-          </Text>
-          <CollisionPlate
-            position={[3.5, 0, 3.5]}
-            name="linkedin"
-            onCollision={() => {}}
-          />
-        </group>
-
-        <group position={[0, 0, -z_sub * 4]}>
-          <Text position={[1.25, 0, 0]} rotation={text_angle}>
-            Github
-          </Text>
-          <CollisionPlate
-            position={[3.5, 0, 3.5]}
-            name="github"
-            onCollision={() => {}}
-          />
-        </group>
+        <Link position={[0, 0, 0]} to="https://www.hackerrank.com/vinaymatta63">
+          Hackerrank
+        </Link>
+        <Link
+          position={[0, 0, -z_sub]}
+          to="https://www.codechef.com/users/vinay_matta_63"
+        >
+          Codechef
+        </Link>
+        <Link
+          position={[0, 0, -z_sub * 2]}
+          to="https://leetcode.com/vinaymatta63/"
+        >
+          Leetcode
+        </Link>
+        <Link
+          position={[0, 0, -z_sub * 3]}
+          to="https://linkedin.com/in/vinay-matta-465578192"
+        >
+          Linkedin
+        </Link>
+        <Link
+          position={[0, 0, -z_sub * 4]}
+          to="https://github.com/VinayMatta63"
+        >
+          Github
+        </Link>
       </group>
     </group>
   );
