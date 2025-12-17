@@ -10,26 +10,19 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
     "isolatedModules": true,
     "resolveJsonModule": true,
     "noEmit": true,
     "jsx": "react-jsx",
     "sourceMap": false,
-    "declaration": true,
+    "declaration": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "incremental": true,
     "noFallthroughCasesInSwitch": true,
     "types": ["vite/client", "vite-plugin-svgr/client"]
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "src/custom.d.ts",
-    "vite.config.ts",
-    "src/index.jsx",
-    "src/Routing.jsx"
-  ],
+  "include": ["**/*.ts", "**/*.tsx", "vite.config.ts"],
   "exclude": ["node_modules", "build"]
 }
