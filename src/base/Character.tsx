@@ -59,14 +59,15 @@ const Character = ({
       (a): a is AnimationAction => !!(a && a.isRunning())
     );
 
-    // Smooth transition with 0.5s crossfade
+    // Don't restart if the same animation is already playing
+    if (currentAction === action) return;
+
+    // Smooth transition with 0.3s crossfade
     if (currentAction && currentAction !== action) {
-      currentAction.fadeOut(0.5);
+      currentAction.fadeOut(0.3);
     }
 
-    action.reset();
-    action.fadeIn(0.5);
-    action.play();
+    action.reset().fadeIn(0.3).play();
   }, [animation, actions]);
 
   return (

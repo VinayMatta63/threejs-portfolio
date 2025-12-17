@@ -58,12 +58,12 @@ const Track = ({ position, started, failed, setStart }: TrackProps) => {
 
       {!started && !failed && (
         <Html sprite style={SPRITE_STYLES} position={[0, 5, 0]} transform>
-          <>
-            <span>Start Game</span>
-            <br />
+          <div style={{ textAlign: "center" }}>
+            <p>Start Game</p>
             <span>( Only move forward or backward</span>
+            <br />
             <span>While the Doll is looking away )</span>
-          </>
+          </div>
         </Html>
       )}
 

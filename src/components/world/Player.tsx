@@ -28,14 +28,17 @@ const Player = () => {
   useFrame(() => {
     if (!playerRef.current) return;
 
-    // Check if any movement key is actually pressed
     const isMoving =
       forwardPressed || backPressed || leftPressed || rightPressed;
 
-    // Determine animation based on input and sprint state
-    if (isMoving) {
+    // Check actual velocity to determine if player is moving
+    const velocity = playerRef.current.linvel();
+    const speed = Math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z);
+
+    if (isMoving && speed > 1.0) {
       setAnimation(sprintPressed ? "Run" : "Walk");
-    } else {
+    } else if (!isMoving || speed < 0.5) {
+      // Only go to Idle if no input OR velocity is very low
       setAnimation("Idle");
     }
   });
