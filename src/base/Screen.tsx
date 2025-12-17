@@ -30,7 +30,7 @@ const Screen = ({ title, description, visitLink, codeLink }: ScreenProps) => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        gap: "20px",
+        gap: "30px",
       }}
     >
       {title && <h2>{title}</h2>}
