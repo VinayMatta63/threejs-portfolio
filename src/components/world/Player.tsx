@@ -26,19 +26,12 @@ const Player = () => {
   const { handleCollisionEnter, handleCollisionExit } = useCollisionDetector();
 
   useFrame(() => {
-    if (!playerRef.current) return;
-
     const isMoving =
       forwardPressed || backPressed || leftPressed || rightPressed;
 
-    // Check actual velocity to determine if player is moving
-    const velocity = playerRef.current.linvel();
-    const speed = Math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z);
-
-    if (isMoving && speed > 1.0) {
+    if (isMoving) {
       setAnimation(sprintPressed ? "Run" : "Walk");
-    } else if (!isMoving || speed < 0.5) {
-      // Only go to Idle if no input OR velocity is very low
+    } else {
       setAnimation("Idle");
     }
   });
