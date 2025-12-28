@@ -11,8 +11,12 @@ import usePlayerMovement from "../../hooks/usePlayerMovement";
 import { useCollisionDetector } from "../../hooks/useCollisionDetector";
 import useMovementState, { KeyControls } from "../../hooks/useMovementState";
 import Character, { CharacterAnimationType } from "../../base/Character";
+import useDefaults from "../../hooks/useDefaults";
 
 const Player = () => {
+  const {
+    player: { scale },
+  } = useDefaults();
   const playerRef = useRef<RapierRigidBody>(null);
   const [animation, setAnimation] = useState<CharacterAnimationType>("Idle");
   const sprintPressed = useMovementState(KeyControls.sprint);
@@ -49,7 +53,7 @@ const Player = () => {
       <CuboidCollider position={[0, 1, 0]} args={[1.5, 3, 1.5]} />
       <Character
         position={[0, -1.75, 0]}
-        scale={1.75}
+        scale={scale}
         animation={animation}
         rotation={rotation}
       />

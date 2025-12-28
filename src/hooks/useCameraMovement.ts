@@ -2,17 +2,16 @@ import React, { useRef } from "react";
 import { Vector3 } from "three";
 import { useFrame, useThree } from "@react-three/fiber";
 import { RapierRigidBody } from "@react-three/rapier";
+import useDefaults from "./useDefaults";
 
 interface CameraMovementProps {
   playerRef: React.RefObject<RapierRigidBody | null>;
 }
 
-const CAMERA_DISTANCE = 35;
-const CAMERA_HEIGHT = 20;
-const LOOK_AHEAD = -2;
-const CAMERA_SMOOTHING = 6;
-
 const useCameraMovement = ({ playerRef }: CameraMovementProps) => {
+  const {
+    camera: { cameraDistance, cameraHeight, lookAhead, cameraSmoothing },
+  } = useDefaults();
   const { camera } = useThree();
   const targetPos = useRef(new Vector3());
   const targetLookAt = useRef(new Vector3());
@@ -28,13 +27,12 @@ const useCameraMovement = ({ playerRef }: CameraMovementProps) => {
     const predictedZ = playerPos.z + playerVel.z * 0.05;
 
     const cameraTargetX = predictedX;
-    const cameraTargetY = playerPos.y + CAMERA_HEIGHT;
-    const cameraTargetZ = predictedZ + CAMERA_DISTANCE;
+    const cameraTargetY = playerPos.y + cameraHeight;
+    const cameraTargetZ = predictedZ + cameraDistance;
 
     // Frame-rate independent smoothing with tighter clamping
     const clampedDelta = Math.min(delta, 0.0167);
-    const smoothFactor = 1 - Math.exp(-CAMERA_SMOOTHING * clampedDelta);
-
+    const smoothFactor = 1 - Math.exp(-cameraSmoothing * clampedDelta);
     // Smooth camera position
     targetPos.current.x += (cameraTargetX - targetPos.current.x) * smoothFactor;
     targetPos.current.y += (cameraTargetY - targetPos.current.y) * smoothFactor;
@@ -45,7 +43,7 @@ const useCameraMovement = ({ playerRef }: CameraMovementProps) => {
     // Smooth the look-at point as well
     const lookAtX = playerPos.x;
     const lookAtY = playerPos.y + 1;
-    const lookAtZ = playerPos.z - LOOK_AHEAD;
+    const lookAtZ = playerPos.z - lookAhead;
 
     targetLookAt.current.x += (lookAtX - targetLookAt.current.x) * smoothFactor;
     targetLookAt.current.y += (lookAtY - targetLookAt.current.y) * smoothFactor;

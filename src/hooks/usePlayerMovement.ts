@@ -4,15 +4,13 @@ import { useFrame } from "@react-three/fiber";
 import { RapierRigidBody } from "@react-three/rapier";
 import useCameraMovement from "./useCameraMovement";
 import useMovementState, { KeyControls } from "./useMovementState";
+import useDefaults from "./useDefaults";
 
-// Movement constants
-const SPEED = 12; // Base movement speed
-const SPRINT_MULTIPLIER = 1.8; // Speed multiplier when sprinting
-const FLOOR_Y = 2; // Ground level position
-const GRAVITY = -9.81; // Gravity acceleration
-const ACCELERATION = 50; // Rate of velocity change (higher = more responsive)
-const FRICTION = 0.85; // Deceleration when no input (lower = faster stopping)
-const ROTATION_SPEED = 10; // Character rotation interpolation speed
+const FLOOR_Y = 2; // Y position of the floor
+const GRAVITY = -9.81; // Gravity strength
+const ACCELERATION = 50; // How quickly to reach target speed
+const FRICTION = 0.85; // Friction factor when no input
+const ROTATION_SPEED = 10; // How quickly to rotate towards movement direction
 
 interface UsePlayerMovementProps {
   playerRef: React.RefObject<RapierRigidBody | null>;
@@ -20,6 +18,9 @@ interface UsePlayerMovementProps {
 
 const usePlayerMovement = ({ playerRef }: UsePlayerMovementProps) => {
   useCameraMovement({ playerRef });
+  const {
+    player: { movementSpeed, sprintMultiplier },
+  } = useDefaults();
 
   const forwardPressed = useMovementState(KeyControls.forward);
   const backPressed = useMovementState(KeyControls.back);
@@ -44,7 +45,9 @@ const usePlayerMovement = ({ playerRef }: UsePlayerMovementProps) => {
     // Build normalized direction vector from keyboard input
     const direction = new Vector3(0, 0, 0);
 
-    const moveSpeed = sprintPressed ? SPEED * SPRINT_MULTIPLIER : SPEED;
+    const moveSpeed = sprintPressed
+      ? movementSpeed * sprintMultiplier
+      : movementSpeed;
 
     if (forwardPressed) direction.z -= 1;
     if (backPressed) direction.z += 1;

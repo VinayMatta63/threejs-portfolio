@@ -3,6 +3,7 @@ import { RepeatWrapping, SRGBColorSpace } from "three";
 import { useTexture } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 import { useDispose } from "../../hooks/useDispose";
+import useDefaults from "../../hooks/useDefaults";
 
 interface FloorProps {
   height?: number;
@@ -10,9 +11,13 @@ interface FloorProps {
 }
 
 const Floor: React.FC<FloorProps> = ({ height = 400, width = 400 }) => {
+  const {
+    floor: { xWrap, yWrap },
+  } = useDefaults();
+
   const floorTexture = useTexture("/assets/grass.jpg", (texture) => {
     texture.wrapS = texture.wrapT = RepeatWrapping;
-    texture.repeat.set(height / 2, width / 2);
+    texture.repeat.set(xWrap, yWrap);
     texture.colorSpace = SRGBColorSpace;
   });
 

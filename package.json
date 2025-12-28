@@ -9,6 +9,7 @@
     "@react-three/rapier": "^2.2.0",
     "axios": "^1.13.2",
     "gsap": "^3.13.0",
+    "leva": "^0.10.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.9.6",
