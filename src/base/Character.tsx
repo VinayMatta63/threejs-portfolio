@@ -43,7 +43,7 @@ const Character = ({
     Object.values(materials).forEach((material: EmissiveMaterial) => {
       if (material.emissive) {
         material.emissive.copy(material.color!);
-        material.emissiveIntensity = 0.4;
+        material.emissiveIntensity = 0.45;
       }
     });
   }, [materials]);
@@ -52,7 +52,6 @@ const Character = ({
     if (!actions) return;
 
     const action = actions[animation];
-    if (!action) return;
 
     // Find the currently playing action
     const currentAction = Object.values(actions).find(
@@ -60,14 +59,17 @@ const Character = ({
     );
 
     // Don't restart if the same animation is already playing
-    if (currentAction === action) return;
+    if (currentAction?.getClip().name === action?.getClip().name) return;
 
     // Smooth transition with 0.3s crossfade
-    if (currentAction && currentAction !== action) {
+    if (
+      currentAction &&
+      currentAction?.getClip().name !== action?.getClip().name
+    ) {
       currentAction.fadeOut(0.3);
     }
 
-    action.reset().fadeIn(0.3).play();
+    action?.reset().fadeIn(0.3).play();
   }, [animation, actions]);
 
   return (

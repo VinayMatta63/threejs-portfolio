@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   CuboidCollider,
   IntersectionEnterHandler,
@@ -6,7 +6,6 @@ import {
   RapierRigidBody,
   RigidBody,
 } from "@react-three/rapier";
-import { useFrame } from "@react-three/fiber";
 import usePlayerMovement from "../../hooks/usePlayerMovement";
 import { useCollisionDetector } from "../../hooks/useCollisionDetector";
 import useMovementState, { KeyControls } from "../../hooks/useMovementState";
@@ -29,16 +28,21 @@ const Player = () => {
 
   const { handleCollisionEnter, handleCollisionExit } = useCollisionDetector();
 
-  useFrame(() => {
+  useEffect(() => {
     const isMoving =
       forwardPressed || backPressed || leftPressed || rightPressed;
 
-    if (isMoving) {
-      setAnimation(sprintPressed ? "Run" : "Walk");
+    let timeout;
+    if (isMoving && sprintPressed) {
+      timeout = setTimeout(() => setAnimation("Run"), 50);
+    } else if (isMoving) {
+      timeout = setTimeout(() => setAnimation("Walk"), 100);
     } else {
-      setAnimation("Idle");
+      timeout = setTimeout(() => setAnimation("Idle"), 150);
     }
-  });
+
+    return () => clearTimeout(timeout);
+  }, [forwardPressed, backPressed, leftPressed, rightPressed, sprintPressed]);
 
   return (
     <RigidBody

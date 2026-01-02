@@ -7,6 +7,7 @@ import {
   PerformanceMonitor,
   Stats,
 } from "@react-three/drei";
+import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import { useLocation } from "react-router-dom";
 import { Leva } from "leva";
 import { LOADER_CONFIG } from "./constants/loaderConfig";
@@ -18,6 +19,13 @@ import "./App.css";
 const App = () => {
   const {
     physics: { debug },
+    effects: {
+      enabled,
+      bloomIntensity,
+      bloomThreshold,
+      bloomSmoothing,
+      bloomHeight,
+    },
   } = useDefaults();
   const { hash } = useLocation();
   const [dpr, setDpr] = useState(1.5);
@@ -39,17 +47,25 @@ const App = () => {
             gl={{ antialias: true, powerPreference: "high-performance" }}
             id="canvas"
           >
-            <PerformanceMonitor
-              onIncline={() => setDpr(1.5)}
-              onDecline={() => setDpr(1)}
-            >
-              {isDebugMode && <Stats />}
-              <Suspense fallback={null}>
-                <Physics debug={isDebugMode && debug}>
-                  <World />
-                </Physics>
-              </Suspense>
-            </PerformanceMonitor>
+            <EffectComposer enabled={enabled}>
+              <PerformanceMonitor
+                onIncline={() => setDpr(1.5)}
+                onDecline={() => setDpr(1)}
+              >
+                {isDebugMode && <Stats />}
+                <Suspense fallback={null}>
+                  <Physics debug={isDebugMode && debug}>
+                    <World />
+                  </Physics>
+                </Suspense>
+              </PerformanceMonitor>
+              <Bloom
+                intensity={bloomIntensity}
+                luminanceThreshold={bloomThreshold}
+                luminanceSmoothing={bloomSmoothing}
+                height={bloomHeight}
+              />
+            </EffectComposer>
           </Canvas>
         </KeyboardControls>
 
