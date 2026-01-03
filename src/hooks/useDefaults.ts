@@ -4,42 +4,53 @@ const useDefaults = () => {
   const physics = useControls("Physics", {
     debug: {
       label: "Debug",
-      value: true,
+      value: false,
     },
   });
 
   const effects = useControls("Effects", {
     enabled: {
       label: "Enabled",
-      value: true,
+      value: false,
     },
     bloomIntensity: {
       label: "Bloom Intensity",
-      value: 2,
+      value: 1.5,
       step: 0.1,
       min: 0,
       max: 5,
     },
     bloomThreshold: {
       label: "Bloom Threshold",
-      value: 0.25,
+      value: 0.6,
       step: 0.01,
       min: 0,
       max: 1,
     },
     bloomSmoothing: {
       label: "Bloom Smoothing",
-      value: 3.5,
+      value: 0.7,
       step: 0.1,
       min: 0,
       max: 10,
     },
     bloomHeight: {
       label: "Bloom Height",
-      value: 100,
+      value: 500,
       step: 10,
+      min: 100,
+      max: 1024,
+    },
+    mipmapBlur: {
+      label: "Mipmap Blur",
+      value: true,
+    },
+    radius: {
+      label: "Blur Radius",
+      value: 0.5,
+      step: 0.1,
       min: 0,
-      max: 500,
+      max: 2,
     },
   });
 

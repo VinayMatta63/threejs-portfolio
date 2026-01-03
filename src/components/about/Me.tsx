@@ -15,6 +15,7 @@ const Me: React.FC = () => {
 
   return (
     <Text
+      type="3d"
       position={[72, 2, 90]}
       rotation={[-Math.PI / 2, Math.PI, -Math.PI]}
       ref={secondRef}

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useGLTF } from "@react-three/drei";
 import Text from "../../base/Text";
 
@@ -13,23 +14,23 @@ const PortalSign = () => {
       rotation={[0, Math.PI, 0]}
     >
       <primitive scale={1.1} object={largeSignModel.scene} />
-      <Text scale={SIGN_SCALE / 5.5} position={[0.8, 5.65, -0.38]}>
+      <Text scale={0.35} position={[0.6, 5.82, -0.5]}>
         Skills
       </Text>
-      <Text scale={SIGN_SCALE / 5.5} position={[1, 4.85, -0.38]}>
+      <Text scale={0.35} position={[0.9, 5.08, -0.5]}>
         Projects
       </Text>
-      <Text scale={SIGN_SCALE / 5.35} position={[0.55, 3.85, -0.38]}>
+      <Text scale={0.35} position={[0.5, 4.05, -0.5]}>
         About
       </Text>
-      <Text scale={SIGN_SCALE / 6.8} position={[0.45, 2.8, -0.38]}>
+      <Text scale={0.3} position={[0.3, 2.95, -0.5]}>
         Experience
       </Text>
-      <Text scale={SIGN_SCALE / 6.8} position={[0.45, 2, -0.38]}>
-        Contact Me
+      <Text scale={0.3} position={[0.3, 2.2, -0.5]}>
+        Contact
       </Text>
     </group>
   );
 };
 
-export default PortalSign;
+export default memo(PortalSign);

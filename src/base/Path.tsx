@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { memo, useMemo } from "react";
 import { Instance, Instances, useGLTF } from "@react-three/drei";
 import { BufferGeometry, Object3D } from "three";
 import { getPathTilePositions } from "../helpers/getPathTilePositions";
@@ -44,4 +44,4 @@ const Path: React.FC<PathProps> = ({ count, x, z, start }) => {
 
 useGLTF.preload("/models/tile.glb");
 
-export default Path;
+export default memo(Path);

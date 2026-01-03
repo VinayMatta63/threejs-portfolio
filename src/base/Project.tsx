@@ -37,6 +37,7 @@ const Project: React.FC<ProjectProps> = ({
   return (
     <group {...props}>
       <Text
+        type="3d"
         rotation={[0, Math.PI / 2, 0]}
         position={[0, 15, 12]}
         textOptions={textOptions}

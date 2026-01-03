@@ -17,7 +17,7 @@ const Link = ({ children, to, ...props }: LinkProps) => {
 
   return (
     <group {...props}>
-      <Text position={[0.65, 0, 0]} rotation={text_angle}>
+      <Text position={[1, 0.2, 0]} rotation={text_angle}>
         {children}
       </Text>
       <CollisionPlate

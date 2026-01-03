@@ -3,9 +3,12 @@ import { SKILL_ICONS } from "../../constants/skillIcons";
 import Sprite from "../../base/Sprite";
 import Text from "../../base/Text";
 import SkillsSign from "./SkillsSign";
+import { useDispose } from "../../hooks/useDispose";
 
 const Skills = () => {
   const icons = useTexture([...SKILL_ICONS]);
+
+  useDispose(icons);
 
   const textOptions = {
     font: "/fonts/Roboto_Regular.json",
@@ -16,6 +19,7 @@ const Skills = () => {
   return (
     <group>
       <Text
+        type="3d"
         rotation={[-Math.PI / 2, 2 * Math.PI, 0]}
         position={[-110, 0, 140]}
         textOptions={textOptions}

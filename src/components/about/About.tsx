@@ -8,6 +8,7 @@ const About = () => {
   return (
     <group>
       <Text
+        type="3d"
         rotation={[-Math.PI / 2, Math.PI * 2, 0]}
         position={[-15, 0.5, 140]}
         textOptions={{

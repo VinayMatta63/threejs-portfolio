@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Text from "../../base/Text";
 import Link from "../../base/Link";
 
@@ -10,13 +10,13 @@ const Links: React.FC = () => {
   return (
     <group>
       <Text
+        scale={4}
         rotation={[-Math.PI / 8, Math.PI * 2, 0]}
-        position={[x - 1.5, 0.01, z - 45]}
-        textOptions={{ size: 3, height: 1, font: "/fonts/Roboto_Regular.json" }}
+        position={[x - 1.5, 2.1, z - 45]}
       >
         Links
       </Text>
-      <group position={[x, 0.1, z + 15]} rotation={[0, Math.PI * 2, 0]}>
+      <group position={[x, 1, z + 15]} rotation={[0, Math.PI * 2, 0]}>
         <Link position={[0, 0, 0]} to="https://www.hackerrank.com/vinaymatta63">
           Hackerrank
         </Link>
@@ -49,4 +49,4 @@ const Links: React.FC = () => {
   );
 };
 
-export default Links;
+export default memo(Links);

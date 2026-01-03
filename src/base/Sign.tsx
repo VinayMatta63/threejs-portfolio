@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { useGLTF } from "@react-three/drei";
 import { BufferGeometry, Material, Object3D } from "three";
 import Text from "./Text";
@@ -22,7 +22,7 @@ const Sign: React.FC<SignProps> = ({
   rotation = [0, Math.PI, 0],
   titleScale = 0.35,
   titleRotation = [0, Math.PI, 0],
-  titlePosition = [0.7, 2.65, -0.35],
+  titlePosition = [0.7, 2.8, -0.35],
   ...props
 }) => {
   const { nodes } = useGLTF("/models/sign.glb", true);
@@ -44,4 +44,4 @@ const Sign: React.FC<SignProps> = ({
 
 useGLTF.preload("/models/sign.glb");
 
-export default Sign;
+export default memo(Sign);

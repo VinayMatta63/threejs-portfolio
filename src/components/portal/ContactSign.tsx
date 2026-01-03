@@ -5,9 +5,9 @@ const ContactSign = () => {
     <Sign
       title={"Go through the portal \n to contact me..."}
       scale={2}
-      titleScale={0.15}
+      titleScale={0.175}
       position={[7, 0, 15]}
-      titlePosition={[0.95, 2.85, -0.35]}
+      titlePosition={[0.95, 2.82, -0.35]}
     />
   );
 };

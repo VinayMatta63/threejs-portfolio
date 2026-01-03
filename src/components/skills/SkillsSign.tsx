@@ -6,7 +6,7 @@ const SkillsSign = () => {
       title="Skills"
       scale={2}
       position={[-60, 0, 50]}
-      titlePosition={[0.5, 2.65, -0.35]}
+      titlePosition={[0.35, 2.82, -0.35]}
     />
   );
 };

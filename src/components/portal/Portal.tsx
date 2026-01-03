@@ -9,6 +9,7 @@ import {
   ShaderMaterial,
   SRGBColorSpace,
   Texture,
+  UnsignedByteType,
 } from "three";
 import { vertexShader, fragmentShader } from "../../shaders/portal/shaders";
 import { CollisionPayload } from "../../services/CollisionEmitter";
@@ -18,6 +19,13 @@ import CollisionPlate from "../../base/CollisionPlate";
 import PortalSign from "./PortalSign";
 import ContactSign from "./ContactSign";
 import Text from "../../base/Text";
+import {
+  EffectComposer,
+  Select,
+  Selection,
+  SelectiveBloom,
+} from "@react-three/postprocessing";
+import useDefaults from "../../hooks/useDefaults";
 
 const Portal = () => {
   const portal = useGLTF("/models/portal.glb");
@@ -25,6 +33,18 @@ const Portal = () => {
     texture.flipY = false;
     texture.colorSpace = SRGBColorSpace;
   });
+
+  const {
+    effects: {
+      enabled,
+      bloomIntensity,
+      bloomThreshold,
+      bloomSmoothing,
+      bloomHeight,
+      mipmapBlur,
+      radius,
+    },
+  } = useDefaults();
 
   const { material, lampMaterial, portalMaterial } = useMemo(() => {
     const mat = new MeshBasicMaterial({ map: bakedMap as Texture });
@@ -76,29 +96,48 @@ const Portal = () => {
   };
 
   return (
-    <group>
-      <Text
-        rotation={[0, 0, 0]}
-        position={[-8, 15, -4]}
-        textOptions={{
-          size: 3,
-          height: 1,
-          font: "/fonts/Roboto_Regular.json",
-        }}
+    <Selection>
+      <group>
+        <Text
+          type="3d"
+          rotation={[0, 0, 0]}
+          position={[-8, 15, -4]}
+          textOptions={{
+            size: 3,
+            height: 1,
+            font: "/fonts/Roboto_Regular.json",
+          }}
+        >
+          Contact
+        </Text>
+        <Select>
+          <primitive object={portal.scene} />
+        </Select>
+        <pointLight position={[0, 15, 5]} args={["#fafafa", 0.75, 30, 0.1]} />
+        <PortalSign />
+        <ContactSign />
+        <CollisionPlate
+          name="contact"
+          position={[0, 0.5, -8]}
+          onCollision={handleCollision}
+        />
+      </group>
+      <EffectComposer
+        enabled={enabled}
+        autoClear={false}
+        multisampling={0}
+        frameBufferType={UnsignedByteType}
       >
-        Contact
-      </Text>
-
-      <primitive object={portal.scene} />
-      <pointLight position={[0, 15, 5]} args={["#fafafa", 0.75, 30, 0.1]} />
-      <PortalSign />
-      <ContactSign />
-      <CollisionPlate
-        name="contact"
-        position={[0, 0.5, -8]}
-        onCollision={handleCollision}
-      />
-    </group>
+        <SelectiveBloom
+          intensity={bloomIntensity}
+          luminanceThreshold={bloomThreshold}
+          luminanceSmoothing={bloomSmoothing}
+          height={bloomHeight}
+          mipmapBlur={mipmapBlur}
+          radius={radius}
+        />
+      </EffectComposer>
+    </Selection>
   );
 };
 

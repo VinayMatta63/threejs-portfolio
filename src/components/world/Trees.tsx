@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { memo, useMemo } from "react";
 import { Instance, Instances, useGLTF } from "@react-three/drei";
 import { BufferGeometry, Object3D } from "three";
 import {
@@ -39,4 +39,4 @@ const Trees = () => {
   );
 };
 
-export default Trees;
+export default memo(Trees);
