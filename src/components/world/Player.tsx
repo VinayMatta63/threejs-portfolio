@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Group } from "three";
 import {
   CuboidCollider,
   IntersectionEnterHandler,
@@ -17,6 +18,7 @@ const Player = () => {
     player: { scale },
   } = useDefaults();
   const playerRef = useRef<RapierRigidBody>(null);
+  const characterRef = useRef<Group>(null);
   const [animation, setAnimation] = useState<CharacterAnimationType>("Idle");
   const sprintPressed = useMovementState(KeyControls.sprint);
   const forwardPressed = useMovementState(KeyControls.forward);
@@ -24,7 +26,7 @@ const Player = () => {
   const leftPressed = useMovementState(KeyControls.left);
   const rightPressed = useMovementState(KeyControls.right);
 
-  const { rotation } = usePlayerMovement({ playerRef });
+  usePlayerMovement({ playerRef, characterRef });
 
   const { handleCollisionEnter, handleCollisionExit } = useCollisionDetector();
 
@@ -56,10 +58,10 @@ const Player = () => {
     >
       <CuboidCollider position={[0, 1, 0]} args={[1.5, 3, 1.5]} />
       <Character
+        ref={characterRef}
         position={[0, -1.75, 0]}
         scale={scale}
         animation={animation}
-        rotation={rotation}
       />
     </RigidBody>
   );

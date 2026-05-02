@@ -17,7 +17,7 @@ const Floor: React.FC<FloorProps> = ({ height = 400, width = 400 }) => {
 
   const floorTexture = useTexture("/assets/grass.jpg", (texture) => {
     texture.wrapS = texture.wrapT = RepeatWrapping;
-    texture.repeat.set(xWrap, yWrap);
+    texture.repeat.set(xWrap/2, yWrap/2);
     texture.colorSpace = SRGBColorSpace;
   });
 
@@ -26,7 +26,7 @@ const Floor: React.FC<FloorProps> = ({ height = 400, width = 400 }) => {
 
   return (
     <RigidBody colliders="cuboid" type="fixed">
-      <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+      <mesh rotation={[-Math.PI / 2, 0, 0]}>
         <planeGeometry args={[height, width]} />
         <meshStandardMaterial map={floorTexture} />
       </mesh>

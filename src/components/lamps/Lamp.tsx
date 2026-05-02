@@ -28,7 +28,6 @@ const Lamp: React.FC<ThreeElements["group"]> = ({ position, ...props }) => {
         child.material = lampMaterial;
       } else {
         child.material = bakedLampMaterial;
-        child.castShadow = true;
       }
     });
 
@@ -36,14 +35,8 @@ const Lamp: React.FC<ThreeElements["group"]> = ({ position, ...props }) => {
     <group position={position} {...props}>
       <primitive object={lamp.scene.clone(true)} />
       <pointLight
-        castShadow
         args={["#fafafa", 0.5, 30, 1]}
         position={[0, 5, 0]}
-        shadow-onUpdate={false}
-        shadow-mapSize-width={512}
-        shadow-mapSize-height={512}
-        shadow-camera-near={0.1}
-        shadow-camera-far={25}
       />
     </group>
   );

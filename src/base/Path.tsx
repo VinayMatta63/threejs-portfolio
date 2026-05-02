@@ -26,11 +26,9 @@ const Path: React.FC<PathProps> = ({ count, x, z, start }) => {
     <Instances
       limit={count}
       geometry={(nodes.Cube078 as PathNode).geometry}
-      frustumCulled={false}
-      castShadow
     >
       <meshStandardMaterial
-        color="#aaa"
+        color="#c7c5c5"
         roughness={1}
         metalness={0}
         opacity={0.8}

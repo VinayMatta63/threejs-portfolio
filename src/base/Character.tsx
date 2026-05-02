@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { forwardRef, useEffect, useRef, RefObject } from "react";
 import {
   AnimationAction,
   BufferGeometry,
@@ -29,12 +29,12 @@ type CharacterProps = ThreeElements["group"] & {
   animation?: CharacterAnimationType;
 };
 
-const Character = ({
+const Character = forwardRef<Group, CharacterProps>(function Character({
   animation = "Idle",
-  rotation,
   ...props
-}: CharacterProps) => {
-  const group = useRef<Group>(null);
+}: CharacterProps, forwardedRef) {
+  const internalRef = useRef<Group>(null);
+  const group = (forwardedRef ?? internalRef) as RefObject<Group>;
   const { nodes, materials, animations } = useGLTF("/models/player.glb");
   const { actions } = useAnimations(animations, group);
 
@@ -73,7 +73,7 @@ const Character = ({
   }, [animation, actions]);
 
   return (
-    <group ref={group} {...props} rotation={rotation} dispose={null}>
+    <group ref={group} {...props} dispose={null}>
       <group name="Root_Scene">
         <group name="RootNode">
           <group
@@ -139,7 +139,7 @@ const Character = ({
       </group>
     </group>
   );
-};
+});
 
 useGLTF.preload("/models/player.glb");
 
