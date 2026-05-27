@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import { ThreeElements } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 import CollisionPlate from "./CollisionPlate";
@@ -37,4 +37,4 @@ const Link = ({ children, to, ...props }: LinkProps) => {
   );
 };
 
-export default Link;
+export default memo(Link);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { Group } from "three";
 import { Html } from "@react-three/drei";
 import { ThreeElements } from "@react-three/fiber";
@@ -44,8 +44,6 @@ const Project: React.FC<ProjectProps> = ({
       >
         {title}
       </Text>
-
-      <pointLight position={[10, 15, 0]} args={["#fafafa", 0.75, 30, 0.1]} />
 
       <CollisionPlate
         name={title.toLowerCase().replace(/\s+/g, "-") + "-plate"}
@@ -96,4 +94,4 @@ const Project: React.FC<ProjectProps> = ({
   );
 };
 
-export default Project;
+export default memo(Project);

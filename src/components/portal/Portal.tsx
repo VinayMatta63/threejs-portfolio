@@ -78,7 +78,6 @@ const Portal = () => {
           child.material = portalMaterial;
         } else {
           child.material = material;
-          child.castShadow = true;
         }
       });
   }, [portal.scene, material, lampMaterial, portalMaterial]);

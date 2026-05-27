@@ -24,8 +24,6 @@ const Trees = () => {
       limit={treePositions.length}
       geometry={(nodes.tree as TreeNode).geometry}
       material={materials["Material_1019.001"]}
-      frustumCulled={false}
-      castShadow
     >
       {treePositions.map((pos, index) => (
         <Instance
